@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "struct.h"
 #include "init.h"
-
 
 Position caseDepart (int largeur, int hauteur)
 {

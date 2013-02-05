@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "struct.h"
 #include "init.h"
 #include "contact.h"
 #include "backtrack.h"

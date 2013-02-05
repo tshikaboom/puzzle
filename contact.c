@@ -2,8 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "struct.h"
 #include "init.h"
 #include "contact.h"
+
 
 int contact_h(Carte *plateau[][],int i , int j )
 {
