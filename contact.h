@@ -4,13 +4,17 @@
 /*Fonctions*/
 
 /*teste si la case est en contact en haut*/
-int contact_h(Carte *plateau[][],int i, int j, Carte *carte);
+int contact_h(Carte *plateau[][],int i, int j);
 
-int contact_d(Carte *plateau[][],int i, int j,int largeur, Carte *carte);/*teste le contact à droite*/
+/*teste le contact à droite*/
+int contact_d(Carte *plateau[][],int i, int j,int largeur);
 
-int contact_b(Carte *plateau[][],int i , int j, int hauteur, Carte *carte);/*teste le contact en bas */
+/*teste le contact en bas */
+int contact_b(Carte *plateau[][],int i , int j, int hauteur);
 
-int contact_g(Carte *plateau[][],int i, int j, Carte *carte);/*teste le contact à gauche*/
+/*teste le contact à gauche*/
+int contact_g(Carte *plateau[][],int i, int j);
 
-int cartePossible(Carte *carte, Carte *plateau[][]);
+/*test si la carte est positionnable a la postion donnee*/
+int cartePossible(Carte *carte, Carte *plateau[][],int i, int j, int largeur, int hauteur);
 #endif

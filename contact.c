@@ -7,7 +7,7 @@
 #include "contact.h"
 
 
-int contact_h(Carte *plateau[][],int i , int j )
+int contact_h(Carte *plateau[][],int i , int j)
 {
   int estEnContact;
   int peutSePlacer;
@@ -34,7 +34,7 @@ int contact_h(Carte *plateau[][],int i , int j )
 }
     
 
-int contact_d(Carte *plateau[][],int i , int j, int largeur  )
+int contact_d(Carte *plateau[][],int i , int j, int largeur)
 {
   int estEnContact;
   int peutSePlacer;
@@ -86,7 +86,7 @@ if (estEnContact==1)
 }
 
 
-int contact_g(Carte *plateau[][],int i, int j )
+int contact_g(Carte *plateau[][],int i, int j)
 {
   int estEnContact;
   int peutSePlacer;
@@ -113,14 +113,17 @@ if (estEnContact==1)
 }
 
 
-int cartePossible(Carte *carte, carte *plateau[][],int i , int j, int largeur, int hauteur)
+int cartePossible(Carte *carte,Carte *plateau[][],int i , int j, int largeur, int hauteur)
 {
-  /*  int placementPossible;
-  placementPossible=0;
+  /*Si la carte courante ne correspond pas avec ses voisines alors on fait une rotation : si pas vrai alors on rentre dans le if*/
+  if (!(contact_h(plateau[][],i,j) || contact_d(plateau[][],i,j,largeur) || contact_b(plateau[][],i,j,hauteur) || contact_g(plateau[][],i,j)))
+    {
+      rotation(carte,1);
+      
+      /*si on a fait un tour complet alors la carte n'est pas valide*/
+      if (carte->rotated == 4) return 0;
+      return cartePossible(carte,plateau[][],i,j,largeur,hauteur);
+    }
 
-  if( )
-    placementPossible=1;
-  */
-  return (contact_h(plateau[][],i,j,carte) && contact_d(plateau[][],i,j,largeur,carte) && contact_b(plateau[][],i,j,hauteur,carte) && contact_g(plateau[][],i,j,carte))
+  return 1;
 }
-

@@ -47,7 +47,6 @@ void rotation (Carte *carte, unsigned int nombre)
     carte->Bas = carte->Droite;
     carte->Droite = swap;
   }
-  if (carte->rotated == 4) carte->rotated = 0; /*On a tout testé !!*/
 }
       
 void affichage3(Carte *plateau[][3], int largeur, int hauteur)

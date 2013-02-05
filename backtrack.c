@@ -9,7 +9,7 @@
 
 
 /*Algorithme de backtracking*/
-void backtrack (Carte *plateau[][],Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte)
+void backtrack (Carte *plateau[][], Carte *carte,Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte)
 {
   int nombre_de_solution;
   int carte;
