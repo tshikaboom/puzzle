@@ -1,0 +1,32 @@
+/*Notre Algo*/
+
+Si (nombre de cartes == 0) //conditionnement
+    nombre de solutions ++
+    affichage de la solution
+    
+    x = meilleur position possible de x
+    y = meilleur position possible de y
+    
+    Si plateau[x][y] == nombre de case libre (reste de case)  ET  test de rotation == 4
+       return TRUE
+
+    finSI
+finSI
+
+Pour carte[0] a nombre de cartes
+
+     Si on a une carte ET le placement est possible
+        -place la carte sur le plateau 
+        -on enleve la carte de la liste des cartes disponibles
+        
+        Si appel recursif de backtrack sur la case suivante
+           return TRUE
+        finSI
+
+        -plateau == -1 , reinitialisation des valeurs fausses
+        -on enleve la carte fausse du plateau 
+        -reinitialisation de la rotation de la carte
+      finSI
+finPOUR
+
+return FALSE
