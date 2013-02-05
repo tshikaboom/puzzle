@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "struct.h"
+#include "structs.h"
 #include "init.h"
 
 Position caseDepart (int largeur, int hauteur)
@@ -50,7 +50,7 @@ void rotation (Carte *carte, unsigned int nombre)
   if (carte->rotated == 4) carte->rotated = 0; /*On a tout testé !!*/
 }
       
-void affichage3(Carte *plateau[][3], int largeur, int hauteur)
+void affichage(Carte *plateau[][TAILLE], int largeur, int hauteur)
 {
   printf("+---++---++---+\n");
   printf("| %d || %d || %d |\n", plateau[0][0]->Haut, plateau[1][0]->Haut, plateau[2][0]->Haut);
