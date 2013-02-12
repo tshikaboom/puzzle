@@ -38,7 +38,7 @@ void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int haut
 
   for (carte = 0; carte < (largeur*hauteur); carte++)
     {
-      if ( (tabCarte[carte].sur_plateau != 0) && (cartePossible(tabCarte[carte],plateau[][TAILLE],position_case.x,position_case.y,largeur,hauteur)) )
+      if ( (tabCarte[carte].sur_plateau != 1) && (cartePossible(tabCarte[carte],plateau[][TAILLE],position_case.x,position_case.y,largeur,hauteur)) )
 	{
 	  tabCarte[carte].sur_plateau = 1;/*On dit qu'elle est sur le plateau*/
 	  tabCarte[carte].x = position_case.x; /*Position de la carte a la position courante*/
