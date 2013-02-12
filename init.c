@@ -21,18 +21,18 @@ Position caseDepart (int largeur, int hauteur)
   return pos;
 }
 
-int suivant (int largeur, int hauteur, Carte *plateau[][], Position courante)
+int suivant (int largeur, int hauteur, Carte *plateau[][TAILLE], Position courante)
 {
-  if ((courante.x+1 < largeur) && (plateau[courante.x+1][courante.y] == NULL)) // on teste à droite
-    return 1; // case libre à droite
-  if ((courante.y+1 < hauteur) && (plateau[courante.x][courante.y+1] == NULL)) // on teste en bas
-    return 2; // case libre en bas
-  if ((courante.x-1 >= 0) && (plateau[courante.x-1][courante.y] == NULL)) // on teste à gauche
-    return 3; // case libre à gauche
-  if ((courante.y-1 >= 0) && (plateau[courante.x][courante.y-1] == NULL)) // on teste en haut
-    return 4; // case libre en haut
+  if ((courante.x+1 < largeur) && (plateau[courante.x+1][courante.y] == NULL)) /* on teste a droite */
+    return 1; /* case libre a droite */
+  if ((courante.y+1 < hauteur) && (plateau[courante.x][courante.y+1] == NULL)) /* on teste en bas */
+    return 2; /* case libre en bas */
+  if ((courante.x-1 >= 0) && (plateau[courante.x-1][courante.y] == NULL)) /* on teste a gauche */
+    return 3; /* case libre a gauche */
+  if ((courante.y-1 >= 0) && (plateau[courante.x][courante.y-1] == NULL)) /* on teste en haut */
+    return 4; /* case libre en haut */
   else
-    return 0; // rien de libre trouvé
+    return 0; /* rien de libre trouve */
 }
 
 void rotation (Carte *carte, unsigned int nombre)
