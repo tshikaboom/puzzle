@@ -16,8 +16,8 @@
 void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte,int indice_chemin,int choix)
 {
   int nombre_de_solution;
-  int carte;
-  Position position_case;
+  int carte; /*numero de la carte*/
+  Position position_case; /*position de la case courante*/
   
   /*indice_chemin doit etre egal a -1 au depart sinon la fonction chemin ne donnera pas le bon chemin*/
   position_case.x = chemin(indice_chemin,choix);
@@ -30,7 +30,7 @@ void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int haut
       affichage (plateau[][TAILLE],largeur,hauteur); /*affichage de la solution*/
       
       /* position_case = caseDepart(largeur,hauteur);               Placement optimal -> On le fera dans le main pour permettre a backtrack d'etre plus libre !!*/
-      position_case = chemin(-1,choix);
+      position_case = chemin(-1,choix); /*retourne a la position initiale*/
       
       if ( (plateau[position_case.x][position_case.y] == ((largeurgeur*hauteur)-1)) && (tabCarte[(largeur*hauteur)-1].rotated == 4) )
 	return TRUE;
@@ -38,7 +38,7 @@ void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int haut
 
   for (carte = 0; carte < (largeur*hauteur); carte++)
     {
-      if ( (tabCarte[carte].sur_plateau != 0) && (cartePossible(tabCarte[carte],plateau[][TAILLE],position_case.x,position_case.y,largeur,hauteur)) )
+      if ( (tabCarte[carte].sur_plateau != 1) && (cartePossible(tabCarte[carte],plateau[][TAILLE],position_case.x,position_case.y,largeur,hauteur)) )
 	{
 	  tabCarte[carte].sur_plateau = 1;/*On dit qu'elle est sur le plateau*/
 	  carte.pos.x = position_case.x; /*Position de la carte a la position courante*/
