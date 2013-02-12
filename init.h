@@ -9,7 +9,7 @@
 Position caseDepart (int largeur, int hauteur);
 
 /*Suivant => case suivant vide ou non*/
-int suivant (int largeur, int hauteur, Carte *plateau[][],int x, int y);
+int suivant (int largeur, int hauteur, Carte *plateau[][TAILLE],int x, int y);
 
 /*Gestion de la rotation*/
 void rotation (Carte *carte,unsigned int nombre);
