@@ -1,4 +1,5 @@
 -Il faut faire une fonction de reinitialisation de la rotation de la carte courante -> remise a zero.
 -Il faut verifier que l'algorithme implementé dans backtrack.c est correct avec la structure de donnée du projet.
 -Il faut ecrire un main.
+-Il faut ecrire une structure de ouf -> Assigné a Oskar.
 -Batterie de tests.
