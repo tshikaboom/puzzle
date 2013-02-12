@@ -51,7 +51,7 @@ void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int haut
 
 	  plateau[position_case.x][position_case.y] = -1; /*reinitialisation des valeurs fausses*/
 	  tabCarte[carte].sur_plateau = 0; /*on l'enleve du plateau*/
-	  rotation_init(tabCarte[carte]);/*reinitialisation de la rotation de la carte*/
+	  rotation_init(tabCarte[carte]);/*reinitialisation de la rotation de la carte a zero*/
 	  nombre_de_carte++;	    
 	}
     }
