@@ -37,7 +37,7 @@ int suivant (int largeur, int hauteur, Carte *plateau[][TAILLE], Position couran
 
 void rotation (Carte *carte, unsigned int nombre)
 {
-  int i, swap;
+  unsigned int i, swap;
   carte->rotated = carte->rotated + nombre;
 
   for (i = 0; i < nombre; i++) {
