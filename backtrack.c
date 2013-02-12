@@ -9,7 +9,7 @@
 
 
 /*Algorithme de backtracking*/
-void backtrack (Carte *plateau[][], Carte *carte,Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte)
+void backtrack (Carte *plateau[][TAILLE], Carte *carte,Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte)
 {
   int nombre_de_solution;
   int carte;
@@ -21,7 +21,7 @@ void backtrack (Carte *plateau[][], Carte *carte,Carte tabCarte[], int largeur, 
   if (nombre_de_carte == 0)
     {
       nombre_de_solution++; /*Incrementation du nombre de solutions*/
-      affichage (plateau[][],largeur,hauteur); /*affichage de la solution*/
+      affichage (plateau,largeur,hauteur); /*affichage de la solution*/
       
       position_case = caseDepart(largeur,hauteur); /*Placement optimal*/
 
@@ -33,3 +33,5 @@ void backtrack (Carte *plateau[][], Carte *carte,Carte tabCarte[], int largeur, 
     {
       if ( (tabCarte[carte].sur_plateau != 0) && (cartePossible()) )
 
+	}
+}
