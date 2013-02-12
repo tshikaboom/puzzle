@@ -13,15 +13,14 @@
 #define FALSE 0 /*SI FAUX*/
 
 /*Algorithme de backtracking*/
-void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte,int indice_chemin,int choix)
+int backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte,int indice_chemin,int choix)
 {
   int nombre_de_solution;
   int carte; /*numero de la carte*/
   Position position_case; /*position de la case courante*/
   
   /*indice_chemin doit etre egal a -1 au depart sinon la fonction chemin ne donnera pas le bon chemin*/
-  position_case.x = chemin(indice_chemin,choix);
-  position_case.y = chemin(indice_chemin,choix);
+  position_case = chemin(indice_chemin,choix);
   nombre_de_solution = 0;
   
   if (nombre_de_carte == 0)
@@ -32,7 +31,7 @@ void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int haut
       /* position_case = caseDepart(largeur,hauteur);               Placement optimal -> On le fera dans le main pour permettre a backtrack d'etre plus libre !!*/
       position_case = chemin(-1,choix); /*retourne a la position initiale*/
       
-      if ( (plateau[position_case.x][position_case.y] == ((largeurgeur*hauteur)-1)) && (tabCarte[(largeur*hauteur)-1].rotated == 4) )
+      if ( (plateau[position_case.x][position_case.y] == ((largeur*hauteur)-1)) && (tabCarte[(largeur*hauteur)-1].rotated == 4) )
 	return TRUE;
     }
 
@@ -44,14 +43,14 @@ void backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int haut
 	  tabCarte[carte].x = position_case.x; /*Position de la carte a la position courante*/
 	  tabCarte[carte].y = position_case.y; /* idem */
 
-	  if ( backtrack(plateau[][TAILLE],tabCarte[carte+1],largeur,hauteur,nombre_de_carte-1,indice_chemin+1,choix) )
+	  if ( backtrack(plateau[][TAILLE],tabCarte[],largeur,hauteur,nombre_de_carte-1,indice_chemin+1,choix) )
 	    {
 	      return TRUE;
 	    }
 
 	  plateau[position_case.x][position_case.y] = -1; /*reinitialisation des valeurs fausses*/
 	  tabCarte[carte].sur_plateau = 0; /*on l'enleve du plateau*/
-	  rotation_init(tabCarte[carte]);/*reinitialisation de la rotation de la carte a zero*/
+	  tabCarte[carte].rotated = 4;/*reinitialisation de la rotation de la carte a zero*/
 	  nombre_de_carte++;	    
 	}
     }

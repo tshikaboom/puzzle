@@ -2,6 +2,6 @@
 #define BACKTRACK_H
 
 /*Algorithme de backtracking*/
-void backtrack (Carte *plateau[][TAILLE], Carte *carte, Carte tabCarte[], int largeur, int hauteur,int nombre_de_carte);
+int backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte,int indice_chemin,int choix);
 
 #endif

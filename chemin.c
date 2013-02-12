@@ -4,7 +4,7 @@
 
 #include "structs.h"
 
-Position chemin (int i, ,int choix)
+Position chemin (int i,int choix)
 {
   Position pos_suivant;
   
