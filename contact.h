@@ -1,6 +1,7 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
+#include "structs.h"
 /*Fonctions*/
 
 /*teste si la case est en contact en haut*/
