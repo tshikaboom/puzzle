@@ -14,13 +14,24 @@ struct carte {
   unsigned int sur_plateau; /* 0 = pas sur plateau et 1 = sur plateau */
 };
 
-typedef struct carte Carte;
-
 struct position {
   int x;
   int y;
 };
+
+struct plateau {
+  Carte **tab;  // plateau == tableau a deux dimensions
+  int hauteur; // hauteur du plateau
+  int largeur; // largeur du plateau
+}
+
+
+
+
+typedef struct carte Carte;
 typedef struct position Position;
+typedef struct plateau Plateau;
+
 
 
 
