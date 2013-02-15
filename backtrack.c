@@ -13,7 +13,9 @@
 #define FALSE 0 /*SI FAUX*/
 
 /*Algorithme de backtracking*/
-int backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte,int indice_chemin,int choix)
+/*
+  int backtrack (Carte *plateau[][TAILLE],Carte tabCarte[], int largeur, int hauteur, int nombre_de_carte,int indice_chemin,int choix)
+*/
 int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indice_chemin,int choix)
 {
   int nombre_de_solution;
