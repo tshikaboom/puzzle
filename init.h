@@ -9,12 +9,12 @@
 Position caseDepart (int largeur, int hauteur);
 
 /*Suivant => case suivant vide ou non*/
-int suivant (int largeur, int hauteur, Carte *plateau[][TAILLE], Position courante);
+int suivant (Plateau *plateau, Position courante);
 
 /*Gestion de la rotation*/
 void rotation (Carte *carte,unsigned int nombre);
 
 /*Affichage*/
-void affichage (Carte *plateau[][TAILLE], int largeur, int hauteur);
+void affichage (Plateau *plateau);
 
 #endif

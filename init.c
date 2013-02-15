@@ -21,15 +21,15 @@ Position caseDepart (int largeur, int hauteur)
   return pos;
 }
 
-int suivant (int largeur, int hauteur, Carte *plateau[][TAILLE], Position courante)
+int suivant (Plateau *plateau, Position courante)
 {
-  if ((courante.x+1 < largeur) && (plateau[courante.x+1][courante.y] == NULL)) /* on teste a droite */
+  if ((courante.x+1 < plateau->largeur) && (plateau->tab[courante.x+1][courante.y] == NULL)) /* on teste a droite */
     return 1; /* case libre a droite */
-  if ((courante.y+1 < hauteur) && (plateau[courante.x][courante.y+1] == NULL)) /* on teste en bas */
+  if ((courante.y+1 < plateau->hauteur) && (plateau->tab[courante.x][courante.y+1] == NULL)) /* on teste en bas */
     return 2; /* case libre en bas */
-  if ((courante.x-1 >= 0) && (plateau[courante.x-1][courante.y] == NULL)) /* on teste a gauche */
+  if ((courante.x-1 >= 0) && (plateau->tab[courante.x-1][courante.y] == NULL)) /* on teste a gauche */
     return 3; /* case libre a gauche */
-  if ((courante.y-1 >= 0) && (plateau[courante.x][courante.y-1] == NULL)) /* on teste en haut */
+  if ((courante.y-1 >= 0) && (plateau->tab[courante.x][courante.y-1] == NULL)) /* on teste en haut */
     return 4; /* case libre en haut */
   else
     return 0; /* rien de libre trouve */
@@ -46,24 +46,26 @@ void rotation (Carte *carte, unsigned int nombre)
     carte->Gauche = carte->Bas;
     carte->Bas = carte->Droite;
     carte->Droite = swap;
+
+    if (carte->rotated == 4) carte->rotated = 0;
   }
 }
       
-void affichage(Carte *plateau[][TAILLE], int largeur, int hauteur)
+void affichage(Plateau *plateau)
 {
   printf("+---++---++---+\n");
-  printf("| %d || %d || %d |\n", plateau[0][0]->Haut, plateau[1][0]->Haut, plateau[2][0]->Haut);
-  printf("|%d%d%d||%d%d%d||%d%d%d|\n", plateau[0][0]->Gauche, plateau[0][0]->identifiant, plateau[0][0]->Droite, plateau[1][0]->Gauche, plateau[1][0]->identifiant,   plateau[1][0]->Droite, plateau[2][0]->Gauche, plateau[2][0]->identifiant,  plateau[2][0]->Droite);
-  printf("| %d || %d || %d |\n", plateau[0][0]->Bas, plateau[1][0]->Bas, plateau[2][0]->Bas);
+  printf("| %d || %d || %d |\n", plateau->tab[0][0]->Haut, plateau->tab[1][0]->Haut, plateau->tab[2][0]->Haut);
+  printf("|%d%d%d||%d%d%d||%d%d%d|\n", plateau->tab[0][0]->Gauche, plateau->tab[0][0]->identifiant, plateau->tab[0][0]->Droite, plateau->tab[1][0]->Gauche, plateau->tab[1][0]->identifiant,   plateau->tab[1][0]->Droite, plateau->tab[2][0]->Gauche, plateau->tab[2][0]->identifiant,  plateau->tab[2][0]->Droite);
+  printf("| %d || %d || %d |\n", plateau->tab[0][0]->Bas, plateau->tab[1][0]->Bas, plateau->tab[2][0]->Bas);
   printf("+---++---++---+\n");
   printf("+---++---++---+\n");  
-  printf("| %d || %d || %d |\n",  plateau[0][1]->Haut, plateau[1][1]->Haut, plateau[2][1]->Haut);
-  printf("|%d %d||%d %d||%d %d|\n",  plateau[0][1]->Gauche, plateau[0][1]->Droite, plateau[1][1]->Gauche, plateau[1][1]->Droite, plateau[2][1]->Gauche, plateau[2][1]->Droite);
-  printf("| %d || %d || %d |\n",  plateau[0][1]->Bas, plateau[1][1]->Bas, plateau[2][1]->Bas);
+  printf("| %d || %d || %d |\n",  plateau->tab[0][1]->Haut, plateau->tab[1][1]->Haut, plateau->tab[2][1]->Haut);
+  printf("|%d %d||%d %d||%d %d|\n",  plateau->tab[0][1]->Gauche, plateau->tab[0][1]->Droite, plateau->tab[1][1]->Gauche, plateau->tab[1][1]->Droite, plateau->tab[2][1]->Gauche, plateau->tab[2][1]->Droite);
+  printf("| %d || %d || %d |\n",  plateau->tab[0][1]->Bas, plateau->tab[1][1]->Bas, plateau->tab[2][1]->Bas);
   printf("+---++---++---+\n");
   printf("+---++---++---+\n");
-  printf("| %d || %d || %d |\n",   plateau[0][2]->Haut, plateau[1][2]->Haut, plateau[2][2]->Haut);
-  printf("|%d %d||%d %d||%d %d|\n", plateau[0][2]->Gauche, plateau[0][2]->Droite, plateau[1][2]->Gauche, plateau[1][2]->Droite, plateau[2][2]->Gauche, plateau[2][2]->Droite);
-  printf("| %d || %d || %d |\n",  plateau[0][2]->Bas, plateau[1][2]->Bas, plateau[2][2]->Bas);
+  printf("| %d || %d || %d |\n",   plateau->tab[0][2]->Haut, plateau->tab[1][2]->Haut, plateau->tab[2][2]->Haut);
+  printf("|%d %d||%d %d||%d %d|\n", plateau->tab[0][2]->Gauche, plateau->tab[0][2]->Droite, plateau->tab[1][2]->Gauche, plateau->tab[1][2]->Droite, plateau->tab[2][2]->Gauche, plateau->tab[2][2]->Droite);
+  printf("| %d || %d || %d |\n",  plateau->tab[0][2]->Bas, plateau->tab[1][2]->Bas, plateau->tab[2][2]->Bas);
   printf("+---++---++---+\n");
 }
