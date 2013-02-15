@@ -20,7 +20,7 @@ struct position {
 };
 
 struct plateau {
-  struct carte **tab;  /* plateau == tableau a deux dimensions */
+  struct carte ***tab;  /* plateau == tableau a deux dimensions */
   int hauteur; /* hauteur du plateau */
   int largeur; /* largeur du plateau */
 };
