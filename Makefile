@@ -2,7 +2,7 @@ CC= gcc
 CFLAGS= -W -Wall -ansi -pedantic -g
 LDFLAGS=
 EXEC= MAIN
-SRC= contact.c init.c main.c chemin.c
+SRC= contact.c init.c main.c chemin.c backtrack.c
 OBJ= $(SRC:.c=.o)
 
 all : $(EXEC)
