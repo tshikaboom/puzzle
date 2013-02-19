@@ -29,24 +29,25 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
   if (nombre_de_carte == 0)
     {
       nombre_de_solution++; /*Incrementation du nombre de solutions*/
-      affichage (plateau[][TAILLE],largeur,hauteur); /*affichage de la solution*/
+      affichage (plateau); /*affichage de la solution*/
       
       /* position_case = caseDepart(largeur,hauteur);               Placement optimal -> On le fera dans le main pour permettre a backtrack d'etre plus libre !!*/
       position_case = chemin(-1,choix); /*retourne a la position initiale*/
       
-      if ( (plateau->tab[position_case.x][position_case.y] == ((plateau->largeur*plateau->hauteur)-1)) && (tabCarte[(plateau->largeur*plateau->hauteur)-1].rotated == 4) )
+      if ( (plateau->tab[position_case.x][position_case.y] == NULL) /*((plateau->largeur*plateau->hauteur)-1))*/ && (tabCarte[(plateau->largeur*plateau->hauteur)-1].rotated == 4) )
 	return TRUE;
     }
 
   for (carte = 0; carte < (plateau->largeur*plateau->hauteur); carte++)
     {
-      if ( (tabCarte[carte].sur_plateau != 1) && (cartePossible(tabCarte[carte],plateau, position_case.x,position_case.y)) )
+      if ( (tabCarte[carte].sur_plateau != 1) && (cartePossible(tabCarte+carte,plateau, position_case.x,position_case.y)) )
 	{
 	  tabCarte[carte].sur_plateau = 1;/*On dit qu'elle est sur le plateau*/
-	  tabCarte[carte].x = position_case.x; /*Position de la carte a la position courante*/
-	  tabCarte[carte].y = position_case.y; /* idem */
+	  plateau->tab[position_case.x][position_case.y] = tabCarte+carte; /*Position de la carte a la position courante*/
+	  /*plateau->tab->position_case.y = tabCarte[carte];*/
+	  /*tabCarte[carte].y = position_case.y; idem */
 
-	  if ( backtrack(plateau,tabCarte[],nombre_de_carte-1,indice_chemin+1,choix) )
+	  if ( backtrack(plateau,tabCarte,nombre_de_carte-1,indice_chemin+1,choix) )
 	    {
 	      return TRUE;
 	    }
