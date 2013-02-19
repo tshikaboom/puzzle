@@ -46,9 +46,11 @@ void rotation (Carte *carte, unsigned int nombre)
     carte->Gauche = carte->Bas;
     carte->Bas = carte->Droite;
     carte->Droite = swap;
-
-    if (carte->rotated == 4) carte->rotated = 0;
+    DBG;
+    if (carte->rotated == 4) {carte->rotated = 0;printf("SORTIE : %d \n",carte->identifiant);break;}
   }
+  /*if (carte->rotated == 4) carte->rotated = 0;*/
+  printf("ROTATION : %d\n",carte->rotated);
 }
       
 void affichage(Plateau *plateau)

@@ -24,24 +24,25 @@ Position chemin (int i,int choix)
 	pos_suivant.x = tabI_spirale[i+1];
 	pos_suivant.y = tabJ_spirale[i+1];
 	
-	return pos_suivant;
+	/*	return pos_suivant; */
+	break;
       }
-      break;
       
     case 2 :
       {
 	pos_suivant.x = tabI_Z[i+1];
 	pos_suivant.y = tabJ_Z[i+1];
 	
-	return pos_suivant;
+	/*	return pos_suivant; */
+	break;
       }
-      break;
 
     default :
       {
 	printf("Choix du chemin non valide\n");
 	pos_suivant.x = -1;
 	pos_suivant.y = -1;
+	/*	return pos_suivant; */
 	break;
       }
     }

@@ -7,6 +7,7 @@
 #include "contact.h"
 
 
+
 int contact_h(Plateau *plateau,int i , int j, Carte Carte)
 {
   int estEnContact;
@@ -110,18 +111,29 @@ int contact_g(Plateau *plateau,int i, int j, Carte Carte)
 
 int cartePossible(Carte *carte,Plateau *plateau,int i , int j)
 {
+  int ret; 
   /* Si la carte courante ne correspond pas avec ses voisines alors on fait une rotation : si pas vrai alors on rentre dans le if */
-  if (!(contact_h(plateau,i,j, *carte) ||
+  while (!(contact_h(plateau,i,j, *carte) ||
 	contact_d(plateau,i,j, *carte) ||
 	contact_b(plateau,i,j, *carte) ||
 	contact_g(plateau,i,j, *carte))) {
-      rotation(carte,1);
-      
+    printf("cartePossible: rotation courante %d (num carte : %d)\n", carte->rotated,carte->identifiant);
+    rotation(carte,1);
+      DBG;
       /* si on a fait un tour complet alors la carte n'est pas valide */
-      if (carte->rotated == 4) return 0;
+      if (carte->rotated == 4) break;
       
-      return cartePossible(carte,plateau,i,j);
-    }
+	/*	return 0; */
 
+      DBG;
+      /*
+      return cartePossible(carte,plateau,i,j);
+      */
+      
+    }
+  if (carte->rotated == 4) return 0;
+
+  DBG;
+  
   return 1;
 }

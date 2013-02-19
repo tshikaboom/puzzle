@@ -1,7 +1,7 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 #define TAILLE 3
-
+#define DBG printf("%s : %d\n",__FILE__,__LINE__);
 
 /*Structure d'une carte*/
 struct carte {
