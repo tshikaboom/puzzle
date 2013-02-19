@@ -17,6 +17,6 @@ int contact_b(Plateau *plateau, int i, int j, Carte Carte);
 int contact_g(Plateau *plateau, int i, int j, Carte Carte);
 
 /*test si la carte est positionnable a la postion donnee*/
-int cartePossible(Carte *carte, Plateau *plateau,int i, int j, int largeur, int hauteur);
+int cartePossible(Carte *carte, Plateau *plateau,int i, int j);
 
 #endif
