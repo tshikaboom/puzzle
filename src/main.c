@@ -99,9 +99,15 @@ int main()
     }
   else if (choix_parcours == 2)
     {
-      /*Test sur le parcours en S*/
-      printf("\n#== PARCOURS EN S ==#\n");
-      backtrack(plateau, tabCarte, 9, -1, 2);
+      cpt=0;
+      while (cpt != 9)
+	{
+	  /*Test sur le parcours en S*/
+	  printf("\n#== PARCOURS EN S ==#\n");
+	  backtrack(plateau, tabCarte, 9, -1, 2);
+	  swap(plateau,tabCarte);
+	  cpt++;
+	} 
     }
   else
     {
