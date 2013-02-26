@@ -71,3 +71,17 @@ void affichage(Plateau *plateau)
   printf("| %d || %d || %d |\n",  plateau->tab[0][2]->Bas, plateau->tab[1][2]->Bas, plateau->tab[2][2]->Bas);
   printf("+---++---++---+\n");
 }
+
+
+void swap (Plateau *plateau,Carte tabCarte[])
+{
+  int i;
+  Carte tmp;
+
+  tmp = tabCarte[0]; 
+  for (i=0; i<plateau->largeur*plateau->hauteur-1;i++)
+    {
+      tabCarte[i] = tabCarte[i+1];
+    }
+  tabCarte[plateau->largeur*plateau->hauteur-1] = tmp;
+}

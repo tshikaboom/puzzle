@@ -12,7 +12,7 @@
 
 int main()
 {
-  int i,j,choix_parcours;
+  int i,j,choix_parcours,cpt;
   Carte carte1, carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Plateau *plateau;
   Carte tabCarte[9];
@@ -87,9 +87,15 @@ int main()
   
   if (choix_parcours == 1)
     {
-      /*Test sur le parcours en spirale*/
-      printf("\n#== PARCOURS EN SPIRALE ==#\n");
-      backtrack(plateau, tabCarte, 9, -1, 1);
+      cpt=0;
+      while (cpt != 9)
+	{
+	  /*Test sur le parcours en spirale*/
+	  printf("\n#== PARCOURS EN SPIRALE ==#\n");
+	  backtrack(plateau, tabCarte, 9, -1, 1);
+	  swap(plateau,tabCarte);
+	  cpt++;
+	}
     }
   else if (choix_parcours == 2)
     {

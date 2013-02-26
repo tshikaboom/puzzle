@@ -68,25 +68,22 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
       printf("%p\n", plateau->tab[2][2]);*/
       
       affichage (plateau); /*affichage de la solution*/
-      exit(0);/*On quitte le programme pour tester sur un seul parcours*/
-
-      /*Ici on remettra le plateau et la cartes a zero et on changera de carte de debut*/
-      printf("\nRepositionnement pour un nouveau test\n");
-      position_case = chemin(-1,choix); /*retourne a la position initiale*/
-      sleep (2);
       
-      if ( (plateau->tab[position_case.x][position_case.y] == NULL)
-	   /*((plateau->largeur*plateau->hauteur)-1))*/
-	   && (tabCarte[(plateau->largeur*plateau->hauteur)-1].rotated == 4) )
-	return TRUE;
+      /*Reinitialisation du tableau de carte*/
+      for (carte = 0; carte < (plateau->largeur*plateau->hauteur); carte++)
+	{
+	  tabCarte[carte].sur_plateau = 0;
+	}
+      return -1;
     }
   
   printf("Position case : x=%d ET y=%d\n",position_case.x,position_case.y);
   printf("Nombre de carte : %d\n",nombre_de_carte);
   printf("Nombre de solution : %d\n",nombre_de_solution);
+  
   /*DBG*/;
   printf("\n");
-  sleep(1);
+  sleep(1); /*On fait un sleep de 1 seconde pour mieux voir l' execution de l'Algorithme*/
   
   for (carte = 0; carte < (plateau->largeur*plateau->hauteur); carte++)
     {

@@ -17,4 +17,7 @@ void rotation (Carte *carte,unsigned int nombre);
 /*Affichage*/
 void affichage (Plateau *plateau);
 
+/*Echange la liste de carte -> sert a parcourirs toutes les solutions*/
+void swap (Plateau *plateau,Carte tabCarte[]);
+
 #endif
