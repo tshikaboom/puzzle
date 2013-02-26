@@ -1,3 +1,5 @@
+#define _POSIX_SOURCE 1
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -24,7 +26,7 @@ Position chemin (int i,int choix)
 	pos_suivant.x = tabI_spirale[i+1];
 	pos_suivant.y = tabJ_spirale[i+1];
 	
-	/*	return pos_suivant; */
+	/*return pos_suivant; */
 	break;
       }
       
@@ -33,7 +35,7 @@ Position chemin (int i,int choix)
 	pos_suivant.x = tabI_Z[i+1];
 	pos_suivant.y = tabJ_Z[i+1];
 	
-	/*	return pos_suivant; */
+	/*return pos_suivant; */
 	break;
       }
 
@@ -42,7 +44,7 @@ Position chemin (int i,int choix)
 	printf("Choix du chemin non valide\n");
 	pos_suivant.x = -1;
 	pos_suivant.y = -1;
-	/*	return pos_suivant; */
+	/*return pos_suivant; */
 	break;
       }
     }

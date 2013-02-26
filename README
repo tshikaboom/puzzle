@@ -1,0 +1,66 @@
+== Projet : Puzzle ==
+
+== Participants : 5 ==
+
+   	Bielle Benjamin 2900825
+	Bouilly Romain 2908292  -> interface graphique
+	Djeacoumarane Maroudakaasi 3209309
+	Vigano Sylvain 3203772
+	Viljasaar Oskar 3000989
+	
+
+== Fichiers inclus ==
+   	
+	include/structs.h
+		Structures de données du projet
+	    
+   	src/init.c et include/init.h
+		Fonctions de base
+		       
+        src/contact.c et include/contact.h 
+		Fonctions testant si deux cartes sont compatibles
+		 	
+	src/chemin.c et include/chemin.h
+		Fonction donnant le chemin de résolution à suivre
+ 				
+        src/backtrack.c et include/backtrack.h
+		Fonction de résolution du puzzle
+			
+	src/parser.c et include/parser.h
+		Fonctions permettant la création et la lecture du fichier de solution 
+		       
+	src/main.c
+		Main du projet
+		        
+== Directives de 'Makefile' ==
+
+	all
+		Compil tous les fichiers
+	
+	clean
+		Suppression de tous les binaires, de tous les fichiers objet
+	
+	proper 
+		Suppression de tous les binaires, de tous les fichiers objet
+
+	run 
+		Lance le programme
+
+== Etat d'avancement ==
+
+   	src/init.c      - OK
+		       
+        src/contact.c   - A CORRIGER
+				 	
+	src/chemin.c    - OK
+						
+        src/backtrack.c - A FINIR -> ne produit que le plateau et place les cartes dessus sans les comparer
+					
+	src/parser.c    - OK
+				       
+	src/main.c      - Fini quand les autres fonctions seront finies
+
+== Norme utilisée ==
+
+Norme Posix (_SOURCE_POSIX 1)
+

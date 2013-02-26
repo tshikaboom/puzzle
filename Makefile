@@ -1,22 +1,53 @@
 CC= gcc
-CFLAGS= -W -Wall -ansi -pedantic -g
-LDFLAGS=
-EXEC= MAIN
-SRC= contact.c init.c main.c chemin.c backtrack.c
-OBJ= $(SRC:.c=.o)
+CFLAGS= -W -Wall -Iinclude -ansi -pedantic #-g
+LDFLAGS= -lm
+LIB=lib
+SRC=src
+OBJ=obj
+BIN=bin
+EXEC= PUZZLE
+
 
 all : $(EXEC)
 
-$(EXEC) : $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+#Fichier Executable
+$(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OBJ)/parser.o $(OBJ)/main.o
+	$(CC) $(CFLAGS) -o $(BIN)/$@ $^ $(LDFLAGS)
 
-%.o : %.c
-	$(CC) -o $@ -c $< $(CFLAGS)
+# Fichiers Objet
+$(OBJ)/init.o : $(SRC)/init.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS) 
+
+$(OBJ)/contact.o : $(SRC)/contact.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+
+$(OBJ)/chemin.o : $(SRC)/chemin.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+
+$(OBJ)/backtrack.o : $(SRC)/backtrack.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+
+$(OBJ)/parser.o : $(SRC)/parser.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+
+$(OBJ)/main.o : $(SRC)/main.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+
+# Bibliotheques
+$(LIB)/exemple.a : $(OBJ)/exemple.o
+	ar -rs $@ $^
+
 
 .PHONY : all clean proper
 
+#Nettoyage
 clean :
-	rm -f *.o
-	rm -f $(EXEC)
+	rm -f $(OBJ)/*.o
+	rm -f $(BIN)/$(EXEC)
 proper:
 	rm -f *~
+	rm -f $(SRC)/*~
+
+# Lancement
+run:
+	./$(BIN)/$(EXEC)

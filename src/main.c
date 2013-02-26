@@ -1,3 +1,5 @@
+#define _POSIX_SOURCE 1
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -5,14 +7,17 @@
 #include "init.h"
 #include "structs.h"
 #include "backtrack.h"
+#include "parser.h"
+
 
 int main()
 {
-  int i,j;
+  int i,j,choix_parcours;
   Carte carte1, carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Plateau *plateau;
   Carte tabCarte[9];
-
+  
+  system("clear");
   
   plateau = (Plateau *) malloc(sizeof(Plateau));
   plateau->tab = (Carte ***) malloc(TAILLE*sizeof(Carte **));
@@ -23,10 +28,16 @@ int main()
   plateau->hauteur = TAILLE;
 
    
-  carte1.Haut = carte2.Haut = carte3.Haut = carte4.Haut = carte5.Haut = carte6.Haut = carte7.Haut = carte8.Haut = carte9.Haut = 1;
-  carte1.Bas = carte2.Bas = carte3.Bas = carte4.Bas = carte5.Bas = carte6.Bas = carte7.Bas = carte8.Bas = carte9.Bas = 2;
-  carte1.Gauche = carte2.Gauche = carte3.Gauche = carte4.Gauche = carte5.Gauche = carte6.Gauche = carte7.Gauche = carte8.Gauche = carte9.Gauche = 3;
-  carte1.Droite = carte2.Droite = carte3.Droite = carte4.Droite = carte5.Droite = carte6.Droite = carte7.Droite = carte8.Droite = carte9.Droite = 4;
+  carte1.Haut = 1;carte1.Bas = 1;carte1.Gauche = 1; carte1.Droite = 1;
+  carte2.Haut = 2;carte2.Bas = 2;carte2.Gauche = 2; carte2.Droite = 2;
+  carte3.Haut = 3;carte3.Bas = 3;carte3.Gauche = 3; carte3.Droite = 3;
+  carte4.Haut = 4;carte4.Bas = 4;carte4.Gauche = 4; carte4.Droite = 4;
+  carte5.Haut = 5;carte5.Bas = 5;carte5.Gauche = 5; carte5.Droite = 5;
+  carte6.Haut = 6;carte6.Bas = 6;carte6.Gauche = 6; carte6.Droite = 6;
+  carte7.Haut = 7;carte7.Bas = 7;carte7.Gauche = 7; carte7.Droite = 7;
+  carte8.Haut = 8;carte8.Bas = 8;carte8.Gauche = 8; carte8.Droite = 8;
+  carte9.Haut = 9;carte9.Bas = 9;carte9.Gauche = 9; carte9.Droite = 9;
+
   carte1.sur_plateau =  carte2.sur_plateau =  carte3.sur_plateau =  carte4.sur_plateau =  carte5.sur_plateau =  carte6.sur_plateau =  carte7.sur_plateau =  carte8.sur_plateau =  carte9.sur_plateau = 0;
   carte1.rotated =  carte2.rotated =  carte3.rotated =  carte4.rotated =  carte5.rotated =  carte6.rotated =  carte7.rotated =  carte8.rotated =  carte9.rotated = 0;
   carte1.identifiant = 1;
@@ -48,7 +59,7 @@ int main()
   tabCarte[6] = carte7;
   tabCarte[7] = carte8;
   tabCarte[8] = carte9;
-		
+  
   
   /*
   plateau->tab[0][0] = &carte1;
@@ -62,16 +73,36 @@ int main()
   plateau->tab[2][2] = &carte9;
 
   affichage(plateau);
-			  */
+  */
   for (i=0; i<TAILLE;i++)
     {
       for(j=0; j<TAILLE;j++){plateau->tab[i][j] = NULL;}}
   
-  backtrack(plateau, tabCarte, 9, -1, 1);
   
-
-
+  printf("*************************************************************************************************\n");
+  printf("                                            PUZZLE                                               \n");
+  printf("*************************************************************************************************\n\n");
+  printf("Donner le choix de parcours de la grille : (1 pour en spirale (depart du centre) et 2 pour en S) -> entrer un autre chiffre pour quitter \n");
+  scanf("%d",&choix_parcours);
   
-  return 0;
-
+  if (choix_parcours == 1)
+    {
+      /*Test sur le parcours en spirale*/
+      printf("\n#== PARCOURS EN SPIRALE ==#\n");
+      backtrack(plateau, tabCarte, 9, -1, 1);
+    }
+  else if (choix_parcours == 2)
+    {
+      /*Test sur le parcours en S*/
+      printf("\n#== PARCOURS EN S ==#\n");
+      backtrack(plateau, tabCarte, 9, -1, 2);
+    }
+  else
+    {
+      printf("*****************\n");
+      printf("Mauvais numero !!\n");
+      printf("*****************\n");
+    }
+  
+  return EXIT_SUCCESS;
 }

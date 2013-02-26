@@ -1,3 +1,5 @@
+#define _POSIX_SOURCE 1
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -111,26 +113,26 @@ int contact_g(Plateau *plateau,int i, int j, Carte Carte)
 
 int cartePossible(Carte *carte,Plateau *plateau,int i , int j)
 {
-  int ret; 
+  /*int ret; */
   /* Si la carte courante ne correspond pas avec ses voisines alors on fait une rotation : si pas vrai alors on rentre dans le if */
   while (!(contact_h(plateau,i,j, *carte) ||
-	contact_d(plateau,i,j, *carte) ||
-	contact_b(plateau,i,j, *carte) ||
-	contact_g(plateau,i,j, *carte))) {
+	   contact_d(plateau,i,j, *carte) ||
+	   contact_b(plateau,i,j, *carte) ||
+	   contact_g(plateau,i,j, *carte))) {
     printf("cartePossible: rotation courante %d (num carte : %d)\n", carte->rotated,carte->identifiant);
     rotation(carte,1);
-      DBG;
-      /* si on a fait un tour complet alors la carte n'est pas valide */
-      if (carte->rotated == 4) break;
+    DBG;
+    /* si on a fait un tour complet alors la carte n'est pas valide */
+    if (carte->rotated == 4) break;
       
-	/*	return 0; */
+    /*return 0; */
 
-      DBG;
-      /*
+    DBG;
+    /*
       return cartePossible(carte,plateau,i,j);
-      */
+    */
       
-    }
+  }
   if (carte->rotated == 4) return 0;
 
   DBG;
