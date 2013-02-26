@@ -8,7 +8,17 @@ BIN=bin
 EXEC= PUZZLE
 
 
-all : $(EXEC)
+all : directories $(EXEC)
+
+#Creation bin , obj , lib
+directories : ${OBJ} ${LIB} ${BIN}
+
+${OBJ}:
+	mkdir ${OBJ}
+${BIN}:
+	mkdir ${BIN}
+${LIB}:
+	mkdir ${LIB}
 
 #Fichier Executable
 $(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OBJ)/parser.o $(OBJ)/main.o
@@ -44,6 +54,7 @@ $(LIB)/exemple.a : $(OBJ)/exemple.o
 clean :
 	rm -f $(OBJ)/*.o
 	rm -f $(BIN)/$(EXEC)
+	rm -rf ${OBJ} ${BIN} ${LIB}
 proper:
 	rm -f *~
 	rm -f $(SRC)/*~
