@@ -74,3 +74,6 @@
 
 Norme Posix (_POSIX_SOURCE 1), ANSI
 
+== Bibliotheques Graphiques == 
+
+Pygame (bibliotheque basée sur SDL) - Licence : GNU LGPL
