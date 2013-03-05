@@ -74,7 +74,7 @@ void affichage(Plateau *plateau)
 
 Plateau *nouveau_plateau(int hauteur, int largeur)
 {
-  int i;
+  int i, j;
   Plateau *plateau;
 
   if (hauteur < 1 || largeur < 1) {
@@ -104,7 +104,11 @@ Plateau *nouveau_plateau(int hauteur, int largeur)
       return NULL;
     }
   }
-
+  
+  for (i=0; i<largeur; i++)
+    for (j=0; j<hauteur; j++)
+      plateau->tab[i][j] = NULL;
+  
   plateau->largeur = largeur;
   plateau->hauteur = hauteur;
 
