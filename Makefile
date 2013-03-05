@@ -1,6 +1,7 @@
 CC= gcc
-CFLAGS= -W -Wall -Iinclude -ansi -pedantic #-g
+CFLAGS= -W -Wall #-ansi -pedantic -g
 LDFLAGS= -lm
+INCFLAGS= -Iinclude
 LIB=lib
 SRC=src
 OBJ=obj
@@ -14,7 +15,7 @@ all : directories $(EXEC)
 directories : ${OBJ} ${LIB} ${BIN}
 
 ${OBJ}:
-	mkdir ${OBJ}
+	mkdir -p ${OBJ}
 ${BIN}:
 	mkdir ${BIN}
 ${LIB}:
@@ -26,22 +27,22 @@ $(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OB
 
 # Fichiers Objet
 $(OBJ)/init.o : $(SRC)/init.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS) 
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS) 
 
 $(OBJ)/contact.o : $(SRC)/contact.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 $(OBJ)/chemin.o : $(SRC)/chemin.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 $(OBJ)/backtrack.o : $(SRC)/backtrack.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 $(OBJ)/parser.o : $(SRC)/parser.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS) 
 
 $(OBJ)/main.o : $(SRC)/main.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(LDFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 # Bibliotheques
 $(LIB)/exemple.a : $(OBJ)/exemple.o
@@ -54,7 +55,7 @@ $(LIB)/exemple.a : $(OBJ)/exemple.o
 clean :
 	rm -f $(OBJ)/*.o
 	rm -f $(BIN)/$(EXEC)
-	rm -rf ${OBJ} ${BIN} ${LIB}
+
 proper:
 	rm -f *~
 	rm -f $(SRC)/*~
