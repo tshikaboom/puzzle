@@ -125,21 +125,32 @@ int contact_g(Plateau *plateau,int i, int j, Carte Carte)
   return peutSePlacer;
 }
 
-
+/* fonction recursive
+   on teste s'il y a possibilite de placement de carte dans une position autour d'elle-meme
+   retourne 1 si possible
+   sinon fait rotation sur la carte et se rappelle
+   max nombre d'appels sur une carte+position donnees: 4
+ */
 int cartePossible(Carte *carte,Plateau *plateau,int i , int j)
 {
-  /*int ret; */
+
   /* Si la carte courante ne correspond pas avec ses voisines alors on fait une rotation : si pas vrai alors on rentre dans le if */
-  while (!(contact_h(plateau,i,j, *carte) ||
-	   contact_d(plateau,i,j, *carte) ||
-	   contact_b(plateau,i,j, *carte) ||
-	   contact_g(plateau,i,j, *carte))) {
-    printf("cartePossible: rotation courante %d (num carte : %d)\n", carte->rotated,carte->identifiant);
+
+  printf("cartePossible: rotation courante %d sur la carte %d\n", carte->rotated,carte->identifiant);
+  /* test si le placement de la carte est possible */
+  if ((contact_h(plateau,i,j, *carte) ||
+       contact_d(plateau,i,j, *carte) ||
+       contact_b(plateau,i,j, *carte) ||
+       contact_g(plateau,i,j, *carte)))
+    return 1;
+  else {
     rotation(carte,1);
     DBG;
     /* si on a fait un tour complet alors la carte n'est pas valide */
-    if (carte->rotated == 4) break;
-      
+    if (carte->rotated == 4) return 0;
+
+    return cartePossible(carte, plateau, i, j);
+    
     /*return 0; */
 
     DBG;
@@ -148,7 +159,7 @@ int cartePossible(Carte *carte,Plateau *plateau,int i , int j)
     */
       
   }
-  if (carte->rotated == 4) return 0;
+
 
   DBG;
   

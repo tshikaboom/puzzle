@@ -47,7 +47,7 @@ void rotation (Carte *carte, unsigned int nombre)
     carte->Bas = carte->Droite;
     carte->Droite = swap;
     DBG;
-    if (carte->rotated == 4) {carte->rotated = 0;printf("SORTIE : %d \n",carte->identifiant);break;}
+    if (carte->rotated > 4) {carte->rotated = carte->rotated-4;printf("SORTIE : %d \n",carte->identifiant);break;}
   }
   /*if (carte->rotated == 4) carte->rotated = 0;*/
   printf("ROTATION : %d\n",carte->rotated);
