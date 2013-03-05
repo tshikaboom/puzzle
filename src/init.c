@@ -72,6 +72,45 @@ void affichage(Plateau *plateau)
   printf("+---++---++---+\n");
 }
 
+Plateau *nouveau_plateau(int hauteur, int largeur)
+{
+  int i;
+  Plateau *plateau;
+
+  if (hauteur < 1 || largeur < 1) {
+    printf("Hauteur ou largeur pas bons! Pas bon signe...\n");
+    return NULL;
+  }
+
+  printf("Allocation d'un tableau %dx%d\n", largeur, hauteur);
+  
+
+  plateau = (Plateau *) malloc(sizeof (Plateau));
+  if (plateau == NULL) {
+    printf("Allocation du plateau echouee!\n");
+    return NULL;
+  }
+
+  plateau->tab = (Carte ***) malloc(largeur*sizeof(Carte **));
+  if (plateau == NULL) {
+    printf("Allocation des abscisses du plateau echouee!\n");
+    return NULL;
+  }
+
+  for (i=0; i<largeur; i++) {
+    plateau->tab[i] = (Carte **) malloc(hauteur*sizeof(Carte *));
+    if (plateau->tab[i] == NULL) {
+      printf("Allocation des ordonnees d'abscisse %d du plateau echouee!\n", i);
+      return NULL;
+    }
+  }
+
+  plateau->largeur = largeur;
+  plateau->hauteur = hauteur;
+
+  return plateau;
+}
+
 
 void swap (Plateau *plateau,Carte tabCarte[])
 {

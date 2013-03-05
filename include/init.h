@@ -17,6 +17,9 @@ void rotation (Carte *carte,unsigned int nombre);
 /*Affichage*/
 void affichage (Plateau *plateau);
 
+/* allocation d'un nouveau plateau de taille largeur*hauteur */
+Plateau *nouveau_plateau(int hauteur, int largeur);
+
 /*Echange la liste de carte -> sert a parcourirs toutes les solutions*/
 void swap (Plateau *plateau,Carte tabCarte[]);
 
