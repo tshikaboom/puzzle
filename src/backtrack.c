@@ -78,8 +78,8 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
     }
   
   printf("Position case : x=%d ET y=%d\n",position_case.x,position_case.y);
-  printf("Nombre de carte : %d\n",nombre_de_carte);
-  printf("Nombre de solution : %d\n",nombre_de_solution);
+  printf("Nombre de cartes : %d\n",nombre_de_carte);
+  printf("Nombre de solutions : %d\n",nombre_de_solution);
   
   /*DBG*/;
   printf("\n");
