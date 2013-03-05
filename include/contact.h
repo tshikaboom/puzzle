@@ -2,7 +2,11 @@
 #define CONTACT_H
 
 #include "structs.h"
-/*Fonctions*/
+
+/* ces fonctions sont centrees sur la carte au point de vue des coordonnees
+   voir src/contact.c pour plus de precisions
+*/
+
 
 /*teste si la case est en contact en haut*/
 int contact_h(Plateau *plateau, int i, int j, Carte Carte);
