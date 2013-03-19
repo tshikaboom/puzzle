@@ -2,78 +2,78 @@
 
 == Participants : 5 ==
 
-   	Bielle Benjamin 2900825
-	Bouilly Romain 2908292  -> interface graphique
-	Djeacoumarane Maroudakaasi 3209309
-	Vigano Sylvain 3203772
-	Viljasaar Oskar 3000989
+   Bielle Benjamin 2900825
+   Bouilly Romain 2908292  -> interface graphique
+   Djeacoumarane Maroudakaasi 3209309
+   Vigano Sylvain 3203772
+   Viljasaar Oskar 3000989
 
 
 == Fichiers inclus ==
 
-	include/structs.h
-		Structures de données du projet
-		- (tout le monde)
+   include/structs.h
+	Structures de données du projet
+	- (tout le monde)
 
-   	src/init.c et include/init.h
-		Fonctions de base
-		- (tout le monde)
+   src/init.c et include/init.h
+	Fonctions de base
+	- (tout le monde)
 
-        src/contact.c et include/contact.h 
-		Fonctions testant si deux cartes sont compatibles
-		- Djeacoumarane Maroudakaasi
-		- Oskar Viljasaar
+   src/contact.c et include/contact.h 
+	Fonctions testant si deux cartes sont compatibles
+	- Djeacoumarane Maroudakaasi
+	- Oskar Viljasaar
 
-	src/chemin.c et include/chemin.h
-		Fonction donnant le chemin de résolution à suivre
-		- Benjamin Bielle
+   src/chemin.c et include/chemin.h
+   	Fonction donnant le chemin de résolution à suivre
+	- Benjamin Bielle
 
-        src/backtrack.c et include/backtrack.h
-		Fonction de résolution du puzzle
-		- Benjamin Bielle
+   src/backtrack.c et include/backtrack.h
+	Fonction de résolution du puzzle
+	- Benjamin Bielle
 
-	src/parser.c et include/parser.h
-		Fonctions permettant la création et la lecture du fichier de solution 
-		- Sylvain Vigano
-		- format agréé par tout le monde
+   src/parser.c et include/parser.h
+        Fonctions permettant la création et la lecture du fichier de solution 
+	- Sylvain Vigano
+	- format agréé par tout le monde
 
-	src/main.c
-		Main du projet
-		- Oskar Viljasaar
-		- Benjamin Bielle
+   src/main.c
+	Main du projet
+	- Oskar Viljasaar
+	- Benjamin Bielle
 
 == Directives de 'Makefile' ==
 
-	all
-		Compil tous les fichiers
+   all
+	Compil tous les fichiers
 
-	clean
-		Suppression de tous les binaires, de tous les fichiers objet
+   clean
+	Suppression de tous les binaires, de tous les fichiers objet
 
-	proper 
-		Suppression de tous les fichiers temporaires
+   proper 
+        Suppression de tous les fichiers temporaires
 
-	run 
-		Lance le programme
+   run 
+        Lance le programme
 
 == Etat d'avancement ==
 
-   	src/init.c      - OK
+   src/init.c      - OK
 
-        src/contact.c   - A CORRIGER
+   src/contact.c   - A CORRIGER
 
-	src/chemin.c    - OK
+   src/chemin.c    - OK
 
-        src/backtrack.c - A FINIR -> ne produit que le plateau et place les cartes dessus sans les comparer
+   src/backtrack.c - A FINIR -> ne produit que le plateau et place les cartes dessus sans les comparer
 
-	src/parser.c    - OK
+   src/parser.c    - OK
 
-	src/main.c      - Fini quand les autres fonctions seront finies
+   src/main.c      - Fini quand les autres fonctions seront finies
 
 == Normes utilisées ==
 
-Norme Posix (_POSIX_SOURCE 1), ANSI
+   Norme Posix (_POSIX_SOURCE 1), ANSI
 
 == Bibliotheques Graphiques == 
 
-Pygame (bibliotheque basée sur SDL) - Licence : GNU LGPL
+   Pygame (bibliotheque basée sur SDL) - Licence : GNU LGPL

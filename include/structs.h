@@ -1,5 +1,5 @@
-#ifndef STRUCT_H
-#define STRUCT_H
+#ifndef STRUCTS_H
+#define STRUCTS_H
 #define TAILLE 3
 #define DBG printf("%s : %d\n",__FILE__,__LINE__);
 

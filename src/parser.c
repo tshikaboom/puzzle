@@ -181,9 +181,9 @@ void export(char* filename,int hauteur,int largeur,Carte** stack){
 
 /*
   int main(){*/
-  /**
-   * For debug purposes and usecase only
-   */
+/**
+ * For debug purposes and usecase only
+ */
 /*
   char filename[]="cartes.txt";
   Carte** stack;

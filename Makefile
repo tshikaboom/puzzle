@@ -1,5 +1,5 @@
 CC= gcc
-CFLAGS= -W -Wall #-ansi -pedantic -g
+CFLAGS= -W -Wall -ansi -pedantic -g
 LDFLAGS= -lm
 INCFLAGS= -Iinclude
 LIB=lib
@@ -59,6 +59,10 @@ clean :
 proper:
 	rm -f *~
 	rm -f $(SRC)/*~
+
+cleanall: clean
+	rm -r $(OBJ)
+	rm -r $(BIN)
 
 # Lancement
 run:

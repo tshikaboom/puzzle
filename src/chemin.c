@@ -23,8 +23,8 @@ Position chemin (int i,int choix)
     {
     case 1 :
       {
-	pos_suivant.x = tabI_spirale[i+1];
-	pos_suivant.y = tabJ_spirale[i+1];
+	pos_suivant.x = tabI_spirale[i];
+	pos_suivant.y = tabJ_spirale[i];
 	
 	/*return pos_suivant; */
 	break;
@@ -32,8 +32,8 @@ Position chemin (int i,int choix)
       
     case 2 :
       {
-	pos_suivant.x = tabI_Z[i+1];
-	pos_suivant.y = tabJ_Z[i+1];
+	pos_suivant.x = tabI_Z[i];
+	pos_suivant.y = tabJ_Z[i];
 	
 	/*return pos_suivant; */
 	break;
