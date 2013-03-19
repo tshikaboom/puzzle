@@ -53,7 +53,9 @@ void rotation (Carte *carte, unsigned int nombre)
   printf("ROTATION : %d\n",carte->rotated);
 }
 
-
+/* fonction d'affichage du plateau
+   prend juste le plateau en argument et fait des trucs plutot magiques pour l'affichage
+*/
 void affichage(Plateau *plateau)
 {
   int i, j;
@@ -80,25 +82,12 @@ void affichage(Plateau *plateau)
     for (i = 0; i < plateau->largeur; i++)
       printf("+---+");
     printf("\n");
-
   }
-  /*
-  printf("| %d || %d || %d |\n", plateau->tab[0][0]->Haut, plateau->tab[1][0]->Haut, plateau->tab[2][0]->Haut);
-  printf("|%d%d%d||%d%d%d||%d%d%d|\n", plateau->tab[0][0]->Gauche, plateau->tab[0][0]->identifiant, plateau->tab[0][0]->Droite, plateau->tab[1][0]->Gauche, plateau->tab[1][0]->identifiant,   plateau->tab[1][0]->Droite, plateau->tab[2][0]->Gauche, plateau->tab[2][0]->identifiant,  plateau->tab[2][0]->Droite);
-  printf("| %d || %d || %d |\n", plateau->tab[0][0]->Bas, plateau->tab[1][0]->Bas, plateau->tab[2][0]->Bas);
-  printf("+---++---++---+\n");
-  printf("+---++---++---+\n");  
-  printf("| %d || %d || %d |\n",  plateau->tab[0][1]->Haut, plateau->tab[1][1]->Haut, plateau->tab[2][1]->Haut);
-  printf("|%d %d||%d %d||%d %d|\n",  plateau->tab[0][1]->Gauche, plateau->tab[0][1]->Droite, plateau->tab[1][1]->Gauche, plateau->tab[1][1]->Droite, plateau->tab[2][1]->Gauche, plateau->tab[2][1]->Droite);
-  printf("| %d || %d || %d |\n",  plateau->tab[0][1]->Bas, plateau->tab[1][1]->Bas, plateau->tab[2][1]->Bas);
-  printf("+---++---++---+\n");
-  printf("+---++---++---+\n");
-  printf("| %d || %d || %d |\n",   plateau->tab[0][2]->Haut, plateau->tab[1][2]->Haut, plateau->tab[2][2]->Haut);
-  printf("|%d %d||%d %d||%d %d|\n", plateau->tab[0][2]->Gauche, plateau->tab[0][2]->Droite, plateau->tab[1][2]->Gauche, plateau->tab[1][2]->Droite, plateau->tab[2][2]->Gauche, plateau->tab[2][2]->Droite);
-  printf("| %d || %d || %d |\n",  plateau->tab[0][2]->Bas, plateau->tab[1][2]->Bas, plateau->tab[2][2]->Bas);
-  printf("+---++---++---+\n"); */
 }
 
+/* fonction d'allocation d'un nouveau plateau
+   rend un plateau contenant un tableau a 2dim dont les cases sont initialisees a NULL
+*/
 Plateau *nouveau_plateau(int hauteur, int largeur)
 {
   int i, j;
@@ -150,8 +139,7 @@ void swap (Plateau *plateau,Carte tabCarte[])
 
   tmp = tabCarte[0]; 
   for (i=0; i<plateau->largeur*plateau->hauteur-1;i++)
-    {
-      tabCarte[i] = tabCarte[i+1];
-    }
+    tabCarte[i] = tabCarte[i+1];
+
   tabCarte[plateau->largeur*plateau->hauteur-1] = tmp;
 }
