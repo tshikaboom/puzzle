@@ -4,8 +4,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
 
 #include "structs.h"
+#include "init.h"
 
 #define MAX_BUFF 256
 #define INT_OFFSET 48
@@ -20,23 +23,23 @@ int isEndOfLine(char cara){
   /**
    * checks if input char is EndOfLine.
    * @param char input
-   * @return boolean value (0 if false, 1 if true)
+   * @return boolean value
    */
   switch (cara){
   case '\0':
-    return 1;
+    return true;
     break;
   case '\n':
-    return 1;
+    return true;
     break;
   case '\r':
     return 1;
     break;
   default:
-    return EXIT_SUCCESS;
+    return false;
     break;
   }
-  return EXIT_SUCCESS;
+  return false;
 }
 
 int charToInteger(char cara){
@@ -101,7 +104,7 @@ int readCard(char* stringCard, Carte* current){
   */
   if (res!=4){
     error("Incorrect card format");
-    return EXIT_SUCCESS;
+    return EXIT_FAILURE;
   }
   else{
     carte->Haut=top;
@@ -113,10 +116,10 @@ int readCard(char* stringCard, Carte* current){
     return 1;
   }
   error("Could not initiate card");
-  return EXIT_SUCCESS;
+  return EXIT_FAILURE;
 }
 
-Carte** parseFile(char* filename,int* hauteur,int* largeur){
+Carte *parseFile(char* filename,int* hauteur,int* largeur) {
   /**
    * @param char* filename to be export
    * @param int* hauteur pointer to the hauteur from the filereader
@@ -127,7 +130,7 @@ Carte** parseFile(char* filename,int* hauteur,int* largeur){
   char ligne[MAX_BUFF+1];
   int i=0,readedCard=0;
   /*int hauteur=0,largeur=0;*/
-  Carte** stack;
+  Carte* stack;
 
   fp = fopen(filename, "r");
 
@@ -140,12 +143,16 @@ Carte** parseFile(char* filename,int* hauteur,int* largeur){
       if (strLength(ligne)==1) *hauteur=charToInteger(ligne[0]);
       fgets(ligne,MAX_BUFF,fp);
       if (strLength(ligne)==1) *largeur=charToInteger(ligne[0]);
+    
+    *Modif du type de sortie du parseur ! */
+     stack = (Carte *) malloc(sizeof(Carte)*(*hauteur)*(*largeur));
+	/*
+    / stack=(Carte**) malloc(sizeof(Carte)*(*hauteur)*(*largeur));
     */
-    stack=(Carte**) malloc(sizeof(Carte)*(*hauteur)*(*largeur));
     while(fgets(ligne,MAX_BUFF,fp)){
-      stack[i]=(Carte*) malloc(sizeof(Carte));
-      readedCard+=readCard(ligne,stack[i]);
-      stack[i]->identifiant=i;
+      /* stack[i]=(Carte*) malloc(sizeof(Carte)); */
+      readedCard+=readCard(ligne,stack+i);
+      stack[i].identifiant=i;
       i++;
     }
     fclose(fp);
@@ -161,7 +168,7 @@ Carte** parseFile(char* filename,int* hauteur,int* largeur){
   return NULL;
 }
 
-void export(char* filename,int hauteur,int largeur,Carte** stack){
+void export(char* filename,int hauteur,int largeur,Carte* stack){
   /**
    *@param char* filename The name for the exported file
    *@param int hauteur height of the grid
@@ -173,20 +180,28 @@ void export(char* filename,int hauteur,int largeur,Carte** stack){
   if((fp=fopen(filename,"w"))){
     fprintf(fp,"%d\n%d\n",hauteur,largeur);
     for (i=0;i<hauteur*largeur;i++)
-      fprintf(fp,EXPORT_MASK,stack[i]->Haut,stack[i]->Bas,stack[i]->Gauche,stack[i]->Droite);
+      fprintf(fp,EXPORT_MASK,stack[i].Haut,stack[i].Bas,stack[i].Gauche,stack[i].Droite);
     fclose(fp);
   }
   else error("cant't write the filename");
 }
 
-/*
-  int main(){*/
+int initPuzzle(char* filename,Plateau* plateau,Carte* stack){
+	int hauteur,largeur;
+
+	stack=parseFile(filename,&hauteur,&largeur);
+	plateau=nouveau_plateau(hauteur,largeur);
+	
+	return hauteur*largeur;
+}
+
+  int main(){
 /**
  * For debug purposes and usecase only
- */
-/*
+ 
+
   char filename[]="cartes.txt";
-  Carte** stack;
+  Carte* stack;
   int i,n,hauteur,largeur;
 
   stack=parseFile(filename,&hauteur,&largeur);
@@ -195,18 +210,13 @@ void export(char* filename,int hauteur,int largeur,Carte** stack){
   printf("Affichage du tableau de carte de taille %d :\n",n);
   for (i=0;i<n;i++)
     {
-      printf("Carte %d: %d %d %d %d\n",stack[i]->identifiant,stack[i]->Haut,stack[i]->Bas,stack[i]->Gauche,stack[i]->Droite);
+      printf("Carte %d: %d %d %d %d\n",stack[i].identifiant,stack[i].Haut,stack[i].Bas,stack[i].Gauche,stack[i].Droite);
     }
   
   export("testExport.txt",hauteur,largeur,stack);
-  
-  for (i=0;i<n;i++)
-    {
-      free(stack[i]);
-    }
-  
+
   free(stack);
-  
+*/  
   return EXIT_SUCCESS;
 }
-*/
+
