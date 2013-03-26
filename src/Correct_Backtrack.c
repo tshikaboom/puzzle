@@ -26,7 +26,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
   Position position_case; /*position de la case courante*/
   int int_carte_possible;
   int ind_chemin = indice_chemin;
-
+  int compteur_junk;
   int back;
   
   printf("\n");
@@ -95,51 +95,57 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
   /**********************************************************************/
   /* EN COURS                                                           */
   /**********************************************************************/
-
+  /*
+  do
+    {
+  */
+  
   /*On cherche une carte pas sous le plateau*/
-  while (tabCarte[carte].sur_plateau == 1 && carte < (plateau->largeur*plateau->hauteur))
+  while ((tabCarte[carte].sur_plateau == 1) &&
+	 (carte < (plateau->largeur*plateau->hauteur)) &&
+	 (!(cartePossible(tabCarte+carte,plateau, position_case.x,position_case.y) == 1)))
     carte++;
 
-  printf("Numero de carte testée : %d\n",carte+1);
-
-  if (cartePossible(tabCarte+carte,plateau, position_case.x,position_case.y) == 1)
+  if (tabCarte[carte].sur_plateau == 1)
     {
-      /*On dit qu'elle est sur le plateau*/
-      tabCarte[carte].sur_plateau = 1;
-      /*Position de la carte a la position courante*/
-      plateau->tab[position_case.x][position_case.y] = tabCarte+carte;
-      nombre_de_carte--;
-      
-      /*Appel a backtrack*/
-      back = backtrack(plateau,tabCarte,nombre_de_carte,ind_chemin+1,choix);
+      printf("Je suis la carte %d et je suis sur le plateau\n",tabCarte[carte].identifiant);
+    }
 
-      if ( back )
+  for (compteur_junk = 0; compteur_junk < 9; compteur_junk++)
+    printf("%d", tabCarte[compteur_junk].sur_plateau);
+  
+  
+
+  printf("\n");
+
+      printf("Numero de carte testée : %d\n",carte+1);
+      
+      if (cartePossible(tabCarte+carte,plateau, position_case.x,position_case.y) == 1)
 	{
-	  return TRUE;
-	}
-      else
-	{
-	  printf("\n*****************\n Carte Suivante \n*****************\n");
-	  	  
-	  /* tabCarte[carte].sur_plateau = 0; */
-	  /*nombre_de_carte++;*/
+	  /*On dit qu'elle est sur le plateau*/
+	  tabCarte[carte].sur_plateau = 1;
+	  /*Position de la carte a la position courante*/
+	  plateau->tab[position_case.x][position_case.y] = tabCarte+carte;
+	  nombre_de_carte--;
+	  
 	  /*Appel a backtrack*/
 	  back = backtrack(plateau,tabCarte,nombre_de_carte,ind_chemin+1,choix);
 	  
-	  /*
-	  printf("suppression de la carte %d a la position %d;%d\n", plateau->tab[position_case.x][position_case.y]->identifiant, position_case.x, position_case.y);
-	  plateau->tab[position_case.x][position_case.y]->sur_plateau = 0;
-	  plateau->tab[position_case.x][position_case.y]->rotated = 4;
-	  plateau->tab[position_case.x][position_case.y] = NULL; 
-	  nombre_de_carte++;
-	  */
+	  if ( back )
+	    {
+	      return TRUE;
+	    }
+	  else   nombre_de_carte++;
 	}
-    }
-  /*si impossible*/
-  else
-    {
-      return FALSE;
-    }
-      
-  return 99;
+      /*si impossible de poser la carte*/
+      else
+	{
+	  printf("\n*****************\n Carte Suivante2 \n*****************\n");
+
+	  while (tabCarte[carte].sur_plateau == 1 && carte < (plateau->largeur*plateau->hauteur))
+	    carte++;
+	}
+      /*    }while(!back && carte < (plateau->largeur*plateau->hauteur)); */
+
+  return FALSE;
 }
