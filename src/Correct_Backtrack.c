@@ -71,6 +71,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
       printf("#== Placement de la premiere carte ==#\n");
       plateau->tab[position_case.x][position_case.y] = tabCarte/*+carte*/;
       (tabCarte+carte)->sur_plateau = 1;
+      nombre_de_carte--;
       affichage(plateau);
             
       /*Identifiant premiere carte posée sur le plateau*/
@@ -87,18 +88,19 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
   printf("Position case : x=%d ET y=%d\n",position_case.x,position_case.y);
   printf("Nombre de cartes : %d\n",nombre_de_carte);
   printf("Nombre de solutions : %d\n\n",nombre_de_solution);
-  position_case = chemin(indice_chemin+1,choix);
-  /**********************************************************************/
-  /* EN COURS*/
-  /**********************************************************************/
-
-
   
+  /*position a la case suivante*/
+  position_case = chemin(indice_chemin+1,choix);
+  
+  /**********************************************************************/
+  /* EN COURS                                                           */
+  /**********************************************************************/
+
   /*On cherche une carte pas sous le plateau*/
   while (tabCarte[carte].sur_plateau == 1 && carte < (plateau->largeur*plateau->hauteur))
     carte++;
 
-  printf("variable carte : %d\n",carte);
+  printf("Numero de carte testée : %d\n",carte+1);
 
   if (cartePossible(tabCarte+carte,plateau, position_case.x,position_case.y) == 1)
     {
@@ -117,11 +119,20 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
 	}
       else
 	{
+	  printf("\n*****************\n Carte Suivante \n*****************\n");
+	  	  
+	  /* tabCarte[carte].sur_plateau = 0; */
+	  /*nombre_de_carte++;*/
+	  /*Appel a backtrack*/
+	  back = backtrack(plateau,tabCarte,nombre_de_carte,ind_chemin+1,choix);
+	  
+	  /*
 	  printf("suppression de la carte %d a la position %d;%d\n", plateau->tab[position_case.x][position_case.y]->identifiant, position_case.x, position_case.y);
 	  plateau->tab[position_case.x][position_case.y]->sur_plateau = 0;
 	  plateau->tab[position_case.x][position_case.y]->rotated = 4;
-	  plateau->tab[position_case.x][position_case.y] = NULL; /*reinitialisation des valeurs fausses*/
+	  plateau->tab[position_case.x][position_case.y] = NULL; 
 	  nombre_de_carte++;
+	  */
 	}
     }
   /*si impossible*/
@@ -129,10 +140,6 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
     {
       return FALSE;
     }
-  
-  /**********************************************************************/
-  /* A CORRIGER*/
-  /**********************************************************************/
-    
+      
   return 99;
 }
