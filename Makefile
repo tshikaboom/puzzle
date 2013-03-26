@@ -22,7 +22,7 @@ ${LIB}:
 	mkdir ${LIB}
 
 #Fichier Executable
-$(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OBJ)/parser.o $(OBJ)/main.o
+$(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/Correct_Backtrack.o $(OBJ)/parser.o $(OBJ)/main.o
 	$(CC) $(CFLAGS) -o $(BIN)/$@ $^ $(LDFLAGS)
 
 # Fichiers Objet
@@ -36,6 +36,9 @@ $(OBJ)/chemin.o : $(SRC)/chemin.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 $(OBJ)/backtrack.o : $(SRC)/backtrack.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
+
+$(OBJ)/Correct_Backtrack.o : $(SRC)/Correct_Backtrack.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 $(OBJ)/parser.o : $(SRC)/parser.c
@@ -59,10 +62,12 @@ clean :
 proper:
 	rm -f *~
 	rm -f $(SRC)/*~
+	rm -f include/*~
 
 cleanall: clean
 	rm -r $(OBJ)
 	rm -r $(BIN)
+	rm -r $(LIB)
 
 # Lancement
 run:
