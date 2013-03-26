@@ -195,7 +195,7 @@ int initPuzzle(char* filename,Plateau* plateau,Carte* stack){
 	return hauteur*largeur;
 }
 
-  int main(){
+/*  int main(){ */
 /**
  * For debug purposes and usecase only
  
@@ -216,7 +216,8 @@ int initPuzzle(char* filename,Plateau* plateau,Carte* stack){
   export("testExport.txt",hauteur,largeur,stack);
 
   free(stack);
-*/  
+*/  /*
   return EXIT_SUCCESS;
 }
 
+    */
