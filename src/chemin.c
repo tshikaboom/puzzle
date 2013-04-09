@@ -11,12 +11,12 @@ Position chemin (int i,int choix)
   Position pos_suivant;
   
   /*En Spirale*/
-  int tabI_spirale[10] = {1,0,0,1,2,2,2,1,0};
-  int tabJ_spirale[10] = {1,1,2,2,2,1,0,0,0};
+  int tabI_spirale[9] = {1,0,0,1,2,2,2,1,0};
+  int tabJ_spirale[9] = {1,1,2,2,2,1,0,0,0};
   
   /*En Z*/
-  int tabI_Z[10] = {0,1,2,2,1,0,0,1,2};
-  int tabJ_Z[10] = {0,0,0,1,1,1,2,2,2};
+  int tabI_Z[9] = {0,1,2,2,1,0,0,1,2};
+  int tabJ_Z[9] = {0,0,0,1,1,1,2,2,2};
   
   
   switch(choix)
