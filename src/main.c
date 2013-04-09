@@ -13,6 +13,7 @@
 int main(int argc, char *argv[])
 {
   int choix_parcours, cpt;
+  int hauteur, largeur; /* servent a initialiser la hauteur et la largeur du plateau */
   Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Plateau *plateau;
   Carte *tabCarte;
@@ -27,12 +28,21 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
   else if (argc == 3) {
-    initPuzzle(argv[1], plateau, tabCarte);
-    
-    if (atoi(argv[2]) == 1)
-      backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 1); 
-    else if (atoi(argv[2]) == 2)
-      backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 2);
+    tabCarte = parseFile(argv[1], &hauteur, &largeur);
+    /*
+      BEGIN junk
+      initPuzzle(argv[1], plateau, tabCarte, &hauteur, &largeur);
+      END junk
+    */
+
+    if (atoi(argv[2]) == 1) {
+      plateau = nouveau_plateau(hauteur, largeur);
+      backtrack(plateau, tabCarte, hauteur*largeur, 0, 1);
+    }
+    else if (atoi(argv[2]) == 2) {
+      plateau = nouveau_plateau(hauteur, largeur);
+      backtrack(plateau, tabCarte, hauteur*largeur, 0, 2);
+    }
     else
       printf("Mode %s non supporte.\n", argv[2]);
   }
