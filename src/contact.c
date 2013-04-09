@@ -111,7 +111,7 @@ int cartePossible(Carte *carte,Plateau *plateau,int i , int j)
        contact_b(plateau,i,j, *carte) &&
        contact_g(plateau,i,j, *carte))) {
 
-    printf("wazzaaaaa\n");
+    printf("=> Placement Possible\n");
     return 1;
   }
 

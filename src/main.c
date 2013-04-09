@@ -39,11 +39,11 @@ int main()
   carte9.Haut = 9;carte9.Bas = 9;carte9.Gauche = 9; carte9.Droite = 9;
   */
   carte1.Haut = 1;carte1.Bas = 3;carte1.Gauche = 2; carte1.Droite = 4;
-  carte2.Haut = 1;carte2.Bas = 3;carte2.Gauche = 2; carte2.Droite = 4;
+  /*carte2.Haut = 1;carte2.Bas = 3;carte2.Gauche = 2; carte2.Droite = 4;*/
 
-  /* on fout la merde
+  /* on fout la merde*/
   carte9.Haut = 1;carte9.Bas = 3;carte9.Gauche = 2; carte9.Droite = 4;
-  */
+ 
   carte3.Haut = 3;carte3.Bas = 1;carte3.Gauche = 2; carte3.Droite = 4;
   /*carte4.Haut = 2;carte4.Bas = 4;carte4.Gauche = 1; carte4.Droite = 3;*/
   carte4.Haut = 1;carte4.Bas = 3;carte4.Gauche = 2; carte4.Droite = 4;
@@ -51,11 +51,11 @@ int main()
   carte6.Haut = 3;carte6.Bas = 1;carte6.Gauche = 2; carte6.Droite = 4;
   carte7.Haut = 1;carte7.Bas = 3;carte7.Gauche = 4; carte7.Droite = 2;
   carte8.Haut = 3;carte8.Bas = 1;carte8.Gauche = 4; carte8.Droite = 2;
-  carte9.Haut = 1;carte9.Bas = 4;carte9.Gauche = 3; carte9.Droite = 2;
+  /* carte9.Haut = 1;carte9.Bas = 4;carte9.Gauche = 3; carte9.Droite = 2;*/
 
-  /* on fout la merde
+  /* on fout la merde*/
   carte2.Haut = 1;carte2.Bas = 4;carte2.Gauche = 3; carte2.Droite = 2;
-  */
+  
 
   /*  carte9.Haut = 4;carte9.Bas = 1;carte9.Gauche = 3; carte9.Droite = 2;*/
 
@@ -105,6 +105,7 @@ int main()
   printf("                                            PUZZLE                                               \n");
   printf("*************************************************************************************************\n\n");
   printf("Donner le choix de parcours de la grille : (1 pour en spirale (depart du centre) et 2 pour en S) -> entrer un autre chiffre pour quitter \n");
+  
   /*scanf("%d",&choix_parcours);*/
   choix_parcours=1;
   
