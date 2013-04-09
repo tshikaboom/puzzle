@@ -10,15 +10,38 @@
 #include "parser.h"
 
 
-int main()
+int main(int argc, char *argv[])
 {
-  int i,j,choix_parcours,cpt;
-  Carte carte1, carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
+  int choix_parcours, cpt;
+  Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Plateau *plateau;
-  Carte tabCarte[TAILLE*TAILLE];
-  
+  Carte *tabCarte;
+
+  if (argc > 3 || argc == 2) {
+    printf("Usage: %s [FICHIER MODE]\n", argv[0]);
+    printf("FICHIER etant un fichier avec des cartes donnees et la taille du plateau a resoudre.\n");
+    printf("MODE etant l'entier 1 ou 2.\n");
+    printf(" 1: resolution du puzzle en spirale a partir du centre\n");
+    printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
+    printf("Si appel sans argument, il y aura resolution d'un plateau deja donne dans le programme.\n");
+    return EXIT_FAILURE;
+  }
+  else if (argc == 3) {
+    initPuzzle(argv[1], plateau, tabCarte);
+    
+    if (atoi(argv[2]) == 1)
+      backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 1); 
+    else if (atoi(argv[2]) == 2)
+      backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 2);
+    else
+      printf("Mode %s non supporte.\n", argv[2]);
+  }
+
+  else {
   /* allocation et initialisation des cases du plateau a NULL */
   plateau = nouveau_plateau(TAILLE, TAILLE);
+  tabCarte = (Carte *) malloc(TAILLE*TAILLE*sizeof(Carte));
+  
   
   /* initialisation des cotes des cartes, avec ce set on a une solution normalement */
   carte1.Haut = 1;carte1.Bas = 3;carte1.Gauche = 2; carte1.Droite = 4;
@@ -95,6 +118,6 @@ int main()
       printf("Mauvais numero !!\n");
       printf("*****************\n");
     }
-  
+  }
   return EXIT_SUCCESS;
 }
