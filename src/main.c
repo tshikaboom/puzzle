@@ -15,18 +15,11 @@ int main()
   int i,j,choix_parcours,cpt;
   Carte carte1, carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Plateau *plateau;
-  Carte tabCarte[9];
+  Carte tabCarte[TAILLE*TAILLE];
   
-  system("clear");
+  /* allocation et initialisation des cases du plateau a NULL */
+  plateau = nouveau_plateau(TAILLE, TAILLE);
   
-  plateau = (Plateau *) malloc(sizeof(Plateau));
-  plateau->tab = (Carte ***) malloc(TAILLE*sizeof(Carte **));
-  for (i=0; i<TAILLE; i++)
-    plateau->tab[i] = (Carte **) malloc(TAILLE*sizeof(Carte *));
-
-  plateau->largeur = TAILLE;
-  plateau->hauteur = TAILLE;
-
   /* initialisation des cotes des cartes, avec ce set on a une solution normalement */
   carte1.Haut = 1;carte1.Bas = 3;carte1.Gauche = 2; carte1.Droite = 4;
   carte2.Haut = 1;carte2.Bas = 4;carte2.Gauche = 3; carte2.Droite = 2;
@@ -63,12 +56,7 @@ int main()
   tabCarte[6] = carte7;
   tabCarte[7] = carte8;
   tabCarte[8] = carte9;
-    
-  for (i=0; i<TAILLE;i++)
-    for(j=0; j<TAILLE;j++)
-      plateau->tab[i][j] = NULL;
-  
-  
+
   printf("*************************************************************************************************\n");
   printf("                                            PUZZLE                                               \n");
   printf("*************************************************************************************************\n\n");
@@ -84,7 +72,7 @@ int main()
       {*/
       /*Test sur le parcours en spirale*/
       printf("\n#== PARCOURS EN SPIRALE ==#\n");
-      backtrack(plateau, tabCarte, 9, 0, 1);
+      backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 1);
       /*swap(plateau,tabCarte);
 	    cpt++;
 	    }*/
@@ -96,7 +84,7 @@ int main()
 	{
 	  /*Test sur le parcours en S*/
 	  printf("\n#== PARCOURS EN S ==#\n");
-	  backtrack(plateau, tabCarte, 9, 0, 2);
+	  backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 2);
 	  swap(plateau,tabCarte);
 	  cpt++;
 	} 
