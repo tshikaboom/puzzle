@@ -60,11 +60,11 @@
 
    src/init.c      - OK
 
-   src/contact.c   - A CORRIGER
+   src/contact.c   - OK
 
    src/chemin.c    - OK
 
-   src/backtrack.c - A FINIR -> ne produit que le plateau et place les cartes dessus sans les comparer
+   src/backtrack.c - OK
 
    src/parser.c    - OK
 
