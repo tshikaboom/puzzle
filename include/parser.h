@@ -20,7 +20,7 @@ void error(char* errorMessage);
 int readCard(char* stringCard, Carte* current);
 
 /*Carte** an array containing the cards that were parsed from the file*/
-Carte** parseFile(char* filename,int* hauteur,int* largeur);
+Carte* parseFile(char* filename,int* hauteur,int* largeur);
 
 /*Carte** array of cards containing the cards to be exported*/
 void export(char* filename,int hauteur,int largeur,Carte** stack);

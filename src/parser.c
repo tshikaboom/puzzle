@@ -186,38 +186,3 @@ void export(char* filename,int hauteur,int largeur,Carte* stack){
   else error("cant't write the filename");
 }
 
-int initPuzzle(char* filename,Plateau* plateau,Carte* stack){
-	int hauteur,largeur;
-
-	stack=parseFile(filename,&hauteur,&largeur);
-	plateau=nouveau_plateau(hauteur,largeur);
-	
-	return hauteur*largeur;
-}
-
-/*  int main(){ */
-/**
- * For debug purposes and usecase only
- 
-
-  char filename[]="cartes.txt";
-  Carte* stack;
-  int i,n,hauteur,largeur;
-
-  stack=parseFile(filename,&hauteur,&largeur);
-  n=hauteur*largeur;
-
-  printf("Affichage du tableau de carte de taille %d :\n",n);
-  for (i=0;i<n;i++)
-    {
-      printf("Carte %d: %d %d %d %d\n",stack[i].identifiant,stack[i].Haut,stack[i].Bas,stack[i].Gauche,stack[i].Droite);
-    }
-  
-  export("testExport.txt",hauteur,largeur,stack);
-
-  free(stack);
-*/  /*
-  return EXIT_SUCCESS;
-}
-
-    */
