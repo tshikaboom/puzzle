@@ -53,8 +53,14 @@
    proper 
         Suppression de tous les fichiers temporaires
 
-   run 
-        Lance le programme
+   run1 
+        Lance le programme avec les valeurs par défaut
+	
+   run2 
+        Lance le programme à partir du fichier Puzzle.puzzle en spirale
+
+   run3 
+        Lance le programme à partir du fichier Puzzle.puzzle en serpent
 
 == Etat d'avancement ==
 

@@ -67,5 +67,11 @@ cleanall: clean
 	rm -r $(LIB)
 
 # Lancement
-run:
+run1:
 	./$(BIN)/$(EXEC)
+
+run2:
+	./$(BIN)/$(EXEC) Puzzle.puzzle 1
+
+run3:
+	./$(BIN)/$(EXEC) Puzzle.puzzle 2
