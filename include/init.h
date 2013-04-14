@@ -3,24 +3,24 @@
 #include "structs.h"
 
 
-/*Fonctions*/
-
-/*Case de  depart*/
+/* Fonction determinant la case de depart pour un parcours en spirale */
 Position caseDepart (int largeur, int hauteur);
 
-/*Suivant => case suivant vide ou non*/
+/* Suivant => case suivant vide ou non */
 int suivant (Plateau *plateau, Position courante);
 
-/*Gestion de la rotation*/
+/* Gestion de la rotation: rotation(carte, 1) tourne la carte une fois
+   dans le sens des aiguilles d'une montre */
 void rotation (Carte *carte,unsigned int nombre);
 
-/*Affichage*/
+/* Affichage d'un plateau de taille arbitraire */
 void affichage (Plateau *plateau);
 
-/* allocation d'un nouveau plateau de taille largeur*hauteur */
+/* Allocation d'un nouveau plateau de taille largeur*hauteur.
+   La fonction initialise les cases du plateau a NULL. */
 Plateau *nouveau_plateau(int hauteur, int largeur);
 
-/*Echange la liste de carte -> sert a parcourirs toutes les solutions*/
+/* Echange la liste de carte. Sert a generer toutes les solutions */
 void swap (Plateau *plateau,Carte tabCarte[]);
 
 #endif
