@@ -20,21 +20,19 @@ int main(int argc, char *argv[])
 
   if (argc > 3 || argc == 2) {
     printf("Usage: %s [FICHIER MODE]\n", argv[0]);
-    printf("FICHIER etant un fichier avec des cartes donnees et la taille du plateau a resoudre.\n");
+    printf("FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre.\n");
     printf("MODE etant l'entier 1 ou 2.\n");
     printf(" 1: resolution du puzzle en spirale a partir du centre\n");
     printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
-    printf("Si appel sans argument, il y aura resolution d'un plateau deja donne dans le programme.\n");
+    printf("Appel sans argument: resolution d'un plateau deja donne dans le programme.\n");
     return EXIT_FAILURE;
   }
+
+  /* programme appele avec un fichier */
   else if (argc == 3) {
     tabCarte = parseFile(argv[1], &hauteur, &largeur);
-    /*
-      BEGIN junk
-      initPuzzle(argv[1], plateau, tabCarte, &hauteur, &largeur);
-      END junk
-    */
 
+    
     if (atoi(argv[2]) == 1) {
       plateau = nouveau_plateau(hauteur, largeur);
       backtrack(plateau, tabCarte, hauteur*largeur, 0, 1);
@@ -47,13 +45,16 @@ int main(int argc, char *argv[])
       printf("Mode %s non supporte.\n", argv[2]);
   }
 
+  /* programme appele sans fichier, on cree un plateau soi-meme */
+  /* le macro TAILLE est defini dans "structs.h" */
   else {
+
   /* allocation et initialisation des cases du plateau a NULL */
   plateau = nouveau_plateau(TAILLE, TAILLE);
   tabCarte = (Carte *) malloc(TAILLE*TAILLE*sizeof(Carte));
   
   
-  /* initialisation des cotes des cartes, avec ce set on a une solution normalement */
+  /* initialisation des cotes des cartes, avec ce set on a normalement une solution */
   carte1.Haut = 1;carte1.Bas = 3;carte1.Gauche = 2; carte1.Droite = 4;
   carte2.Haut = 1;carte2.Bas = 4;carte2.Gauche = 3; carte2.Droite = 2;
   carte3.Haut = 3;carte3.Bas = 1;carte3.Gauche = 2; carte3.Droite = 4;
@@ -64,9 +65,12 @@ int main(int argc, char *argv[])
   carte8.Haut = 3;carte8.Bas = 1;carte8.Gauche = 4; carte8.Droite = 2;
   carte9.Haut = 1;carte9.Bas = 3;carte9.Gauche = 2; carte9.Droite = 4;
   
-  /* initialisation en masse des cartes avec les memes valeurs */
-  carte1.sur_plateau = carte2.sur_plateau = carte3.sur_plateau = carte4.sur_plateau = carte5.sur_plateau = carte6.sur_plateau = carte7.sur_plateau = carte8.sur_plateau = carte9.sur_plateau = 0;
-  carte1.rotated = carte2.rotated = carte3.rotated = carte4.rotated = carte5.rotated = carte6.rotated = carte7.rotated = carte8.rotated = carte9.rotated = 0;
+  /* initialisation en masse des cartes avec les memes valeurs initiales */
+  carte1.sur_plateau = carte2.sur_plateau = carte3.sur_plateau = carte4.sur_plateau =
+    carte5.sur_plateau = carte6.sur_plateau = carte7.sur_plateau = carte8.sur_plateau =
+    carte9.sur_plateau = 0;
+  carte1.rotated = carte2.rotated = carte3.rotated = carte4.rotated = carte5.rotated =
+    carte6.rotated = carte7.rotated = carte8.rotated = carte9.rotated = 0;
 
   /* initialisation des identifiants */
   carte1.identifiant = 1;
