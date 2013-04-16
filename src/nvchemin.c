@@ -7,12 +7,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+
 /*
  *
  */
 
 
-struct chemin{
+struct chemin {
 //    struct coordonnee point;
     int x;
     int y;
@@ -56,7 +58,19 @@ int min(int a,int b){
     else return b;
 }
 
-Chemin* initPosition(int n, int p)
+int abs(int n){
+if (n<0) return -n;
+else return n;
+}
+
+Chemin* constCheminEnS(int n,int p){
+    int i;
+    Chemin* chemin = nouveau_chemin(n-1,p-1);
+        for (i=n*p-1;i>0;i--) chemin=rajoute_chemin(chemin,abs(i%(2*n)-n),i/n);
+    return chemin;
+}
+
+Chemin* constCheminSpirale(int n, int p)
 {
   /*
     La fonction calcule une somme par coins c'est a dire la case a
@@ -87,7 +101,10 @@ Chemin* initPosition(int n, int p)
 }
 
 int main(int argc, char** argv) {
-    Chemin *spirale = initPosition(5,4);
+/*
+    Chemin *spirale = constCheminSpirale(5,4);
+*/
+    Chemin *spirale = constCheminEnS(5,4);
     Chemin *tmp = spirale;
     while(tmp) {
         printf("(%d,%d)\n",tmp->x,tmp->y);
