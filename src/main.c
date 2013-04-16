@@ -104,15 +104,15 @@ int main(int argc, char *argv[])
   
   if (choix_parcours == 1)
     {
-      /*cpt=0;
+      cpt=0;
       while (cpt != 9)
-      {*/
+      {
       /*Test sur le parcours en spirale*/
       printf("\n#== PARCOURS EN SPIRALE ==#\n");
       backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 1);
-      /*swap(plateau,tabCarte);
+      swap(plateau,tabCarte);
 	    cpt++;
-	    }*/
+	    }
     }
   else if (choix_parcours == 2)
     {

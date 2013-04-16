@@ -23,4 +23,7 @@ Plateau *nouveau_plateau(int hauteur, int largeur);
 /* Echange la liste de carte. Sert a generer toutes les solutions */
 void swap (Plateau *plateau,Carte tabCarte[]);
 
+/* Nettoyage du plateau pour la fonction backtrack*/
+void clean_plateau (Plateau *plateau);
+
 #endif

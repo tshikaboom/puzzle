@@ -38,6 +38,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
   /******************************************************************/
   /*Affichage pour verifier que le plateau est vide la premiere fois*/
   /******************************************************************/
+  system("clear");
   affichage(plateau);
 
   /******************/
@@ -45,15 +46,18 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
   /******************/
   if (nombre_de_carte == 0)
     {
+      system("clear");
       nombre_de_solution++; /*Incrementation du nombre de solutions*/
       printf("\n#== Solution(s) Trouvée(s) : %d ==#\n",nombre_de_solution);
       affichage (plateau); /*affichage de la solution*/
-      
+      sleep(3);
       /*Reinitialisation du tableau de carte*/
       for (carte = 0; carte < (plateau->largeur*plateau->hauteur); carte++)
 	{
 	  tabCarte[carte].sur_plateau = 0;
 	}
+      
+      clean_plateau(plateau);
       
       return -1;
     }
@@ -136,6 +140,8 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
 	    }
 	}
     }
+  
+  printf("Pas de solution\n");
   
   return FALSE;
 }

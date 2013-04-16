@@ -154,3 +154,16 @@ void swap (Plateau *plateau,Carte tabCarte[])
 
   tabCarte[plateau->largeur*plateau->hauteur-1] = tmp;
 }
+
+void clean_plateau (Plateau *plateau)
+{
+  int i,j;
+  
+  for (i=0; i<plateau->hauteur; i++)
+    {
+      for(j=0; j<plateau->largeur; j++)
+	{
+	  plateau->tab[i][j] = NULL;
+	}
+    }
+}
