@@ -11,26 +11,44 @@
  *
  */
 
-struct coordonnee{
-    int x;
-    int y;
-};
 
 struct chemin{
-    struct coordonnee point;
-
+//    struct coordonnee point;
+    int x;
+    int y;
     struct chemin *Suivant;
 };
 
-typedef struct coordonnee Coordonee;
+typedef struct coordonnee Coordonnee;
 typedef struct chemin Chemin;
 
-void ligne(int x, int y, Chemin c)
+
+Chemin *nouveau_chemin(int x, int y)
 {
-    Coordonnee point= (Coordonnee*) malloc(sizeof(Coordonnee));
-    point->x=x;
-    point->y=y;
-    c->Suivant=point;
+    Chemin *cellule_initiale;
+    cellule_initiale = (Chemin *) malloc(sizeof(Chemin));
+    // a faire: check du malloc
+    cellule_initiale->Suivant = NULL;
+    
+    cellule_initiale->x = x;
+    cellule_initiale->y = y;
+
+    return cellule_initiale;    
+}
+
+Chemin *rajoute_chemin(Chemin *liste, int x, int y)
+{
+    Chemin *nvcell;
+    nvcell = (Chemin *) malloc(sizeof(Chemin));
+    // a faire: check du malloc
+    nvcell->Suivant = liste;
+    
+    nvcell->x = x;
+    nvcell->y = y;
+
+    // donc la si on veut elargir la liste on prend [[ liste = rajoute_chemin(liste, x, y); ]]    
+    return nvcell;
+    
 }
 
 int min(int a,int b){
@@ -38,7 +56,7 @@ int min(int a,int b){
     else return b;
 }
 
-void initPosition(int n, int p)
+Chemin* initPosition(int n, int p)
 {
   /*
     La fonction calcule une somme par coins c'est a dire la case a
@@ -46,25 +64,36 @@ void initPosition(int n, int p)
   */
     int pas,k,x=n,y=1;
     int sens=1,j;
-
+    
+    Chemin* chemin = nouveau_chemin(0,0);
+    
+    for (j=2;j!=n;j+=sens) chemin=rajoute_chemin(chemin,j-1,y-1);
+    
     for(k=1;k<=min(n,p)-1;k++){
-        printf("+(%d,%d)\n",x,y);
+        
         pas=sens*(p-k);
 
-        for (j=y;j!=y+pas;j+=sens) printf("%d,%d\n",x,j);
+        for (j=y;j!=y+pas;j+=sens) chemin=rajoute_chemin(chemin,x-1,j-1);
         y+=pas;
         sens=-sens;
-        printf("-(%d,%d)\n",x,y);
 
         pas=sens*(n-k);
-        for (j=x;j!=x+pas;j+=sens) printf("--%d,%d\n",j,y);
+        for (j=x;j!=x+pas;j+=sens) chemin=rajoute_chemin(chemin,j-1,y-1);
 
         x+=pas;
     }
+    chemin=rajoute_chemin(chemin,x-1,y-1);
+    return chemin;
 }
 
 int main(int argc, char** argv) {
-    initPosition(5,4);
+    Chemin *spirale = initPosition(5,4);
+    Chemin *tmp = spirale;
+    while(tmp) {
+        printf("(%d,%d)\n",tmp->x,tmp->y);
+        tmp = tmp->Suivant;
+    }
+    //initPosition(5,4);
 //    initPosition(7,3);
 //    initPosition(3,3);
 }
