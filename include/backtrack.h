@@ -1,5 +1,6 @@
 #ifndef BACKTRACK_H
 #define BACKTRACK_H
+#include "nvchemin.h"
 #include "structs.h"
 
 /* Algorithme de backtracking */

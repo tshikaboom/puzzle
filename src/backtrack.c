@@ -33,7 +33,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   /***************************************************************************************************/
   /*indice_chemin doit etre egal a -1 au depart sinon la fonction chemin ne donnera pas le bon chemin*/
   /***************************************************************************************************/
-  position_case = chemin(indice_chemin,choix);
+  position_case = get_pos(parcours);
   nombre_de_solution = 0;
   
   /******************************************************************/
@@ -84,7 +84,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
       else if (choix == 2)
 	{
 	  printf("Identifiant: %d\n",plateau->tab[0][0]->identifiant);
-	}
+	  }
     }
     
   printf("Position case : x=%d ET y=%d\n",position_case.x,position_case.y);
