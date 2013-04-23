@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "structs.h"
 #include "nvchemin.h"
 
 Chemin *nouveau_chemin(int x, int y)
@@ -52,6 +53,16 @@ Chemin* constCheminEnS(int n,int p){
     Chemin* chemin = nouveau_chemin(n-1,p-1);
         for (i=n*p-1;i>0;i--) chemin=rajoute_chemin(chemin,abs(i%(2*n)-n),i/n);
     return chemin;
+}
+
+Position_case get_pos(Chemin *chemin)
+{
+  Position_case pos;
+  pos.x = chemin->x;
+  pos.y = chemin->y;
+
+  return pos;
+
 }
 
 Chemin* constCheminSpirale(int n, int p)
