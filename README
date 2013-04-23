@@ -6,8 +6,6 @@
    Bouilly Romain 2908292  -> interface graphique
    Vigano Sylvain 3203772
    Viljasaar Oskar 3000989
-   Djeacoumarane Maroudakaasi 3209309 -> n'appartient plus a ce groupe (cause : non présence)
-
 
 == Fichiers inclus ==
 
@@ -21,7 +19,6 @@
 
    src/contact.c et include/contact.h 
 	Fonctions testant si deux cartes sont compatibles
-	- Djeacoumarane Maroudakaasi
 	- Oskar Viljasaar
 
    src/chemin.c et include/chemin.h
