@@ -22,7 +22,7 @@ ${LIB}:
 	mkdir ${LIB}
 
 #Fichier Executable
-$(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OBJ)/parser.o $(OBJ)/main.o
+$(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OBJ)/parser.o $(OBJ)/nvchemin.o $(OBJ)/main.o
 	$(CC) $(CFLAGS) -o $(BIN)/$@ $^ $(LDFLAGS)
 
 # Fichiers Objet
@@ -39,7 +39,10 @@ $(OBJ)/backtrack.o : $(SRC)/backtrack.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 $(OBJ)/parser.o : $(SRC)/parser.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS) 
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
+
+$(OBJ)/nvchemin.o: $(SRC)/nvchemin.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 $(OBJ)/main.o : $(SRC)/main.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
