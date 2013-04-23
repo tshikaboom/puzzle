@@ -1,6 +1,6 @@
 CC= gcc
 CFLAGS= -W -Wall -ansi -pedantic -g
-LDFLAGS= -lm
+LDFLAGS= -L $(LIB) -lm -lpuzzle
 INCFLAGS= -Iinclude
 LIB=lib
 SRC=src
@@ -22,7 +22,7 @@ ${LIB}:
 	mkdir ${LIB}
 
 #Fichier Executable
-$(EXEC) : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OBJ)/parser.o $(OBJ)/main.o
+$(EXEC) : $(OBJ)/main.o $(LIB)/libpuzzle.a
 	$(CC) $(CFLAGS) -o $(BIN)/$@ $^ $(LDFLAGS)
 
 # Fichiers Objet
@@ -45,7 +45,7 @@ $(OBJ)/main.o : $(SRC)/main.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCFLAGS)
 
 # Bibliotheques
-$(LIB)/exemple.a : $(OBJ)/exemple.o
+$(LIB)/libpuzzle.a : $(OBJ)/init.o $(OBJ)/contact.o $(OBJ)/chemin.o $(OBJ)/backtrack.o $(OBJ)/parser.o
 	ar -rs $@ $^
 
 
@@ -55,6 +55,7 @@ $(LIB)/exemple.a : $(OBJ)/exemple.o
 clean :
 	rm -f $(OBJ)/*.o
 	rm -f $(BIN)/$(EXEC)
+	rm -f $(LIB)/*
 
 proper:
 	rm -f *~
