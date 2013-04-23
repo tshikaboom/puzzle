@@ -8,6 +8,7 @@
 #include "init.h"
 #include "contact.h"
 #include "chemin.h"
+#include "nvchemin.h"
 #include "backtrack.h"
 
 
@@ -18,7 +19,7 @@
 /*Algorithme de backtracking*/
 /****************************/
 
-int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indice_chemin,int choix)
+int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_de_carte,int indice_chemin,int choix)
 {
   int nombre_de_solution;
   int carte=0; /*numero de la carte -> identifiant de la carte*/
@@ -118,7 +119,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], int nombre_de_carte,int indic
 	      nombre_de_carte--;
 	      
 	      /*Appel a backtrack*/
-	      back = backtrack(plateau,tabCarte,nombre_de_carte,ind_chemin+1,choix);
+	      back = backtrack(plateau,tabCarte, parcours->Suivant, nombre_de_carte,ind_chemin+1,choix);
 	      
 	      if ( back )
 		{
