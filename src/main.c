@@ -8,6 +8,7 @@
 #include "structs.h"
 #include "backtrack.h"
 #include "parser.h"
+#include "nvchemin.h"
 
 
 int main(int argc, char *argv[])
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
   Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Plateau *plateau;
   Carte *tabCarte;
+  Chemin *parcours;
 
   if (argc > 3 || argc == 2) {
     printf("Usage: %s [FICHIER MODE]\n", argv[0]);
@@ -35,11 +37,13 @@ int main(int argc, char *argv[])
     
     if (atoi(argv[2]) == 1) {
       plateau = nouveau_plateau(hauteur, largeur);
-      backtrack(plateau, tabCarte, hauteur*largeur, 0, 1);
+      parcours = constCheminSpirale(hauteur, largeur);
+      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
     }
     else if (atoi(argv[2]) == 2) {
       plateau = nouveau_plateau(hauteur, largeur);
-      backtrack(plateau, tabCarte, hauteur*largeur, 0, 2);
+      parcours = constCheminEnS(hauteur, largeur);
+      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
     }
     else
       printf("Mode %s non supporte.\n", argv[2]);
@@ -109,7 +113,8 @@ int main(int argc, char *argv[])
       {
       /*Test sur le parcours en spirale*/
       printf("\n#== PARCOURS EN SPIRALE ==#\n");
-      backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 1);
+      parcours = constCheminSpirale(TAILLE, TAILLE);
+      backtrack(plateau, tabCarte, parcours, TAILLE*TAILLE, 0, 1);
       swap(plateau,tabCarte);
 	    cpt++;
 	    }
@@ -121,7 +126,8 @@ int main(int argc, char *argv[])
 	{
 	  /*Test sur le parcours en S*/
 	  printf("\n#== PARCOURS EN S ==#\n");
-	  backtrack(plateau, tabCarte, TAILLE*TAILLE, 0, 2);
+	  parcours = constCheminEnS(TAILLE, TAILLE);
+	  backtrack(plateau, tabCarte, parcours, TAILLE*TAILLE, 0, 2);
 	  swap(plateau,tabCarte);
 	  cpt++;
 	} 
