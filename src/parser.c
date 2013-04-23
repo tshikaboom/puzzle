@@ -77,7 +77,7 @@ void error(char* errorMessage){
   /**
    * @param char* Error Message
    */
-  printf("%s \n",errorMessage);
+  fprintf(stderr, "%s \n",errorMessage);
 }
 
 int readCard(char* stringCard, Carte* current){
