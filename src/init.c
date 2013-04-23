@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "structs.h"
 #include "init.h"
@@ -160,10 +161,18 @@ void clean_plateau (Plateau *plateau)
   int i,j;
   
   for (i=0; i<plateau->hauteur; i++)
-    {
-      for(j=0; j<plateau->largeur; j++)
-	{
-	  plateau->tab[i][j] = NULL;
-	}
-    }
+    for(j=0; j<plateau->largeur; j++)
+      plateau->tab[i][j] = NULL;
 }
+/*
+void exporteur_magique(Plateau *plateau)
+{
+  int i=0;
+  char buff[10]  = "sol";
+  char buff2[10];
+*/
+  /* on check si un fichier soln existe deja, n etant un entier
+     s'il n'existe pas, on s'arrete et on ecrit une solution */
+  /*
+  while (access(
+  */
