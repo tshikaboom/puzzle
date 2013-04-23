@@ -52,9 +52,10 @@ else return n;
 Chemin* constCheminEnS(int n,int p){
     int i;
     Chemin* chemin = nouveau_chemin(n-1,p-1);
-    for (i=n*p-1;i>0;i--) chemin=rajoute_chemin(chemin,abs(i%(2*n)-n),i/n);
+    for (i=n*p-2;i>=0;i--) chemin=rajoute_chemin(chemin,abs((n-1)*(-(i/n)%2)+(i%n)),i/n);
     
     printf("chemin en S: premier element %d, %d\n", chemin->x, chemin->y);
+    print_chemin(chemin);
     return chemin;
 }
 
@@ -66,6 +67,15 @@ Position get_pos(Chemin *chemin)
   pos.x = chemin->x;
   pos.y = chemin->y;
   return pos;
+}
+
+void print_chemin(Chemin *chemin)
+{
+  int i=0;
+  Chemin *tmp;
+
+  for (tmp = chemin; tmp != NULL; tmp = tmp->Suivant, i++)
+    printf("(%d, %d)\n", tmp->x, tmp->y);
 }
 
 Chemin* constCheminSpirale(int n, int p)

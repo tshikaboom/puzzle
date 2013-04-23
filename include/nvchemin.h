@@ -38,6 +38,9 @@ int abs(int n);
 /* accesseur des coordonnees de la premiere cellule de la liste */
 Position get_pos(Chemin *chemin);
 
+/* affichage minimaliste d'un chemin en (x, y) */
+void print_chemin(Chemin *chemin);
+
 /* Fonctions creant les chemins pour un plateau de taille arbitraire
    Retournent une liste avec les coordonnees necessaires */
 Chemin* constCheminEnS(int n,int p);
