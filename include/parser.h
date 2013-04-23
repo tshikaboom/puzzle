@@ -23,6 +23,6 @@ int readCard(char* stringCard, Carte* current);
 Carte* parseFile(char* filename,int* hauteur,int* largeur);
 
 /*Carte** array of cards containing the cards to be exported*/
-void export(char* filename,int hauteur,int largeur,Carte** stack);
+void export(char* filename, Plateau *plateau);
 
 #endif

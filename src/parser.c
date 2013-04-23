@@ -168,19 +168,20 @@ Carte *parseFile(char* filename,int* hauteur,int* largeur) {
   return NULL;
 }
 
-void export(char* filename,int hauteur,int largeur,Carte* stack){
+void export(char* filename, Plateau *plateau){
   /**
    *@param char* filename The name for the exported file
    *@param int hauteur height of the grid
    *@param largeur width of the grid
    *@param Carte** array of cards containing the cards to be exported
    */
-  int i;
+  int i, j;
   FILE* fp;
   if((fp=fopen(filename,"w"))){
-    fprintf(fp,"%d\n%d\n",hauteur,largeur);
-    for (i=0;i<hauteur*largeur;i++)
-      fprintf(fp,EXPORT_MASK,stack[i].Haut,stack[i].Bas,stack[i].Gauche,stack[i].Droite);
+    fprintf(fp,"%d\n%d\n",plateau->hauteur,plateau->largeur);
+    for (i=0; i<plateau->hauteur; i++)
+      for (j=0; j<plateau->largeur; j++)
+	fprintf(fp,EXPORT_MASK,plateau->tab[i][j]->Haut,plateau->tab[i][j]->Bas, plateau->tab[i][j]->Gauche, plateau->tab[i][j]->Droite);
     fclose(fp);
   }
   else error("cant't write the filename");
