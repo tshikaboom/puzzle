@@ -8,7 +8,7 @@
 #include "structs.h"
 #include "backtrack.h"
 #include "parser.h"
-#include "nvchemin.h"
+#include "chemin.h"
 
 
 int main(int argc, char *argv[])

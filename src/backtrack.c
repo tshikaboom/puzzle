@@ -8,7 +8,6 @@
 #include "init.h"
 #include "contact.h"
 #include "chemin.h"
-#include "nvchemin.h"
 #include "backtrack.h"
 
 
@@ -92,7 +91,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   printf("Nombre de solutions : %d\n\n",nombre_de_solution);
   
   /*position a la case suivante*/
-  position_case = chemin(indice_chemin+1,choix);
+  position_case = get_pos(parcours->Suivant);
   
   /**********************************************************************/
   /* BACKTRACK                                                          */
