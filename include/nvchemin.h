@@ -36,7 +36,7 @@ int min(int a,int b);
 int abs(int n);
 
 /* accesseur des coordonnees de la premiere cellule de la liste */
-Position_case get_pos(Chemin *chemin);
+Position get_pos(Chemin *chemin);
 
 /* Fonctions creant les chemins pour un plateau de taille arbitraire
    Retournent une liste avec les coordonnees necessaires */
