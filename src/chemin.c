@@ -76,7 +76,7 @@ void print_chemin(Chemin *chemin)
   Chemin *tmp;
 
   for (tmp = chemin; tmp != NULL; tmp = tmp->Suivant, i++)
-    printf("(%d, %d)\n", tmp->x, tmp->y);
+    printf("%d: (%d, %d)\n", i, tmp->x, tmp->y);
 }
 
 Chemin* constCheminSpirale(int n, int p)
