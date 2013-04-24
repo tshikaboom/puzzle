@@ -37,12 +37,12 @@ int main(int argc, char *argv[])
     
     if (atoi(argv[2]) == 1) {
       plateau = nouveau_plateau(hauteur, largeur);
-      parcours = constCheminSpirale(hauteur, largeur);
+      parcours = constCheminSpirale(largeur, hauteur);
       backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
     }
     else if (atoi(argv[2]) == 2) {
       plateau = nouveau_plateau(hauteur, largeur);
-      parcours = constCheminEnS(hauteur, largeur);
+      parcours = constCheminEnS(largeur, hauteur);
       backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
     }
     else

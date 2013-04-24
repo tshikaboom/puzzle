@@ -12,7 +12,7 @@
 
 #define MAX_BUFF 256
 #define INT_OFFSET 48
-#define IMPORT_MASK " %1d_%1d%1d%1d%1d"
+#define IMPORT_MASK " %d_%1d%1d%1d%1d"
 #define EXPORT_MASK "%d_%d%d%d%d\n"
 
 /*
@@ -98,6 +98,7 @@ int readCard(char* stringCard, Carte* current)
   Carte* carte=current;
 
   res=sscanf(stringCard, IMPORT_MASK, &id, &top, &bottom, &left, &right);
+  printf("%d %d %d %d %d\n", id, top, bottom, left, right);
 
   if (res!=5) {
     error("Incorrect card format");

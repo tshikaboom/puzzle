@@ -33,7 +33,9 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   /***************************************************************************************************/
   /*indice_chemin doit etre egal a -1 au depart sinon la fonction chemin ne donnera pas le bon chemin*/
   /***************************************************************************************************/
-  position_case = get_pos(parcours);
+  if (parcours)
+    position_case = get_pos(parcours);
+  
   nombre_de_solution = 0;
   
   /******************************************************************/

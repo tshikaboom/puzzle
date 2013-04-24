@@ -66,6 +66,7 @@ Position get_pos(Chemin *chemin)
   assert(chemin);
   pos.x = chemin->x;
   pos.y = chemin->y;
+  
   return pos;
 }
 
@@ -105,6 +106,8 @@ Chemin* constCheminSpirale(int n, int p)
         x+=pas;
     }
     chemin=rajoute_chemin(chemin,x-1,y-1);
+
+    print_chemin(chemin);
     return chemin;
 }
 
