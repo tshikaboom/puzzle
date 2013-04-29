@@ -70,33 +70,73 @@ void rotation (Carte *carte, unsigned int nombre)
 void affichage(Plateau *plateau)
 {
   int i, j;
+  /* cas de l'affichage a 5 caracteres horizontaux
+     == carte.identifiant ne depasse pas 9 */
+  if (plateau->hauteur * plateau->largeur < 10) {
+    for (j = 0; j < plateau->hauteur; j++) {
+      for (i = 0; i < plateau->largeur; i++)
+	printf("+---+");
+      printf("\n");
 
-  for (j = 0; j < plateau->hauteur; j++) {
-    for (i = 0; i < plateau->largeur; i++)
-      printf("+---+");
-    printf("\n");
-
-    for (i = 0; i < plateau->largeur; i++)
-      if (plateau->tab[i][j] == NULL) printf("|   |");
-      else printf("| %d |", plateau->tab[i][j]->Haut);
-    printf("\n");
+      for (i = 0; i < plateau->largeur; i++)
+	if (plateau->tab[i][j] == NULL) printf("|   |");
+	else printf("| %d |", plateau->tab[i][j]->Haut);
+      printf("\n");
     
-    for (i = 0; i < plateau->largeur; i++)
-      if (plateau->tab[i][j] == NULL) printf("|   |");
-      else printf("|%d%d%d|",
-		  plateau->tab[i][j]->Gauche,
-		  plateau->tab[i][j]->identifiant,
-		  plateau->tab[i][j]->Droite);
-    printf("\n");
+      for (i = 0; i < plateau->largeur; i++)
+	if (plateau->tab[i][j] == NULL) printf("|   |");
+	else printf("|%d%d%d|",
+		    plateau->tab[i][j]->Gauche,
+		    plateau->tab[i][j]->identifiant,
+		    plateau->tab[i][j]->Droite);
+      printf("\n");
     
-    for (i = 0; i < plateau->largeur; i++)
-      if (plateau->tab[i][j] == NULL) printf("|   |");
-      else printf("| %d |", plateau->tab[i][j]->Bas);
-    printf("\n");
+      for (i = 0; i < plateau->largeur; i++)
+	if (plateau->tab[i][j] == NULL) printf("|   |");
+	else printf("| %d |", plateau->tab[i][j]->Bas);
+      printf("\n");
 
-    for (i = 0; i < plateau->largeur; i++)
-      printf("+---+");
-    printf("\n");
+      for (i = 0; i < plateau->largeur; i++)
+	printf("+---+");
+      printf("\n");
+    }
+  }
+  else {
+    for (j = 0; j < plateau->hauteur; j++) {
+      for (i = 0; i < plateau->largeur; i++)
+	printf("+------+");
+      printf("\n");
+
+      for (i = 0; i < plateau->largeur; i++)
+	if (plateau->tab[i][j] == NULL) printf("|      |");
+	else printf("|  %d   |", plateau->tab[i][j]->Haut);
+      printf("\n");
+    
+      for (i = 0; i < plateau->largeur; i++)
+	if (plateau->tab[i][j] == NULL) printf("|      |");
+	else {
+	  if (plateau->tab[i][j]->identifiant < 10)
+	    printf("|%d %d  %d|",
+		   plateau->tab[i][j]->Gauche,
+		   plateau->tab[i][j]->identifiant,
+		   plateau->tab[i][j]->Droite);
+	  else
+	    printf("|%d %d %d|",
+		   plateau->tab[i][j]->Gauche,
+		   plateau->tab[i][j]->identifiant,
+		   plateau->tab[i][j]->Droite);
+	}
+      printf("\n");
+    
+      for (i = 0; i < plateau->largeur; i++)
+	if (plateau->tab[i][j] == NULL) printf("|      |");
+	else printf("|  %d   |", plateau->tab[i][j]->Bas);
+      printf("\n");
+
+      for (i = 0; i < plateau->largeur; i++)
+	printf("+------+");
+      printf("\n");
+    }    
   }
 }
 
