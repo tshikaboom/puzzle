@@ -186,20 +186,19 @@ void exporteur_magique(Plateau *plateau)
    c'est le cas, comme on l'appelle seulement quand backtrack
    aura resolu le plateau. */
 {
-  int i=2;
-  char buff[10]  = "sol1";
-  char buff2[10];
+  int i=1;
+  char buff[10]  = "soluce"; /* sera sol[n] */
   FILE *fichier;
 
 
 
   /* on check si un fichier "soln" existe deja, n etant un entier.
      Donc la on fait en sorte un cast de int en char* (sprintf) */
-  while (existe_fichier(buff)) {
+   do {
     sprintf(buff+3, "%d", i);
-    strncat(buff, buff2, 3);
+    printf("%d\n", i);
     i++;
-  }
+   } while (existe_fichier(buff));
   
   /* apres la boucle, on en sera a un entier i dont le fichier soli
      n'existe pas. Donc on ecrit la solution */
