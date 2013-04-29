@@ -172,8 +172,8 @@ void export(char* filename, Plateau *plateau){
   FILE* fp;
   if ((fp=fopen(filename,"w"))) {
     fprintf(fp, "%d\n%d\n", plateau->hauteur, plateau->largeur);
-    for (i=0; i<plateau->hauteur; i++)
-      for (j=0; j<plateau->largeur; j++)
+    for (j=0; j<plateau->hauteur; j++)
+      for (i=0; i<plateau->largeur; i++)
 	fprintf(fp, EXPORT_MASK,
 		plateau->tab[i][j]->identifiant,
 		plateau->tab[i][j]->Haut,
