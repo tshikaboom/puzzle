@@ -59,6 +59,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 	{
 	  tabCarte[carte].sur_plateau = 0;
 	}
+      exporteur_magique(plateau);
       
       clean_plateau(plateau);
       
