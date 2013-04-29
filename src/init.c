@@ -186,6 +186,17 @@ Plateau *nouveau_plateau(int hauteur, int largeur)
   return plateau;
 }
 
+void free_plateau(Plateau *plateau)
+{
+  int i;
+
+  for (i=0; i<plateau->largeur; i++)
+    free(plateau->tab[i]);
+
+  free(plateau->tab);
+  free(plateau);
+}
+
 
 void swap (Plateau *plateau,Carte tabCarte[])
 {

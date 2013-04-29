@@ -26,6 +26,9 @@ void affichage (Plateau *plateau);
    La fonction initialise les cases du plateau a NULL. */
 Plateau *nouveau_plateau(int hauteur, int largeur);
 
+/* liberation du plateau */
+void free_plateau(Plateau *plateau);
+
 /* Echange la liste de carte. Sert a generer toutes les solutions */
 void swap (Plateau *plateau,Carte tabCarte[]);
 
