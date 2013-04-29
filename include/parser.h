@@ -1,5 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
+#include "structs.h"
 
 /*Checks if input char is EndOfLine*/
 int isEndOfLine (char cara);
