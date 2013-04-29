@@ -56,6 +56,7 @@ clean :
 	rm -f $(OBJ)/*.o
 	rm -f $(BIN)/$(EXEC)
 	rm -f $(LIB)/*
+	rm -f sol*
 
 proper:
 	rm -f *~
