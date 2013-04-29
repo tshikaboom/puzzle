@@ -1,5 +1,11 @@
 #ifndef INIT_H
 #define INIT_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <string.h>
+
 #include "structs.h"
 
 
@@ -25,5 +31,11 @@ void swap (Plateau *plateau,Carte tabCarte[]);
 
 /* Nettoyage du plateau pour la fonction backtrack*/
 void clean_plateau (Plateau *plateau);
+
+/* fonction permettant de savoir si un fichier existe */
+int existe_fichier(char *fichier);
+
+
+void exporteur_magique(Plateau *plateau);
 
 #endif

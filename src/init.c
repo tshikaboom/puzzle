@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <string.h>
+#include <assert.h>
 
+#include "parser.h"
 #include "structs.h"
 #include "init.h"
 
@@ -162,17 +165,50 @@ void clean_plateau (Plateau *plateau)
   
   for (i=0; i<plateau->hauteur; i++)
     for(j=0; j<plateau->largeur; j++)
-      plateau->tab[i][j] = NULL;
+      plateau->tab[j][i] = NULL;
 }
-/*
-void exporteur_magique(Plateau *plateau)
+
+int existe_fichier(char* fichier)
 {
-  int i=0;
-  char buff[10]  = "sol";
+  FILE *fic = fopen(fichier, "r");
+  if (fic) {
+    /* le fichier existe */
+    fclose(fic);
+    return 1;
+  }
+  /* le fichier n'existe pas */
+  return 0;
+}
+
+void exporteur_magique(Plateau *plateau)
+/* Dans cette fonction, on fait l'hypothese que le plateau est
+   bien rempli de cartes et non de pointeurs NULL. Normalement
+   c'est le cas, comme on l'appelle seulement quand backtrack
+   aura resolu le plateau. */
+{
+  int i=2;
+  char buff[10]  = "sol1";
   char buff2[10];
-*/
-  /* on check si un fichier soln existe deja, n etant un entier
-     s'il n'existe pas, on s'arrete et on ecrit une solution */
-  /*
-  while (access(
-  */
+  FILE *fichier;
+
+
+
+  /* on check si un fichier "soln" existe deja, n etant un entier.
+     Donc la on fait en sorte un cast de int en char* (sprintf) */
+  while (existe_fichier(buff)) {
+    sprintf(buff+3, "%d", i);
+    strncat(buff, buff2, 3);
+    i++;
+  }
+  
+  /* apres la boucle, on en sera a un entier i dont le fichier soli
+     n'existe pas. Donc on ecrit la solution */
+  export(buff, plateau);
+
+  /* on ecrit dans le fichier sol0 le nombre de solutions qu'on a
+     pour l'instant. Le contenu d'avant est ecrase et ne nous sert pas */
+  fichier = fopen("sol0", "w");
+  fprintf(fichier, "%d\n", i-1);
+  fclose(fichier);
+}
+
