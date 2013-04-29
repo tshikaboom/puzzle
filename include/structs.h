@@ -36,6 +36,16 @@ struct plateau {
   int largeur; /* largeur du plateau */
 };
 
+/* structure du chemin, revient a une liste chainee en pratique
+   x et y sont les coordonnees sur le plateau */
+struct chemin {
+    int x;
+    int y;
+    struct chemin *Suivant;
+};
+
+typedef struct coordonnee Coordonnee;
+typedef struct chemin Chemin;
 typedef struct carte Carte;
 typedef struct position Position;
 typedef struct plateau Plateau;
