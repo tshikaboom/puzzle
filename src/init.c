@@ -247,7 +247,6 @@ void exporteur_magique(Plateau *plateau)
      Donc la on fait en sorte un cast de int en char* (sprintf) */
    do {
     sprintf(buff+3, "%d", i);
-    printf("%d\n", i);
     i++;
    } while (existe_fichier(buff));
   
@@ -258,6 +257,7 @@ void exporteur_magique(Plateau *plateau)
   /* on ecrit dans le fichier sol0 le nombre de solutions qu'on a
      pour l'instant. Le contenu d'avant est ecrase et ne nous sert pas */
   fichier = fopen("sol0", "w");
+  assert(fichier);
   fprintf(fichier, "%d\n", i-1);
   fclose(fichier);
 }
