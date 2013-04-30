@@ -148,7 +148,7 @@ Chemin* constCompCheminSpirale(int n, int p)
     }
     chemin=CheminEnS(chemin,x,y,xOff,yOff);
     chemin=constCheminSpiraleDec(chemin,s, s,0,0);
-    retutn chemin;
+    return chemin;
   }
   else return constCheminSpirale(s,s);
 }
