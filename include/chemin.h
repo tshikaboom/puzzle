@@ -34,5 +34,6 @@ void print_chemin(Chemin *chemin);
 Chemin* constCheminEnS(int n,int p);
 Chemin* constCheminSpirale(int n, int p);
 
+Chemin* constCheminSpiraleDec(int n, int p,int xOff,int yOff);
 
 #endif
