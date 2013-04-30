@@ -45,6 +45,11 @@ int main(int argc, char *argv[])
       parcours = constCheminEnS(largeur, hauteur);
       backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
     }
+    else if (atoi(argv[2]) == 3) {
+      plateau = nouveau_plateau(hauteur, largeur);
+      parcours = constCompCheminSpirale(largeur, hauteur);
+      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
+    }
     else
       printf("Mode %s non supporte.\n", argv[2]);
   }
@@ -130,7 +135,7 @@ int main(int argc, char *argv[])
 	  backtrack(plateau, tabCarte, parcours, TAILLE*TAILLE, 0, 2);
 	  swap(plateau,tabCarte);
 	  cpt++;
-	} 
+	}
     }
   else
     {
