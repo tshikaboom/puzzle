@@ -58,7 +58,6 @@ void rotation (Carte *carte, unsigned int nombre)
 
     if (carte->rotated > 4) {
       carte->rotated = carte->rotated-4;
-      printf("SORTIE : %d \n",carte->identifiant);
       break;
     }
   }
@@ -153,7 +152,7 @@ Plateau *nouveau_plateau(int hauteur, int largeur)
     return NULL;
   }
 
-  printf("Allocation d'un tableau %dx%d\n", largeur, hauteur);
+  /*  printf("Allocation d'un tableau %dx%d\n", largeur, hauteur);*/
   
 
   plateau = (Plateau *) malloc(sizeof (Plateau));
