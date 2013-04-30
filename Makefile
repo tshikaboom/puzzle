@@ -71,9 +71,9 @@ cleanall: clean
 # Lancement
 run1:
 	./$(BIN)/$(EXEC)
-
 run2:
 	./$(BIN)/$(EXEC) Puzzle.puzzle 1
-
 run3:
 	./$(BIN)/$(EXEC) Puzzle.puzzle 2
+run4:
+	./$(BIN)/$(EXEC) Puzzle.puzzle 3
