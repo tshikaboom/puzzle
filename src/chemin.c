@@ -148,11 +148,13 @@ Chemin* constCompCheminSpirale(int n, int p)
     }
     chemin=CheminEnS(chemin,x,y,xOff,yOff);
     chemin=constCheminSpiraleDec(chemin,s, s,0,0);
+    retutn chemin;
   }
   else return constCheminSpirale(s,s);
 }
-
+/*
 int main(int argc, char** argv) {
   Chemin *spirale = constCompCheminSpirale(5,3);
   print_chemin(spirale);
 }
+*/
