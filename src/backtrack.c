@@ -79,7 +79,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
       nombre_de_carte--;
       affichage(plateau);
             
-      /*Identifiant premiere carte posée sur le plateau*/
+      /*Identifiant premiere carte posée sur le plateau*//*
       if (choix == 1)
 	{
 	  printf("Identifiant: %d\n",plateau->tab[1][1]->identifiant);
@@ -87,7 +87,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
       else if (choix == 2)
 	{
 	  printf("Identifiant: %d\n",plateau->tab[0][0]->identifiant);
-	  }
+	  }*/
     }
     
   printf("Position case : x=%d ET y=%d\n",position_case.x,position_case.y);
