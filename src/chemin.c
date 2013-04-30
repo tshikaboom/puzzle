@@ -11,14 +11,13 @@
 #include "chemin.h"
 
 int min(int a, int b)
-{
-  if (a<b) return a;
-  else return b;
+{ 
+	return a<b ? a:b;
 }
 
 int abs(int n)
-{ if (n<0) return -n;
-  else return n;
+{ 
+	return n<0 ? -n:n;
 }
 
 Chemin* ajouteChemin(Chemin *liste, int x, int y)
@@ -57,11 +56,13 @@ Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
 }
 
 Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y)
+/* Fonction de deplacement lineaire selon X.
+ */
 {
-  int i, step;
-  if (xDepart<xArrivee) step=1;
-  else step=-1;
-  
+  int i, step= xDepart<xArrivee ? 1:-1;
+  /*
+   l'increm
+  */
   for (i=0;xDepart+i!=xArrivee;i+=step)
     chemin=ajouteChemin(chemin,xDepart+i,y);
   return chemin;
@@ -69,9 +70,7 @@ Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y)
 
 Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x)
 {
-  int i, step;
-  if (yDepart<yArrivee) step=1;
-  else step=-1;
+  int i, step= yDepart<yArrivee ? 1:-1;
   
   for (i=0;yDepart+i!=yArrivee;i+=step)
     chemin=ajouteChemin(chemin,x,yDepart+i);
@@ -79,6 +78,10 @@ Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x)
 }
 
 Chemin* constCheminEnS(int n,int p)
+/*
+ * Petit alias pour se simplifier la construction dans le cas d'un chemin
+ * non compose 
+*/
 {
   return CheminEnS(NULL,n,p,0,0);
 }
@@ -133,6 +136,10 @@ Chemin* constCheminSpirale(int n,int p)
 }
 
 Chemin* constCompCheminSpirale(int n, int p)
+/*Le mode de chemin hybride. Decoupage en spirale carree completee par un chemin en S
+ * sur la portion restante.
+ * Known issue: le S bugg en 5x7.
+ */
 {
   int s=min(n,p),x,y,xOff,yOff;
   Chemin *chemin = NULL;
@@ -156,9 +163,9 @@ Chemin* constCompCheminSpirale(int n, int p)
   }
   else return constCheminSpirale(s,s);
 }
-/*
+
 int main(int argc, char** argv) {
   Chemin *spirale = constCompCheminSpirale(3,5);
   print_chemin(spirale);
 }
-*/
+
