@@ -12,10 +12,10 @@
 #include "contact.h"
 
 /* initialisation d'une liste chainee */
-Chemin *nouveau_chemin(int x, int y);
+Chemin* nouveauChemin(int x, int y);
 
 /* rajout d'un element dans la liste */
-Chemin *rajoute_chemin(Chemin *liste, int x, int y);
+Chemin* ajouteChemin(Chemin *liste, int x, int y);
 
 /* minimum entre deux nombres */
 int min(int a,int b);
@@ -34,8 +34,6 @@ void print_chemin(Chemin *chemin);
 Chemin* constCheminEnS(int n,int p);
 Chemin* constCheminSpirale(int n, int p);
 
-Chemin* constCheminSpiraleDec(int n, int p,int xOff,int yOff);
-
-Chemin *constCompCheminSpirale(int n, int p);
+Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff);
 
 #endif

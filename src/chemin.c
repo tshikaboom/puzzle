@@ -38,15 +38,18 @@ Chemin* nouveauChemin(int x, int y)
   return ajouteChemin(NULL,x,y);
 }
 
-Chemin* CheminEnS(int n, int p, int xOffset, int yOffset)
+Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
 {
   int i;
-  Chemin* chemin = nouveauChemin(n-1+xOffset,p-1+yOffset);
-  for (i=n*p-2;i>=0;i--)
-    chemin=ajouteChemin(chemin,
+  Chemin* ret;
+  if (chemin==NULL) ret = nouveauChemin(n-1+xOffset,p-1+yOffset);
+  else ret=chemin;
+  for (i=n*p-2;i>=0;i--){
+	ret=ajouteChemin(ret,
 			abs((n-1)*(-(i/n)%2)+(i%n))+xOffset,
-			i/n+yOffset);
-  return chemin;
+			(i/n)+yOffset);
+  }
+  return ret;
 }
 
 Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y)
@@ -73,7 +76,7 @@ Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x)
 
 Chemin* constCheminEnS(int n,int p)
 {
-  return CheminEnS(n,p,0,0);
+  return CheminEnS(NULL,n,p,0,0);
 }
 
 Position get_pos(Chemin *chemin)
@@ -94,17 +97,17 @@ void print_chemin(Chemin *chemin)
     printf("%d: (%d, %d)\n", i, tmp->x, tmp->y);
 }
 
-Chemin* constCheminSpiraleDec(int n, int p, int xOff, int yOff)
+Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff)
 {
   /*
     La fonction calcule une somme par coins c'est a dire la case a
     partir de laquelle on doit changer de direction.
   */
   int k, x, y, prevX, prevY, sens=1;
-  Chemin* chemin=NULL;
   prevX=0, prevY=0;
   x=-1;
   y=0;
+  
   for (k=0;k<min(n,p);k++) {
     x+=sens*(n-k);
     
@@ -122,13 +125,13 @@ Chemin* constCheminSpiraleDec(int n, int p, int xOff, int yOff)
 
 Chemin* constCheminSpirale(int n,int p)
 {
-  return constCheminSpiraleDec(n,p,0,0);  
+  return constCheminSpiraleDec(NULL,n,p,0,0);  
 }
 
 Chemin* constCompCheminSpirale(int n, int p)
 {
   int s=min(n,p),x,y,xOff,yOff;
-  Chemin *chemin = NULL, *chemin2 = NULL, *tmp;
+  Chemin *chemin = NULL;
 
   if (n!=p) {
     if (s==n) {
@@ -143,17 +146,13 @@ Chemin* constCompCheminSpirale(int n, int p)
       xOff=s;
       yOff=0;
     }
-    chemin2=CheminEnS(x,y,xOff,yOff);
-    chemin=constCheminSpirale(s, s);
-    tmp = chemin;
-    while (tmp->Suivant) tmp = tmp->Suivant;
-    tmp->Suivant = chemin2;
-    return chemin;
+    chemin=CheminEnS(chemin,x,y,xOff,yOff);
+    chemin=constCheminSpiraleDec(chemin,s, s,0,0);
   }
   else return constCheminSpirale(s,s);
 }
-/*
+
 int main(int argc, char** argv) {
-  Chemin *spirale = constCompCheminSpirale(3,5);
+  Chemin *spirale = constCompCheminSpirale(5,3);
   print_chemin(spirale);
-  }*/
+}
