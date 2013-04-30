@@ -33,6 +33,7 @@ void print_chemin(Chemin *chemin);
    Retournent une liste avec les coordonnees necessaires */
 Chemin* constCheminEnS(int n,int p);
 Chemin* constCheminSpirale(int n, int p);
+Chemin* constCompCheminSpirale(int n, int p);
 
 Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff);
 
