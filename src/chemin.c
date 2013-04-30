@@ -22,6 +22,8 @@ int abs(int n)
 }
 
 Chemin* ajouteChemin(Chemin *liste, int x, int y)
+/* Ajoute une coordonnee au chemin existant
+ */
 {
   Chemin *nvcell;
   nvcell = (Chemin *) malloc(sizeof(Chemin));
@@ -42,8 +44,10 @@ Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
 {
   int i;
   Chemin* ret;
+  
   if (chemin==NULL) ret = nouveauChemin(n-1+xOffset,p-1+yOffset);
-  else ret=chemin;
+  else ret=ajouteChemin(chemin,n-1+xOffset,p-1+yOffset);
+  
   for (i=n*p-2;i>=0;i--){
 	ret=ajouteChemin(ret,
 			abs((n-1)*(-(i/n)%2)+(i%n))+xOffset,
@@ -100,8 +104,8 @@ void print_chemin(Chemin *chemin)
 Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff)
 {
   /*
-    La fonction calcule une somme par coins c'est a dire la case a
-    partir de laquelle on doit changer de direction.
+     La boucle for permet le calcul des coins de la spirale, c'est a dire les coordonnees
+     des points pour lesquels on change de direction de deplacement
   */
   int k, x, y, prevX, prevY, sens=1;
   prevX=0, prevY=0;
@@ -154,7 +158,7 @@ Chemin* constCompCheminSpirale(int n, int p)
 }
 /*
 int main(int argc, char** argv) {
-  Chemin *spirale = constCompCheminSpirale(5,3);
+  Chemin *spirale = constCompCheminSpirale(3,5);
   print_chemin(spirale);
 }
 */
