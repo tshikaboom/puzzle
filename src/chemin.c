@@ -38,7 +38,7 @@ Chemin* nouveauChemin(int x, int y)
 {
   return ajouteChemin(NULL,x,y);
 }
-
+/*
 Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
 {
   int i;
@@ -53,6 +53,16 @@ Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
 			(i/n)+yOffset);
   }
   return ret;
+}
+*/
+Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
+{
+	int i,k=0;
+	for (i=1;i<=p;i++){
+		chemin=ajouteLigneX(chemin, k+xOffset, p+xOffset, i+yOffset);
+		k=n;n=0;
+	}
+	return chemin;
 }
 
 Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y)
