@@ -35,6 +35,8 @@ Chemin* constCheminEnS(int n,int p);
 Chemin* constCheminSpirale(int n, int p);
 Chemin* constCompCheminSpirale(int n, int p);
 
+Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y);
+Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x);
 Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff);
 
 #endif

@@ -38,29 +38,17 @@ Chemin* nouveauChemin(int x, int y)
 {
   return ajouteChemin(NULL,x,y);
 }
-/*
+
 Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
 {
-  int i;
-  Chemin* ret;
-  
-  if (chemin==NULL) ret = nouveauChemin(n-1+xOffset,p-1+yOffset);
-  else ret=ajouteChemin(chemin,n-1+xOffset,p-1+yOffset);
-  
-  for (i=n*p-2;i>=0;i--){
-	ret=ajouteChemin(ret,
-			abs((n-1)*(-(i/n)%2)+(i%n))+xOffset,
-			(i/n)+yOffset);
-  }
-  return ret;
-}
-*/
-Chemin* CheminEnS(Chemin* chemin, int n, int p, int xOffset, int yOffset)
-{
-	int i,k=0;
-	for (i=1;i<=p;i++){
-		chemin=ajouteLigneX(chemin, k+xOffset, p+xOffset, i+yOffset);
-		k=n;n=0;
+	int i,k=0,temp;n--;
+	for (i=p-1;i>=0;i--){
+		chemin=ajouteLigneX(chemin, 
+		k+xOffset, 
+		n+xOffset, 
+		i+yOffset);
+		temp=k;
+		k=n;n=temp;
 	}
 	return chemin;
 }
@@ -73,7 +61,7 @@ Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y)
   /*
    l'increm
   */
-  for (i=0;xDepart+i!=xArrivee;i+=step)
+  for (i=0;step*(xArrivee-(xDepart+i))>=0;i+=step)
     chemin=ajouteChemin(chemin,xDepart+i,y);
   return chemin;
 }
@@ -82,7 +70,7 @@ Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x)
 {
   int i, step= yDepart<yArrivee ? 1:-1;
   
-  for (i=0;yDepart+i!=yArrivee;i+=step)
+  for (i=0;step*(yArrivee-(yDepart+i))>=0;i+=step)
     chemin=ajouteChemin(chemin,x,yDepart+i);
   return chemin;
 }
@@ -121,22 +109,25 @@ Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff)
      des points pour lesquels on change de direction de deplacement
   */
   int k, x, y, prevX, prevY, sens=1;
-  prevX=0, prevY=0;
+  prevX=0, prevY=1;
   x=-1;
   y=0;
   
   for (k=0;k<min(n,p);k++) {
     x+=sens*(n-k);
-    
     chemin=ajouteLigneX(chemin,prevX+xOff,x+xOff,y+yOff);
     y+=sens*(p-k-1);
     
     chemin=ajouteLigneY(chemin,prevY+yOff,y+yOff,x+xOff);
     sens=-sens;
-    prevX=x;
-    prevY=y;
+/*
+on oublie pas le decalage sur x et y selon le sens de deplacement
+de façon a ne pas integrer le point d'arrivee precedent deux fois
+dans le chemin
+*/
+    prevX=x+sens;
+    prevY=y+sens;
   }
-  chemin=ajouteChemin(chemin,x,y);
   return chemin;
 }
 
@@ -175,7 +166,7 @@ Chemin* constCompCheminSpirale(int n, int p)
 }
 
 int main(int argc, char** argv) {
-  Chemin *spirale = constCompCheminSpirale(3,5);
+  Chemin *spirale = constCheminSpirale(5,5);
   print_chemin(spirale);
 }
 
