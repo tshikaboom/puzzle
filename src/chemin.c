@@ -164,9 +164,9 @@ Chemin* constCompCheminSpirale(int n, int p)
   }
   else return constCheminSpirale(s,s);
 }
-
+/*
 int main(int argc, char** argv) {
   Chemin *spirale = constCheminSpirale(5,5);
   print_chemin(spirale);
 }
-
+*/
