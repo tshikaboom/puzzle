@@ -26,12 +26,12 @@ Chemin* ajouteChemin(Chemin *liste, int x, int y)
 {
   Chemin *nvcell;
   nvcell = (Chemin *) malloc(sizeof(Chemin));
-  assert(nvcell);
-  nvcell->Suivant = liste;
+	assert(nvcell);
+	nvcell->Suivant = liste;
     
-  nvcell->x = x;
-  nvcell->y = y;
-  return nvcell;    
+	nvcell->x = x;
+	nvcell->y = y;
+  return nvcell;
 }
 
 Chemin* nouveauChemin(int x, int y)
@@ -59,19 +59,22 @@ Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y)
 {
   int i, step= xDepart<xArrivee ? 1:-1;
   /*
-   l'increm
+   l'increment converge vers la valeur finale par valeurs positives ou negatives
   */
-  for (i=0;step*(xArrivee-(xDepart+i))>=0;i+=step)
-    chemin=ajouteChemin(chemin,xDepart+i,y);
+  if (xDepart!=xArrivee){
+	  for (i=0;step*(xArrivee-(xDepart+i))>=0;i+=step)
+		chemin=ajouteChemin(chemin,xDepart+i,y);
+  }
   return chemin;
 }
 
 Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x)
 {
   int i, step= yDepart<yArrivee ? 1:-1;
-  
-  for (i=0;step*(yArrivee-(yDepart+i))>=0;i+=step)
-    chemin=ajouteChemin(chemin,x,yDepart+i);
+  if (yDepart!=yArrivee){
+	  for (i=0;step*(yArrivee-(yDepart+i))>=0;i+=step)
+		chemin=ajouteChemin(chemin,x,yDepart+i);
+  }
   return chemin;
 }
 
@@ -108,25 +111,21 @@ Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff)
      La boucle for permet le calcul des coins de la spirale, c'est a dire les coordonnees
      des points pour lesquels on change de direction de deplacement
   */
-  int k, x, y, prevX, prevY, sens=1;
+  int l,k, x, y, prevX, prevY, sens=1;
   prevX=0, prevY=1;
   x=-1;
   y=0;
   
   for (k=0;k<min(n,p);k++) {
     x+=sens*(n-k);
-    chemin=ajouteLigneX(chemin,prevX+xOff,x+xOff,y+yOff);
-    y+=sens*(p-k-1);
-    
-    chemin=ajouteLigneY(chemin,prevY+yOff,y+yOff,x+xOff);
-    sens=-sens;
-/*
-on oublie pas le decalage sur x et y selon le sens de deplacement
-de façon a ne pas integrer le point d'arrivee precedent deux fois
-dans le chemin
-*/
-    prevX=x+sens;
-    prevY=y+sens;
+	chemin=ajouteLigneX(chemin,prevX+xOff,x+xOff,y+yOff);
+	prevX=x-sens;
+	y+=sens*(p-k-1);
+	
+	chemin=ajouteLigneY(chemin,prevY+yOff,y+yOff,x+xOff);
+	sens=-sens;
+	prevY=y+sens;
+	
   }
   return chemin;
 }
@@ -139,7 +138,6 @@ Chemin* constCheminSpirale(int n,int p)
 Chemin* constCompCheminSpirale(int n, int p)
 /*Le mode de chemin hybride. Decoupage en spirale carree completee par un chemin en S
  * sur la portion restante.
- * Known issue: le S bugg en 5x7.
  */
 {
   int s=min(n,p),x,y,xOff,yOff;
@@ -164,9 +162,8 @@ Chemin* constCompCheminSpirale(int n, int p)
   }
   else return constCheminSpirale(s,s);
 }
-/*
+
 int main(int argc, char** argv) {
-  Chemin *spirale = constCheminSpirale(5,5);
+  Chemin *spirale = constCheminSpirale(5,3);
   print_chemin(spirale);
 }
-*/
