@@ -41,9 +41,10 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   /******************************************************************/
   /*Affichage pour verifier que le plateau est vide la premiere fois*/
   /******************************************************************/
+  #ifdef DEBUG
   system("clear");
   affichage(plateau);
-  
+  #endif
   /******************/
   /*Fin du backtrack*/
   /******************/

@@ -8,6 +8,10 @@ OBJ=obj
 BIN=bin
 EXEC= PUZZLE
 
+ifeq ($(DEBUG),1)
+CFLAGS += -DDEBUG
+endif
+
 
 all : directories $(EXEC)
 

@@ -98,8 +98,11 @@ int readCard(char* stringCard, Carte* current)
   Carte* carte=current;
 
   res=sscanf(stringCard, IMPORT_MASK, &id, &top, &bottom, &left, &right);
+  #ifdef DEBUG
+  printf("Cartes lues:\n");
   printf("%d %d %d %d %d\n", id, top, bottom, left, right);
-
+  #endif
+  
   if (res!=5) {
     error("Incorrect card format");
     return EXIT_FAILURE;
@@ -182,6 +185,6 @@ void export(char* filename, Plateau *plateau){
 		plateau->tab[i][j]->Droite);
     fclose(fp);
   }
-  else error("cant't write the filename");
+  else error("Can't write the filename");
 }
 
