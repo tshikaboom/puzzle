@@ -2,7 +2,7 @@
  * File: main.c
  * Author: Sylvain Vigano
  *
- * Version 2.1.4
+ * Version 2.1.5
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -140,7 +140,7 @@ Chemin* constCheminSpirale(int n,int p)
 Chemin* serpentTwo(Chemin *chemin,int n,int p,int xOffset, int yOffset)
 /*
 p=hauteur, n=largeur;
-Ce chemin suit un remplissage linéaire par rectangle de largeur 2 et les accole
+Ce chemin suit un remplissage lineaire par rectangle de largeur 2 et les accole
 */
 {
 	int k,i;
@@ -160,8 +160,8 @@ Ce chemin suit un remplissage linéaire par rectangle de largeur 2 et les accole
 }
 
 Chemin* constCompCheminSpirale(int n, int p)
-/*Le mode de chemin hybride. Decoupage en spirale carree completee par un chemin en S
- * sur la portion restante.
+/*Le mode de chemin hybride. Decoupage en spirale carree completee par un chemin en lineaire
+ * subdivise rectangles de largeur 2.
  p=hauteur, n=largeur;
  */
 {
@@ -181,7 +181,7 @@ Chemin* constCompCheminSpirale(int n, int p)
       xOff=s;
       yOff=0;
     }
-    chemin=CheminEnS(chemin,x,y,xOff,yOff);
+    chemin=serpentTwo(chemin,x,y,xOff,yOff);
     chemin=constCheminSpiraleDec(chemin,s, s,0,0);
     return chemin;
   }
