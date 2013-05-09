@@ -1,5 +1,5 @@
 CC= gcc
-CFLAGS= -W -Wall -ansi -pedantic -g
+CFLAGS= -W -Wall -ansi -pedantic
 LDFLAGS= -L $(LIB) -lm -lpuzzle
 INCFLAGS= -Iinclude
 LIB=lib
@@ -9,7 +9,7 @@ BIN=bin
 EXEC= PUZZLE
 
 ifeq ($(DEBUG),1)
-CFLAGS += -DDEBUG
+CFLAGS += -DDEBUG -g
 endif
 
 
