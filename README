@@ -45,6 +45,9 @@
    all
 	Compil tous les fichiers
 
+   -d DEBUG=1
+	Compil le projet en mode DEBUG
+ 	
    clean
 	Suppression de tous les binaires, de tous les fichiers objet
 
