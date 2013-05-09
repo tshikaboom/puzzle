@@ -2,6 +2,11 @@
 ##== DOCUMENTATION DE LA BIBLIOTHEQUE PUZZLE ==##
 ##=============================================##
 
+
+#************************#
+#  STUCTURES DE DONNEES  #
+#************************#
+
 #define TAILLE 3 -> le cote du plateau carre, on a donc TAILLE*TAILLE cases
 
 #== Structure d'une carte ==#
@@ -51,8 +56,48 @@ typedef struct coordonnee Coordonnee;
 typedef struct chemin Chemin;
 
 
+#******************#
+#   BACKTRACK.H    #
+#******************#
+
 #== Algorithme de backtracking ==#
 int backtrack (Plateau *plateau,Carte tabCarte[], Chemin *parcours, int nombre_de_carte,int indice_chemin,int choix);
+
+#***************#
+#   CHEMIN.H    #
+#***************#
+
+#== initialisation d'une liste chainee ==#
+Chemin* nouveauChemin(int x, int y);
+
+#== rajout d'un element dans la liste ==#
+Chemin* ajouteChemin(Chemin *liste, int x, int y);
+
+#== minimum entre deux nombres ==#
+int min(int a,int b);
+
+#== valeur absoluee d'un nombre ==#
+int abs(int n);
+
+#== accesseur des coordonnees de la premiere cellule de la liste ==#
+Position get_pos(Chemin *chemin);
+
+#== affichage minimaliste d'un chemin en (x, y) ==#
+void print_chemin(Chemin *chemin);
+
+#== Fonctions creant les chemins pour un plateau de taille arbitraire et retournent une liste avec les coordonnees necessaires ==#
+Chemin* constCheminEnS(int n,int p);
+Chemin* constCheminSpirale(int n, int p);
+Chemin* constCompCheminSpirale(int n, int p);
+
+Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y);
+Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x);
+Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff);
+Chemin* serpentTwo(Chemin *chemin,int n,int p,int xOffset, int yOffset);
+
+#*****************#
+#    CONTACT.H    #
+#*****************#
 
 #== teste si la carte est positionnable avec la carte deja posee en haut de (i, j) sur le plateau ==#
 int contact_h(Plateau *plateau, int i, int j, Carte Carte);
@@ -69,48 +114,45 @@ int contact_g(Plateau *plateau, int i, int j, Carte Carte);
 #== Teste si la carte est positionnable a la postion donnee. Utilise les 4 fonctions precedemment definies. ==#
 int cartePossible(Carte *carte, Plateau *plateau,int i, int j);
 
+#**************#
+#    INIT.H    #
+#**************#
+
 #== Fonction determinant la case de depart pour un parcours en spirale ==#
 Position caseDepart (int largeur, int hauteur);
 
 #== Suivant => case suivant vide ou non ==#
 int suivant (Plateau *plateau, Position courante);
 
-#== Gestion de la rotation: rotation(carte, 1) tourne la carte une fois dans le sens des aiguilles d'une montre ==#
+#== Gestion de la rotation: rotation(carte, 1) tourne la carte une fois
+   dans le sens des aiguilles d'une montre ==#
 void rotation (Carte *carte,unsigned int nombre);
 
 #== Affichage d'un plateau de taille arbitraire ==#
 void affichage (Plateau *plateau);
 
-#== Allocation d'un nouveau plateau de taille largeur*hauteur. La fonction initialise les cases du plateau a NULL. ==#
+#== Allocation d'un nouveau plateau de taille largeur*hauteur.
+   La fonction initialise les cases du plateau a NULL. ==#
 Plateau *nouveau_plateau(int hauteur, int largeur);
+
+#== liberation du plateau ==#
+void free_plateau(Plateau *plateau);
 
 #== Echange la liste de carte. Sert a generer toutes les solutions ==#
 void swap (Plateau *plateau,Carte tabCarte[]);
 
-#== Nettoyage du plateau pour la fonction backtrack ==#
+#== Nettoyage du plateau pour la fonction backtrack==#
 void clean_plateau (Plateau *plateau);
 
-#== initialisation d'une liste chainee ==#
-Chemin *nouveau_chemin(int x, int y);
+#== fonction permettant de savoir si un fichier existe ==#
+int existe_fichier(char *fichier);
 
-#== rajout d'un element dans la liste ==#
-Chemin *rajoute_chemin(Chemin *liste, int x, int y);
+#== Renvoie un fichier contenant la solution du puzzle ==#
+void exporteur_magique(Plateau *plateau);
 
-#== minimum entre deux nombres ==#
-int min(int a,int b);
-
-#== valeur absoluee d'un nombre ==#
-int abs(int n);
-
-#== accesseur des coordonnees de la premiere cellule de la liste ==#
-Position get_pos(Chemin *chemin);
-
-#== affichage minimaliste d'un chemin en (x, y) ==#
-void print_chemin(Chemin *chemin);
-
-#== Fonctions creant les chemins pour un plateau de taille arbitraire. Elles retournent une liste avec les coordonnees necessaires ==#
-Chemin* constCheminEnS(int n,int p);
-Chemin* constCheminSpirale(int n, int p);
+#**************#
+#   PARSER.H   #
+#**************#
 
 #== Checks if input char is EndOfLine ==#
 int isEndOfLine (char cara);
@@ -134,4 +176,4 @@ int readCard(char* stringCard, Carte* current);
 Carte* parseFile(char* filename,int* hauteur,int* largeur);
 
 #== Carte** array of cards containing the cards to be exported ==#
-void export(char* filename,int hauteur,int largeur,Carte** stack);
+void export(char* filename, Plateau *plateau);
