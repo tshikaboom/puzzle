@@ -1,8 +1,8 @@
 /*
  * File: main.c
- * Author: 3203772
+ * Author: Sylvain Vigano
  *
- * Created on 5 mars 2013, 18:32
+ * Version 2.1.5
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -111,7 +111,7 @@ Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff)
      La boucle for permet le calcul des coins de la spirale, c'est a dire les coordonnees
      des points pour lesquels on change de direction de deplacement
   */
-  int l,k, x, y, prevX, prevY, sens=1;
+  int k, x, y, prevX, prevY, sens=1;
   prevX=0, prevY=0;
   x=-1;
   y=0;
@@ -137,9 +137,31 @@ Chemin* constCheminSpirale(int n,int p)
   return constCheminSpiraleDec(NULL,n,p,0,0);  
 }
 
+Chemin* serpentTwo(Chemin *chemin,int n,int p,int xOffset, int yOffset)
+/*
+p=hauteur, n=largeur;
+Ce chemin suit un remplissage lineaire par rectangle de largeur 2 et les accole
+*/
+{
+	int k,i;
+	if (n%2==1){
+		chemin=ajouteLigneY(chemin,yOffset,p-1+yOffset,n-1+xOffset);
+		k=n-2;
+	}
+	else k=n-1;
+	while (k>=0)
+	{
+		for (i=p-1;i>=0;i--) 
+			chemin=ajouteLigneX(chemin,k+xOffset,k-1+xOffset,i+yOffset);
+		k-=2;
+	}
+	
+	return chemin;
+}
+
 Chemin* constCompCheminSpirale(int n, int p)
-/*Le mode de chemin hybride. Decoupage en spirale carree completee par un chemin en S
- * sur la portion restante.
+/*Le mode de chemin hybride. Decoupage en spirale carree completee par un chemin en lineaire
+ * subdivise rectangles de largeur 2.
  p=hauteur, n=largeur;
  */
 {
@@ -159,7 +181,7 @@ Chemin* constCompCheminSpirale(int n, int p)
       xOff=s;
       yOff=0;
     }
-    chemin=CheminEnS(chemin,x,y,xOff,yOff);
+    chemin=serpentTwo(chemin,x,y,xOff,yOff);
     chemin=constCheminSpiraleDec(chemin,s, s,0,0);
     return chemin;
   }
