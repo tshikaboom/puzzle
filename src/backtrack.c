@@ -26,10 +26,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   Position position_case; /*position de la case courante*/
   int ind_chemin = indice_chemin;
   int back;
-  /*
-  printf("\n");
-  printf("#== Debut de backtrack, ndecartes : %d ==#\n", nombre_de_carte);
-  */
+  
   /***************************************************************************************************/
   /*indice_chemin doit etre egal a -1 au depart sinon la fonction chemin ne donnera pas le bon chemin*/
   /***************************************************************************************************/
@@ -54,6 +51,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
       nombre_de_solution++; /*Incrementation du nombre de solutions*/
       printf("\n#== Solution(s) Trouvée(s) : %d ==#\n",nombre_de_solution);
       affichage (plateau); /*affichage de la solution*/
+      
       /*Reinitialisation du tableau de carte*/
       for (carte = 0; carte < (plateau->largeur*plateau->hauteur); carte++)
 	{
@@ -72,29 +70,13 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   if (nombre_de_carte == (plateau->hauteur*plateau->largeur))
     {
       carte = 0;
-      /*
-      printf("#== Placement de la premiere carte ==#\n");
-      */
+      
       plateau->tab[position_case.x][position_case.y] = tabCarte/*+carte*/;
       (tabCarte+carte)->sur_plateau = 1;
       nombre_de_carte--;
       affichage(plateau);
-            
-      /*Identifiant premiere carte posée sur le plateau*//*
-      if (choix == 1)
-	{
-	  printf("Identifiant: %d\n",plateau->tab[1][1]->identifiant);
-	}
-      else if (choix == 2)
-	{
-	  printf("Identifiant: %d\n",plateau->tab[0][0]->identifiant);
-	  }*/
     }
-  /*
-  printf("Position case : x=%d ET y=%d\n",position_case.x,position_case.y);
-  printf("Nombre de cartes : %d\n",nombre_de_carte);
-  printf("Nombre de solutions : %d\n\n",nombre_de_solution);
-  */
+  
   /*position a la case suivante*/
   position_case = get_pos(parcours->Suivant);
   
@@ -102,17 +84,14 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   /* BACKTRACK                                                          */
   /**********************************************************************/
   
-  
   for (carte = 0; carte < (plateau->largeur*plateau->hauteur) ; carte++)
     {
-      
       /*Si carte n'est pas deja posee*/
       if (tabCarte[carte].sur_plateau == 0) 
 	{
 	  /*Si carte est posable sur le plateau*/
 	  if ( cartePossible(tabCarte+carte,plateau, position_case.x,position_case.y) == 1)
-	    {
-	      
+	    {    
 	      /*On dit qu'elle est sur le plateau*/
 	      tabCarte[carte].sur_plateau = 1;
 	      
@@ -143,8 +122,6 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 	    }
 	}
     }
-  /*
-  printf("Pas de solution\n");
-  */
+ 
   return FALSE;
 }
