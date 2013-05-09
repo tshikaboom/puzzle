@@ -21,9 +21,9 @@ directories : ${OBJ} ${LIB} ${BIN}
 ${OBJ}:
 	mkdir -p ${OBJ}
 ${BIN}:
-	mkdir ${BIN}
+	mkdir -p ${BIN}
 ${LIB}:
-	mkdir ${LIB}
+	mkdir -p ${LIB}
 
 #Fichier Executable
 $(EXEC) : $(OBJ)/main.o $(LIB)/libpuzzle.a
