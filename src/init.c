@@ -9,6 +9,9 @@
 #include "structs.h"
 #include "init.h"
 
+/* Fonction calculant la case depart pour le backtrack
+   Elle n'est plus utilisee normalement
+   Auteur: Benjamin Bielle */
 Position caseDepart (int largeur, int hauteur)
 {
   Position pos;
@@ -43,6 +46,9 @@ int suivant (Plateau *plateau, Position courante)
     return 0; /* rien de libre trouve */
 }
 
+/* Fonction rotation
+   Auteur: Oskar Viljasaar
+*/
 void rotation (Carte *carte, unsigned int nombre)
 {
   unsigned int i, swap;
@@ -65,6 +71,7 @@ void rotation (Carte *carte, unsigned int nombre)
 
 /* Fonction d'affichage du plateau
    Prend juste le plateau en argument et fait des trucs plutot magiques pour l'affichage
+   Auteur: Oskar Viljasaar
 */
 void affichage(Plateau *plateau)
 {
@@ -141,6 +148,7 @@ void affichage(Plateau *plateau)
 
 /* Fonction d'allocation d'un nouveau plateau
    rend un plateau contenant un tableau a 2dim dont les cases sont initialisees a NULL
+   Auteur: Oskar Viljasaar
 */
 Plateau *nouveau_plateau(int hauteur, int largeur)
 {
@@ -185,6 +193,8 @@ Plateau *nouveau_plateau(int hauteur, int largeur)
   return plateau;
 }
 
+/* Fonction de liberation d'un plateau
+   Auteur: Oskar Viljasaar */
 void free_plateau(Plateau *plateau)
 {
   int i;
@@ -218,6 +228,8 @@ void clean_plateau (Plateau *plateau)
       plateau->tab[j][i] = NULL;
 }
 
+/* Fonction verifiant l'existence d'un fichier
+   Auteur: Oskar Viljasaar */
 int existe_fichier(char* fichier)
 {
   FILE *fic = fopen(fichier, "r");
@@ -230,6 +242,8 @@ int existe_fichier(char* fichier)
   return 0;
 }
 
+/* Fonction d'export de solutions
+   Auteur: Oskar Viljasaar */
 void exporteur_magique(Plateau *plateau)
 /* Dans cette fonction, on fait l'hypothese que le plateau est
    bien rempli de cartes et non de pointeurs NULL. Normalement

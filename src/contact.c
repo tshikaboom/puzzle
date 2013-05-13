@@ -1,3 +1,6 @@
+/* Fonctions de contact entre les cartes
+   Auteur: Oskar Viljasaar
+*/
 #define _POSIX_SOURCE 1
 
 #include <stdio.h>
