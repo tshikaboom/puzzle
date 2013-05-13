@@ -15,9 +15,10 @@
 #define TRUE 1 /*SI VRAI*/
 #define FALSE 0 /*SI FAUX*/
 
-/****************************/
-/*Algorithme de backtracking*/
-/****************************/
+/*
+  Algorithme de backtracking
+  Auteur: Benjamin Bielle
+*/
 
 int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_de_carte,int indice_chemin,int choix)
 {
