@@ -49,10 +49,13 @@
 	Compil le projet en mode DEBUG
  	
    clean
-	Suppression de tous les binaires, de tous les fichiers objet
+	Suppression de tous les binaires, de tous les fichiers objet et de la librairie
 
    proper 
         Suppression de tous les fichiers temporaires
+	
+   cleanall
+	Supprsionn de tous les binaires, de tous les fichiers objet, de la librairie et des dossiers bin, obj et lib
 
    run1 
         Lance le programme avec les valeurs par défaut
