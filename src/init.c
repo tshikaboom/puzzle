@@ -28,6 +28,9 @@ Position caseDepart (int largeur, int hauteur)
   return pos;
 }
 
+/* Fonction determinant si une case est libre a proximite
+   de la position
+   Auteur: Benjamin Bielle */
 int suivant (Plateau *plateau, Position courante)
 {
   if ((courante.x+1 < plateau->largeur) &&
@@ -213,7 +216,7 @@ void swap (Plateau *plateau,Carte tabCarte[])
   Carte tmp;
 
   tmp = tabCarte[0]; 
-  for (i=0; i<plateau->largeur*plateau->hauteur-1;i++)
+  for (i=0; i<(plateau->largeur*plateau->hauteur)-1;i++)
     tabCarte[i] = tabCarte[i+1];
 
   tabCarte[plateau->largeur*plateau->hauteur-1] = tmp;
@@ -224,8 +227,10 @@ void clean_plateau (Plateau *plateau)
   int i,j;
   
   for (i=0; i<plateau->hauteur; i++)
-    for(j=0; j<plateau->largeur; j++)
+    for(j=0; j<plateau->largeur; j++) {
+      plateau->tab[j][i]->sur_plateau = 0;
       plateau->tab[j][i] = NULL;
+    }
 }
 
 /* Fonction verifiant l'existence d'un fichier

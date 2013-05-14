@@ -41,7 +41,12 @@ int main(int argc, char *argv[])
     if (atoi(argv[2]) == 1) {
       plateau = nouveau_plateau(hauteur, largeur);
       parcours = constCheminSpirale(largeur, hauteur);
-      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
+      cpt=0;
+      while (cpt < hauteur*largeur) {
+	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
+	swap(plateau, tabCarte);
+	cpt++;
+      }
     }
     else if (atoi(argv[2]) == 2) {
       plateau = nouveau_plateau(hauteur, largeur);
@@ -124,8 +129,9 @@ int main(int argc, char *argv[])
       parcours = constCheminSpirale(TAILLE, TAILLE);
       backtrack(plateau, tabCarte, parcours, TAILLE*TAILLE, 0, 1);
       swap(plateau,tabCarte);
-	    cpt++;
-	    }
+      printf("main: swap %d\n", cpt);
+      cpt++;
+      }
     }
   else if (choix_parcours == 2)
     {
