@@ -70,6 +70,7 @@
 	Lance le programme à partir du fichier Puzzle.puzzle en mode hybride
 
 == Directives de l'exécutable bin/PUZZLE ==
+  
   L'exécutable prend soit deux arguments, soit aucun. Si l'on l'appelle avec deux arguments, le premier doit être
   le fichier du puzzle à résoudre (Puzzle.puzzle est fourni) et un chiffre entre 1 et 3 pour le mode de résolution.
   - 1: parcours en spirale du plateau
