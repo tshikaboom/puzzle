@@ -1,3 +1,4 @@
+/* Point d'entree principal du programme */
 #define _POSIX_SOURCE 1
 
 #include <stdio.h>
@@ -23,9 +24,11 @@ int main(int argc, char *argv[])
   if (argc > 3 || argc == 2) {
     printf("Usage: %s [FICHIER MODE]\n", argv[0]);
     printf("FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre.\n");
-    printf("MODE etant l'entier 1 ou 2.\n");
+    printf("MODE etant l'entier 1, 2 ou 3.\n");
     printf(" 1: resolution du puzzle en spirale a partir du centre\n");
     printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
+    printf(" 3: resolution du puzzle en hybride (spirale+serpent)\n");
+    printf("    Ceci sert surtout pour des plateaux rectangulaires.\n");
     printf("Appel sans argument: resolution d'un plateau deja donne dans le programme.\n");
     return EXIT_FAILURE;
   }
