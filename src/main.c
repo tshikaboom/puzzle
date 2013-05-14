@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
   else if (argc == 3) {
     tabCarte = parseFile(argv[1], &hauteur, &largeur);
 
-    
+
     if (atoi(argv[2]) == 1) {
       plateau = nouveau_plateau(hauteur, largeur);
       parcours = constCheminSpirale(largeur, hauteur);
@@ -46,17 +46,36 @@ int main(int argc, char *argv[])
 	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
 	swap(plateau, tabCarte);
 	cpt++;
+	#ifdef DEBUG
+	printf("main, parcours en spirale: swap %d sur %d\n", cpt, TAILLE*TAILLE);
+	#endif
       }
     }
     else if (atoi(argv[2]) == 2) {
       plateau = nouveau_plateau(hauteur, largeur);
       parcours = constCheminEnS(largeur, hauteur);
-      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
+      cpt=0;
+      while (cpt < hauteur*largeur) {
+	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
+	swap(plateau, tabCarte);
+	cpt++;
+       	#ifdef DEBUG
+	printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
+	#endif
+      }
     }
     else if (atoi(argv[2]) == 3) {
       plateau = nouveau_plateau(hauteur, largeur);
       parcours = constCompCheminSpirale(largeur, hauteur);
-      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
+      cpt=0;
+      while (cpt<hauteur*largeur) {
+	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
+	swap(plateau, tabCarte);
+	cpt++;
+	#ifdef DEBUG
+	printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
+	#endif
+      }
     }
     else
       printf("Mode %s non supporte.\n", argv[2]);
@@ -69,8 +88,8 @@ int main(int argc, char *argv[])
   /* allocation et initialisation des cases du plateau a NULL */
   plateau = nouveau_plateau(TAILLE, TAILLE);
   tabCarte = (Carte *) malloc(TAILLE*TAILLE*sizeof(Carte));
-  
-  
+
+
   /* initialisation des cotes des cartes, avec ce set on a normalement une solution */
   carte1.Haut = 1;carte1.Bas = 3;carte1.Gauche = 2; carte1.Droite = 4;
   carte2.Haut = 1;carte2.Bas = 4;carte2.Gauche = 3; carte2.Droite = 2;
@@ -81,7 +100,7 @@ int main(int argc, char *argv[])
   carte7.Haut = 1;carte7.Bas = 3;carte7.Gauche = 4; carte7.Droite = 2;
   carte8.Haut = 3;carte8.Bas = 1;carte8.Gauche = 4; carte8.Droite = 2;
   carte9.Haut = 1;carte9.Bas = 3;carte9.Gauche = 2; carte9.Droite = 4;
-  
+
   /* initialisation en masse des cartes avec les memes valeurs initiales */
   carte1.sur_plateau = carte2.sur_plateau = carte3.sur_plateau = carte4.sur_plateau =
     carte5.sur_plateau = carte6.sur_plateau = carte7.sur_plateau = carte8.sur_plateau =
@@ -115,39 +134,39 @@ int main(int argc, char *argv[])
   printf("                                            PUZZLE                                               \n");
   printf("*************************************************************************************************\n\n");
   printf("Donner le choix de parcours de la grille : (1 pour en spirale (depart du centre) et 2 pour en S) -> entrer un autre chiffre pour quitter \n");
-  
+
   /*scanf("%d",&choix_parcours);*/
   choix_parcours=1;
-  
-  if (choix_parcours == 1)
-    {
-      cpt=0;
-      while (cpt != 9)
-      {
-      /*Test sur le parcours en spirale*/
-      printf("\n#== PARCOURS EN SPIRALE ==#\n");
-      parcours = constCheminSpirale(TAILLE, TAILLE);
+
+  if (choix_parcours == 1) {
+    cpt=0;
+    parcours = constCheminSpirale(TAILLE, TAILLE);
+    printf("\n#== PARCOURS EN SPIRALE ==#\n");
+    while (cpt != 9) {
+      /* Test sur le parcours en spirale */
       backtrack(plateau, tabCarte, parcours, TAILLE*TAILLE, 0, 1);
       swap(plateau,tabCarte);
-      printf("main: swap %d\n", cpt);
       cpt++;
-      }
+      #ifdef DEBUG
+      printf("main, parcours en serpent: swap %d sur %d\n", cpt, TAILLE*TAILLE);
+      #endif
     }
-  else if (choix_parcours == 2)
-    {
-      cpt=0;
-      while (cpt != 9)
-	{
-	  /*Test sur le parcours en S*/
-	  printf("\n#== PARCOURS EN S ==#\n");
-	  parcours = constCheminEnS(TAILLE, TAILLE);
-	  backtrack(plateau, tabCarte, parcours, TAILLE*TAILLE, 0, 2);
-	  swap(plateau,tabCarte);
-	  cpt++;
-	}
+  }
+  else if (choix_parcours == 2) {
+    cpt=0;
+    parcours = constCheminEnS(TAILLE, TAILLE);
+    printf("\n#== PARCOURS EN S ==#\n");
+    while (cpt != 9) {
+      /* Test sur le parcours en S */
+      backtrack(plateau, tabCarte, parcours, TAILLE*TAILLE, 0, 2);
+      swap(plateau,tabCarte);
+      cpt++;
+      #ifdef DEBUG
+      printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
+      #endif
     }
-  else
-    {
+  }
+  else {
       printf("*****************\n");
       printf("Mauvais numero !!\n");
       printf("*****************\n");
