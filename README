@@ -43,10 +43,10 @@
 == Directives de 'Makefile' ==
 
    all
-	Compil tous les fichiers
+	Compilation de tous les fichiers
 
-   -d DEBUG=1
-	Compil le projet en mode DEBUG
+   DEBUG=1
+	Compilation du projet en mode DEBUG (donne notamment l'etat actuel du plateau dans la résolution)
  	
    clean
 	Suppression de tous les binaires, de tous les fichiers objet et de la librairie
@@ -55,7 +55,7 @@
         Suppression de tous les fichiers temporaires
 	
    cleanall
-	Supprsionn de tous les binaires, de tous les fichiers objet, de la librairie et des dossiers bin, obj et lib
+	Suppression de tous les binaires, de tous les fichiers objet, de la librairie et des dossiers bin, obj et lib
 
    run1 
         Lance le programme avec les valeurs par défaut
@@ -65,6 +65,20 @@
 
    run3 
         Lance le programme à partir du fichier Puzzle.puzzle en serpent
+
+   run4
+	Lance le programme à partir du fichier Puzzle.puzzle en mode hybride
+
+== Directives de l'exécutable bin/PUZZLE ==
+  L'exécutable prend soit deux arguments, soit aucun. Si l'on l'appelle avec deux arguments, le premier doit être
+  le fichier du puzzle à résoudre (Puzzle.puzzle est fourni) et un chiffre entre 1 et 3 pour le mode de résolution.
+  - 1: parcours en spirale du plateau
+  - 2: parcours en S du plateau
+  - 3: parcours en hybride (spirale et S) du plateau. Ceci sert pour des plateaux rectangulaires. Le programme prend
+  le carré le plus grand possible du rectangle et génère une spirale dessus, puis génère un chemin en S sur le reste
+  du rectangle.
+
+  Si l'on appelle l'exécutable sans argument, un puzzle inclus dans le programme est résolu en spirale.
 
 == Etat d'avancement ==
 
