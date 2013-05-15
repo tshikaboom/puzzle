@@ -81,3 +81,5 @@ run3:
 	./$(BIN)/$(EXEC) Puzzle.puzzle 2
 run4:
 	./$(BIN)/$(EXEC) Puzzle.puzzle 3
+run5:
+	./$(BIN)/$(EXEC) Puzzle.puzzle 4

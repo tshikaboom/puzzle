@@ -22,15 +22,15 @@
 
 int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_de_carte,int indice_chemin,int choix)
 {
+  #ifdef DEBUG
+  int i; /* compteur generique */
+  #endif
   int nombre_de_solution;
   int carte=0; /*numero de la carte -> identifiant de la carte*/
   Position position_case; /*position de la case courante*/
   int ind_chemin = indice_chemin;
   int back;
   
-  /***************************************************************************************************/
-  /*indice_chemin doit etre egal a -1 au depart sinon la fonction chemin ne donnera pas le bon chemin*/
-  /***************************************************************************************************/
   if (parcours)
     position_case = get_pos(parcours);
   
@@ -59,6 +59,8 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 	  tabCarte[carte].sur_plateau = 0;
 	}
       exporteur_magique(plateau);
+      /* used only for benchmarks */
+      exit(EXIT_SUCCESS);
       
       clean_plateau(plateau);
       
@@ -70,6 +72,18 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   /***********************************************/
   if (nombre_de_carte == (plateau->hauteur*plateau->largeur))
     {
+      #ifdef DEBUG
+      printf("-- Liste des cartes traitees\n");
+      printf("idCarte\tH B G D\n");
+      for (i=0; i<plateau->hauteur*plateau->largeur; i++)
+	printf("%d\t%d %d %d %d\n",
+	       tabCarte[i].identifiant,
+	       tabCarte[i].Haut,
+	       tabCarte[i].Bas,
+	       tabCarte[i].Gauche,
+	       tabCarte[i].Droite);
+      #endif
+
       carte = 0;
       
       plateau->tab[position_case.x][position_case.y] = tabCarte/*+carte*/;
