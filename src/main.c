@@ -43,18 +43,18 @@ int main(int argc, char *argv[])
 
     if (atoi(argv[2]) == 1) {
       plateau = nouveau_plateau(hauteur, largeur);
-      parcours = constCheminSpirale(largeur, hauteur); /*
+      parcours = constCheminSpirale(largeur, hauteur);
       cpt=0;
       rotated_real = tabCarte[0].rotated;
       while (cpt < hauteur*largeur) {
-      while (rotated_real < 4) { */ /* on fait le backtrack aussi avec 4 rotations
+	while (rotated_real < 4) { /* on fait le backtrack aussi avec 4 rotations
 				      initiales differentes */
-	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1); /*
+	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
 	rotation(tabCarte, 1);
 	rotated_real = tabCarte[0].rotated;
-	tabCarte[0].rotated = 0; *//* 0 car la carte "tournee" a maintenant une nouvelle
+	tabCarte[0].rotated = 0; /* 0 car la carte "tournee" a maintenant une nouvelle
 				    "rotation initiale" */
-	/*}*/
+	}
 	tabCarte[0].rotated = rotated_real;
 	swap(plateau, tabCarte);
 	cpt++;
@@ -62,29 +62,29 @@ int main(int argc, char *argv[])
 	printf("main, parcours en spirale: swap %d sur %d, carte initiale %d avec rotation %d\n",
 	       cpt, TAILLE*TAILLE, tabCarte[0].identifiant, rotated_real);
 	#endif
-	/*}*/
+	}
     }
     else if (atoi(argv[2]) == 2) {
       plateau = nouveau_plateau(hauteur, largeur);
-      parcours = constCheminEnS(largeur, hauteur);/*
+      parcours = constCheminEnS(largeur, hauteur);
       cpt=0;
-      while (cpt < hauteur*largeur) {*/
-	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);/*
+      while (cpt < hauteur*largeur) {
+	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
 	swap(plateau, tabCarte);
-	cpt++;*/
+	cpt++;
        	#ifdef DEBUG
 	printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
 	#endif
-	/*}*/
+	}
     }
     else if (atoi(argv[2]) == 3) {
       plateau = nouveau_plateau(hauteur, largeur);
-      parcours = constCompCheminSpirale(largeur, hauteur);/*
+      parcours = constCompCheminSpirale(largeur, hauteur);
       cpt=0;
-      while (cpt<hauteur*largeur) {*/
-	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);/*
+      while (cpt<hauteur*largeur) {
+	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
 	swap(plateau, tabCarte);
-	cpt++;*/
+	cpt++;
 	#ifdef DEBUG
 	printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
 	#endif
