@@ -1,3 +1,5 @@
+/* Module d'import/export puzzle/plateau/fichier
+   Auteur principal: Sylvain Vigano */
 #define _POSIX_SOURCE 1
 
 #include <stdio.h>
@@ -12,7 +14,7 @@
 
 #define MAX_BUFF 256
 #define INT_OFFSET 48
-#define IMPORT_MASK " %d_%1d%1d%1d%1d"
+#define IMPORT_MASK " %d_%1d%1d%1d%1d "
 #define EXPORT_MASK "%d_%d%d%d%d\n"
 
 /*
@@ -99,13 +101,14 @@ int readCard(char* stringCard, Carte* current)
 
   res=sscanf(stringCard, IMPORT_MASK, &id, &top, &bottom, &left, &right);
   #ifdef DEBUG
-  printf("Cartes lues:\n");
+  printf("Carte lue:\n");
   printf("%d %d %d %d %d\n", id, top, bottom, left, right);
+  printf("res=%d\n",res);
   #endif
   
   if (res!=5) {
     error("Incorrect card format");
-    return EXIT_FAILURE;
+    return -1;
   }
   else {
     carte->identifiant = id;
@@ -118,7 +121,7 @@ int readCard(char* stringCard, Carte* current)
     return 1;
   }
   error("Could not initiate card");
-  return EXIT_FAILURE;
+  return -1;
 }
 
 Carte *parseFile(char* filename,int* hauteur,int* largeur)
@@ -146,9 +149,12 @@ Carte *parseFile(char* filename,int* hauteur,int* largeur)
     assert(stack);
 
     while (fgets(ligne, MAX_BUFF, fp)) {
-      readedCard+=readCard(ligne,stack+i);
+      readedCard+=readCard(ligne,stack+i)>0 ? 1:0;
       /*      stack[i].identifiant=i; */
       i++;
+      #ifdef DEBUG
+      printf("nb cartes lues: %d\n",readedCard);
+      #endif
     }
     fclose(fp);
     
