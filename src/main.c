@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
   int choix_parcours, cpt, rotated_real;
   int hauteur, largeur; /* servent a initialiser la hauteur et la largeur du plateau */
   Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
+  Carte backup;
   Plateau *plateau;
   Carte *tabCarte;
   Chemin *parcours;
@@ -45,17 +46,18 @@ int main(int argc, char *argv[])
       plateau = nouveau_plateau(hauteur, largeur);
       parcours = constCheminSpirale(largeur, hauteur);
       cpt=0;
-      rotated_real = tabCarte[0].rotated;
       while (cpt < hauteur*largeur) {
-	while (rotated_real < 4) { /* on fait le backtrack aussi avec 4 rotations
-				      initiales differentes */
+	backup = tabCarte[0];
+	for (rotated_real=0; rotated_real<4; rotated_real++) {
+	  /* on fait le backtrack aussi avec 4 rotations
+	     initiales differentes */
+	  printf("backtrack: rotation reelle %d\n", rotated_real);
 	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
 	rotation(tabCarte, 1);
-	rotated_real = tabCarte[0].rotated;
 	tabCarte[0].rotated = 0; /* 0 car la carte "tournee" a maintenant une nouvelle
 				    "rotation initiale" */
 	}
-	tabCarte[0].rotated = rotated_real;
+	tabCarte[0] = backup;
 	swap(plateau, tabCarte);
 	cpt++;
 	#ifdef DEBUG
@@ -89,6 +91,7 @@ int main(int argc, char *argv[])
 	printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
 	#endif
       }
+    }
     else if (atoi(argv[2]) == 4) {
       plateau = nouveau_plateau(hauteur, largeur);
       parcours = serpentTwo(NULL, largeur, hauteur, 0, 0);
