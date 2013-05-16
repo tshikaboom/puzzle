@@ -40,10 +40,10 @@ int main(int argc, char *argv[])
   /* programme appele avec un fichier */
   else if (argc == 3) {
     tabCarte = parseFile(argv[1], &hauteur, &largeur);
-
+    plateau = nouveau_plateau(hauteur, largeur);
 
     if (atoi(argv[2]) == 1) {
-      plateau = nouveau_plateau(hauteur, largeur);
+
       parcours = constCheminSpirale(largeur, hauteur);
       cpt=0;
       while (cpt < hauteur*largeur) {
@@ -51,9 +51,12 @@ int main(int argc, char *argv[])
 	for (rotated_real=0; rotated_real<4; rotated_real++) {
 	  /* on fait le backtrack aussi avec 4 rotations
 	     initiales differentes */
-	  printf("backtrack: rotation reelle %d\n", rotated_real);
+	  #ifdef DEBUG
+	  printf("backtrack: carte initiale %d, rotation reelle %d\n",
+		 tabCarte[0].identifiant, rotated_real);
+	  #endif
 	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
-	rotation(tabCarte, 1);
+	rotation(tabCarte, 1); /* nouvelle rotation initiale */
 	tabCarte[0].rotated = 0; /* 0 car la carte "tournee" a maintenant une nouvelle
 				    "rotation initiale" */
 	}
@@ -67,7 +70,6 @@ int main(int argc, char *argv[])
 	}
     }
     else if (atoi(argv[2]) == 2) {
-      plateau = nouveau_plateau(hauteur, largeur);
       parcours = constCheminEnS(largeur, hauteur);
       cpt=0;
       while (cpt < hauteur*largeur) {
@@ -80,7 +82,6 @@ int main(int argc, char *argv[])
 	}
     }
     else if (atoi(argv[2]) == 3) {
-      plateau = nouveau_plateau(hauteur, largeur);
       parcours = constCompCheminSpirale(largeur, hauteur);
       cpt=0;
       while (cpt<hauteur*largeur) {
@@ -93,7 +94,6 @@ int main(int argc, char *argv[])
       }
     }
     else if (atoi(argv[2]) == 4) {
-      plateau = nouveau_plateau(hauteur, largeur);
       parcours = serpentTwo(NULL, largeur, hauteur, 0, 0);
       backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
     }
