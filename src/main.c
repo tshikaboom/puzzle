@@ -11,34 +11,53 @@
 #include "parser.h"
 #include "chemin.h"
 /* --no-swap --no-rotation */
-void parse_args(int argc, char *argv, int *choix_parcours, int *swap, int *rotate)
+void parse_args(int argc, char *argv[],
+		int *choix_parcours, int *swap,
+		int *rotate, char** fichier)
 {
+  int i;
+  for (i=1; i<argc; i++)
+    if (!existe_fichier(argv[i])) {
+      if (strcmp(argv[i], "--no-swap") == 0) *swap=0;
+      if (strcmp(argv[i], "--no-rotate") == 0) *rotate=0;
+    }
+    else {
+      *fichier = strdup_intern(argv[i]);
+      *choix_parcours = atoi(argv[i+1]);
+      i++;
+    }
 }
 
 int main(int argc, char *argv[])
 {
-  int choix_parcours, cpt, rotated_real;
+  int choix_parcours, cpt, rotated_real, opt_swap=1, opt_rotate=1;
   int hauteur, largeur; /* servent a initialiser la hauteur et la largeur du plateau */
   Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Carte backup;
   Plateau *plateau;
   Carte *tabCarte;
   Chemin *parcours;
+  char *fichier;
 
+  parse_args(argc, argv, &choix_parcours, &opt_swap, &opt_rotate, &fichier);
   if (argc > 3 || argc == 2) {
-    printf("Usage: %s [FICHIER MODE]\n", argv[0]);
+    printf("Usage: %s [FICHIER MODE] [OPTION ..]\n", argv[0]);
     printf("FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre.\n");
     printf("MODE etant l'entier 1, 2 ou 3.\n");
     printf(" 1: resolution du puzzle en spirale a partir du centre\n");
     printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
     printf(" 3: resolution du puzzle en hybride (spirale+serpent)\n");
     printf("    Ceci sert surtout pour des plateaux rectangulaires.\n");
+    printf("Les OPTIONS sont\n");
+    printf(" --no-swap : seule la premiere carte sera placee initialement.\n");
+    printf("             Il n'y aura pas de placement possible des autres cartes disponibles\n");
+    printf(" --no-rotate : la carte initialement placee ne subira pas de rotation initiale.\n");
     printf("Appel sans argument: resolution d'un plateau deja donne dans le programme.\n");
     return EXIT_FAILURE;
   }
 
   /* programme appele avec un fichier */
-  else if (argc == 3) {
+  else if (argc >= 3) {
     tabCarte = parseFile(argv[1], &hauteur, &largeur);
     plateau = nouveau_plateau(hauteur, largeur);
 
