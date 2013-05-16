@@ -61,13 +61,16 @@
         Lance le programme avec les valeurs par défaut
 	
    run2 
-        Lance le programme à partir du fichier Puzzle.puzzle en spirale
+        Lance le programme à partir du fichier Puzzle.puzzle en spirale (départ du centre)
 
    run3 
-        Lance le programme à partir du fichier Puzzle.puzzle en serpent
+        Lance le programme à partir du fichier Puzzle.puzzle en serpent (départ du coin supérieur gauche)
 
    run4
-	Lance le programme à partir du fichier Puzzle.puzzle en mode hybride
+	Lance le programme à partir du fichier Puzzle.puzzle en mode hybride (serpent + spirale)
+   
+   run5
+	Lance le programme à partir du fichier Puzzle.puzzle en mode serpent2
 
 == Directives de l'exécutable bin/PUZZLE ==
   
