@@ -60,7 +60,7 @@ BACKTRACK.H
 -----------
 
 > _Algorithme de backtracking._   
-    `int backtrack (Plateau *plateau,Carte tabCarte[], Chemin *parcours, int nombre_de_carte,int indice_chemin,int choix);`
+    `int backtrack (Plateau *plateau,Carte tabCarte[], Chemin *parcours, int nombre_de_carte);`
 
 CHEMIN.H
 --------
@@ -142,6 +142,9 @@ INIT.H
 
 > _Renvoie un fichier contenant la solution du puzzle._  
     `void exporteur_magique(Plateau *plateau);`
+
+> _Copie un string dans un pointeur de char (revient à un malloc et strcpy)._   
+    `char *strdup_intern(char *string);`
 
 PARSER.H
 --------
