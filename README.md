@@ -25,9 +25,9 @@ Fichiers inclus
 >     - Oskar Viljasaar   
 
 > src/chemin.c et include/chemin.h      
->     Fonction donnant le chemin de résolution à suivre    
->     - Benjamin Bielle    
->     - Vigano Sylvain    
+>     Fonction donnant le chemin de résolution à suivre        
+>     - Vigano Sylvain   
+>     - Benjamin Bielle     
 
 > src/backtrack.c et include/backtrack.h           
 >     Fonction de résolution du puzzle           
