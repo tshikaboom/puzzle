@@ -17,7 +17,7 @@ struct carte {
      avec la valeur 4. Des qu'une rotation aura ete effectuee, la carte ne pourra
      plus avoir la valeur 0. (sert pour la fonction rotation)
      La rotation d'une carte signifie qu'elle est tournee dans le sens des aiguilles
-     d'une montre. La variable est alors incrementee de 1. */     
+     d'une montre. La variable est alors incrementee de 1. */
   unsigned int sur_plateau; /* 0 = pas sur plateau et 1 = sur plateau */
 };
 
@@ -44,7 +44,7 @@ struct chemin {
     struct chemin *Suivant;
 };
 
-typedef struct coordonnee Coordonnee;
+
 typedef struct chemin Chemin;
 typedef struct carte Carte;
 typedef struct position Position;
