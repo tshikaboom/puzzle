@@ -28,6 +28,25 @@ int parse_args(int argc, char *argv[],
       *choix_parcours = atoi(argv[i+1]);
       i++;
     }
+  return 0;
+}
+
+void print_help(char *nom_programme)
+{
+    printf("Usage: %s [FICHIER MODE] [OPTION ..]\n", nom_programme);
+    printf("FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre.\n");
+    printf("MODE etant l'entier 1, 2 ou 3.\n");
+    printf(" 1: resolution du puzzle en spirale a partir du centre\n");
+    printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
+    printf(" 3: resolution du puzzle en hybride (spirale+serpent)\n");
+    printf("    Ceci sert surtout pour des plateaux rectangulaires.\n");
+    printf(" 4: resolution du puzzle en serpentTwo\n");
+    printf("Les OPTIONS sont\n");
+    printf(" --no-swap : seule la premiere carte sera placee initialement.\n");
+    printf("             Il n'y aura pas de placement possible des autres cartes disponibles\n");
+    printf(" --no-rotate : la carte initialement placee ne subira pas de rotation initiale.\n");
+    printf(" --help : afficher ce message.\n");
+    printf("Appel sans fichier: resolution d'un plateau deja donne dans le programme.\n");
 }
 
 int main(int argc, char *argv[])
@@ -43,21 +62,8 @@ int main(int argc, char *argv[])
 
 
   if (parse_args(argc, argv, &choix_parcours, &opt_swap, &opt_rotate, &fichier) == -1) {
-    printf("Usage: %s [FICHIER MODE] [OPTION ..]\n", argv[0]);
-    printf("FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre.\n");
-    printf("MODE etant l'entier 1, 2 ou 3.\n");
-    printf(" 1: resolution du puzzle en spirale a partir du centre\n");
-    printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
-    printf(" 3: resolution du puzzle en hybride (spirale+serpent)\n");
-    printf("    Ceci sert surtout pour des plateaux rectangulaires.\n");
-    printf(" 4: resolution du puzzle en serpentTwo\n");
-    printf("Les OPTIONS sont\n");
-    printf(" --no-swap : seule la premiere carte sera placee initialement.\n");
-    printf("             Il n'y aura pas de placement possible des autres cartes disponibles\n");
-    printf(" --no-rotate : la carte initialement placee ne subira pas de rotation initiale.\n");
-    printf(" --help : afficher ce message.\n");
-    printf("Appel sans fichier: resolution d'un plateau deja donne dans le programme.\n");
-    return EXIT_FAILURE;
+    print_help(argv[0]);
+    exit(EXIT_FAILURE);
   }
 
   /* programme appele avec un fichier */
