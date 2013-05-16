@@ -4,10 +4,10 @@ Projet : PUZZLE
 Participants
 ------------
 
-Bouilly Romain 2908292  (interface graphique)   
-Vigano Sylvain 3203772    
-Viljasaar Oskar 3000989   
-Bielle Benjamin 2900825   
+> Bouilly Romain 2908292  (interface graphique)   
+> Vigano Sylvain 3203772    
+> Viljasaar Oskar 3000989   
+> Bielle Benjamin 2900825   
 
 Fichiers inclus
 ---------------
