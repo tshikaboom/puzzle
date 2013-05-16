@@ -57,13 +57,13 @@ int main(int argc, char *argv[])
   Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Carte backup;
   Plateau *plateau;
-  Carte *tabCarte;
-  Chemin *parcours;
+  Carte *tabCarte=NULL;
+  Chemin *parcours=NULL;
   char *fichier=NULL;
 
   if (parse_args(argc, argv, &choix_parcours, &opt_swap, &opt_rotate, &fichier) == -1) {
     print_help(argv[0]);
-    exit(EXIT_FAILURE);
+    exit(EXIT_SUCCESS);
   }
 
   /* Programme appele avec un fichier, on parse le puzzle */
@@ -119,6 +119,7 @@ int main(int argc, char *argv[])
     tabCarte[7] = carte8;
     tabCarte[8] = carte9;
 
+    print_help(argv[0]);
     choix_parcours=-1;
     while (choix_parcours < 0 || choix_parcours > 4) {
       printf("Donner le choix de parcours de la grille:\n");
@@ -163,10 +164,15 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 
-  /* initialisation des bornes des boucles selon les arguments de main() */
-  if (opt_swap) opt_swap=hauteur*largeur;
-  else opt_swap=1;
 
+  /* initialisation des bornes des boucles selon les arguments de main() */
+
+  if (opt_swap) opt_swap=hauteur*largeur;
+  /* si opt_swap==1 alors on swappe normalement */
+  else opt_swap=1;
+  /* si opt_swap==0 alors on ne swappe pas */
+
+  /* meme principe pour opt_rotate */
   if (opt_rotate) opt_rotate=4;
   else opt_rotate=1;
 
@@ -177,8 +183,10 @@ int main(int argc, char *argv[])
      Regles pour la carte initiale:
      - elle est swappee hauteur*largeur fois
      - avant chaque swap (donc "pendant" un swap), elle est
-     aussi tournee 4 fois pour la rotation initiale
+     aussi tournee 3 fois pour la rotation initiale
      Donc on teste hauteur*largeur*4 situations initiales
+
+     .. sauf arguments indiquant le contraire
   */
   for (cpt=0; cpt<opt_swap; cpt++) {
     backup = tabCarte[0];
