@@ -61,6 +61,11 @@ int main(int argc, char *argv[])
   Chemin *parcours=NULL;
   char *fichier=NULL;
 
+  /* initialisation possible, mais pas sur
+     - du choix de parcours
+     - si on veut swapper
+     - si on veut tourner la carte initialement placee
+     - si on veut manger un puzzle d'un fichier (donc on initialise fichier) */
   if (parse_args(argc, argv, &choix_parcours, &opt_swap, &opt_rotate, &fichier) == -1) {
     print_help(argv[0]);
     exit(EXIT_SUCCESS);
