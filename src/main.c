@@ -42,63 +42,59 @@ int main(int argc, char *argv[])
     tabCarte = parseFile(argv[1], &hauteur, &largeur);
     plateau = nouveau_plateau(hauteur, largeur);
 
-    if (atoi(argv[2]) == 1) {
+    switch (atoi(argv[2]))  {
+      case 1:
+	#ifdef DEBUG
+	printf("Generation d'une spirale %dx%d\n", hauteur, largeur);
+	#endif
+	parcours = constCheminSpirale(largeur, hauteur);
+	break;
+      case 2:
+       	#ifdef DEBUG
+	printf("Generation d'un S %dx%d\n", hauteur, largeur);
+	#endif
+	parcours = constCheminEnS(largeur, hauteur);
+	break;
+      case 3:
+       	#ifdef DEBUG
+	printf("Generation d'un chemin hybride %dx%d\n", hauteur, largeur);
+	#endif
+	parcours = constCompCheminSpirale(largeur, hauteur);
+	break;
+      case 4:
+       	#ifdef DEBUG
+	printf("Generation d'un serpentTwo %dx%d\n", hauteur, largeur);
+	#endif
+	parcours = serpentTwo(NULL, largeur, hauteur, 0, 0);
+	break;
+      default:
+	printf("Mode %s non supporte.\n", argv[2]);
+	exit(EXIT_FAILURE);
+      }
 
-      parcours = constCheminSpirale(largeur, hauteur);
-      cpt=0;
-      while (cpt < hauteur*largeur) {
-	backup = tabCarte[0];
-	for (rotated_real=0; rotated_real<4; rotated_real++) {
-	  /* on fait le backtrack aussi avec 4 rotations
-	     initiales differentes */
-	  #ifdef DEBUG
-	  printf("backtrack: carte initiale %d, rotation reelle %d\n",
+    /* Debut de la partie principale du programme.
+       Regles pour la carte initiale:
+       - elle est swappee hauteur*largeur fois
+       - avant chaque swap (donc "pendant" un swap), elle est
+         aussi tournee 4 fois pour la rotation initiale
+       Donc on teste hauteur*largeur*4 situations initiales
+    */
+    for (cpt=0; cpt<hauteur*largeur; cpt++) {
+      backup = tabCarte[0];
+      for (rotated_real=0; rotated_real<4; rotated_real++) {
+        #ifdef DEBUG
+	printf("backtrack: carte initiale %d, rotation reelle %d\n",
 		 tabCarte[0].identifiant, rotated_real);
-	  #endif
+        #endif
 	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
 	rotation(tabCarte, 1); /* nouvelle rotation initiale */
 	tabCarte[0].rotated = 0; /* 0 car la carte "tournee" a maintenant une nouvelle
 				    "rotation initiale" */
-	}
-	tabCarte[0] = backup;
-	swap(plateau, tabCarte);
-	cpt++;
-	#ifdef DEBUG
-	printf("main, parcours en spirale: swap %d sur %d, carte initiale %d avec rotation %d\n",
-	       cpt, TAILLE*TAILLE, tabCarte[0].identifiant, rotated_real);
-	#endif
-	}
-    }
-    else if (atoi(argv[2]) == 2) {
-      parcours = constCheminEnS(largeur, hauteur);
-      cpt=0;
-      while (cpt < hauteur*largeur) {
-	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
-	swap(plateau, tabCarte);
-	cpt++;
-       	#ifdef DEBUG
-	printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
-	#endif
-	}
-    }
-    else if (atoi(argv[2]) == 3) {
-      parcours = constCompCheminSpirale(largeur, hauteur);
-      cpt=0;
-      while (cpt<hauteur*largeur) {
-	backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
-	swap(plateau, tabCarte);
-	cpt++;
-	#ifdef DEBUG
-	printf("main, parcours en S: swap %d sur %d\n", cpt, TAILLE*TAILLE);
-	#endif
       }
+      tabCarte[0] = backup;
+      swap(plateau, tabCarte);
     }
-    else if (atoi(argv[2]) == 4) {
-      parcours = serpentTwo(NULL, largeur, hauteur, 0, 0);
-      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 2);
-    }
-    else
-      printf("Mode %s non supporte.\n", argv[2]);
+
   }
 
   /* programme appele sans fichier, on cree un plateau soi-meme */
