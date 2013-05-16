@@ -48,21 +48,21 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   if (nombre_de_carte == 0)
     {
       system("clear");
-      nombre_de_solution++; /*Incrementation du nombre de solutions*/
+      nombre_de_solution++; /*Incrementation du nombre de solutions*//*
       printf("\n#== Solution(s) Trouvée(s) : %d ==#\n",nombre_de_solution);
-      affichage (plateau); /*affichage de la solution*/
+      affichage (plateau); *//*affichage de la solution*/
 
       /*Reinitialisation du tableau de carte*/
       for (carte = 0; carte < (plateau->largeur*plateau->hauteur); carte++)
 	{
 	  tabCarte[carte].sur_plateau = 0;
 	}
-      exporteur_magique(plateau);
+      /* exporteur_magique(plateau); */
       /* used only for benchmarks
-      exit(EXIT_SUCCESS);*/
+      exit(EXIT_SUCCESS);
 
       clean_plateau(plateau);
-
+      */
       return -1;
     }
 
@@ -87,8 +87,9 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 
       plateau->tab[position_case.x][position_case.y] = tabCarte/*+carte*/;
       (tabCarte+carte)->sur_plateau = 1;
-      nombre_de_carte--;
+      nombre_de_carte--;/*
       affichage(plateau);
+			*/
     }
 
   /*position a la case suivante*/
