@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
   /* Programme appele avec un fichier, on parse le puzzle */
   if (fichier)
-    tabCarte = parseFile(argv[1], &hauteur, &largeur);
+    tabCarte = parseFile(fichier, &hauteur, &largeur);
 
   /* Programme appele sans fichier, on cree un puzzle soi-meme
      Le macro TAILLE est defini dans "structs.h" */
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
     parcours = serpentTwo(NULL, largeur, hauteur, 0, 0);
     break;
   default:
-    printf("Mode %s non supporte.\n", argv[2]);
+    printf("Mode %d non supporte.\n", choix_parcours);
     exit(EXIT_FAILURE);
   }
 
