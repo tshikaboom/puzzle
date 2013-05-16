@@ -106,7 +106,6 @@ Normes utilisées
 
 > Norme Posix (POSIX SOURCE 1), ANSI   
 
-
 Bibliothèque Graphique
 ----------------------
 
