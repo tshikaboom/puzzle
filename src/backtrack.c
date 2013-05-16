@@ -20,7 +20,7 @@
   Auteur: Benjamin Bielle
 */
 
-int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_de_carte,int indice_chemin,int choix)
+int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_de_carte)
 {
   #ifdef DEBUG
   int i; /* compteur generique */
@@ -28,7 +28,6 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   int nombre_de_solution;
   int carte=0; /*numero de la carte -> identifiant de la carte*/
   Position position_case; /*position de la case courante*/
-  int ind_chemin = indice_chemin;
   int back;
 
   if (parcours)
@@ -117,7 +116,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 	      nombre_de_carte--;
 
 	      /*Appel a backtrack*/
-	      back = backtrack(plateau,tabCarte, parcours->Suivant, nombre_de_carte,ind_chemin+1,choix);
+	      back = backtrack(plateau,tabCarte, parcours->Suivant, nombre_de_carte);
 
 	      if ( back )
 		{

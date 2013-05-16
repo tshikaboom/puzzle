@@ -195,7 +195,7 @@ int main(int argc, char *argv[])
       printf("backtrack: carte initiale %d, rotation reelle %d\n",
 	     tabCarte[0].identifiant, rotated_real);
       #endif
-      backtrack(plateau, tabCarte, parcours, hauteur*largeur, 0, 1);
+      backtrack(plateau, tabCarte, parcours, hauteur*largeur);
       rotation(tabCarte, 1); /* nouvelle rotation initiale */
       tabCarte[0].rotated = 0; /* 0 car la carte "tournee" a maintenant une nouvelle
 				  "rotation initiale" */
