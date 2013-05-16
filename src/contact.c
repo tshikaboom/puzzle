@@ -29,7 +29,8 @@ int contact_h(Plateau *plateau, int i, int j, Carte Carte)
     else
       /* le plateau a une carte en haut. Est-ce qu'elle matche avec la carte
 	 qu'on veut poser? */
-      if (Carte.Haut == plateau->tab[i][j-1]->Bas)
+      if (Carte.Haut == plateau->tab[i][j-1]->Bas ||
+	  Carte.Haut + plateau->tab[i][j-1]->Bas == 0)
 	return 1;
       else
 	return 0;
@@ -50,7 +51,8 @@ int contact_d(Plateau *plateau, int i, int j, Carte Carte)
     if (plateau->tab[i+1][j] == NULL)
       return 1;
     else
-      if (Carte.Droite == plateau->tab[i+1][j]->Gauche)
+      if (Carte.Droite == plateau->tab[i+1][j]->Gauche ||
+	  Carte.Droite + plateau->tab[i+1][j]->Gauche == 0)
 	return 1;
       else
 	return 0;
@@ -71,7 +73,8 @@ int contact_b(Plateau *plateau, int i, int j, Carte Carte)
     if (plateau->tab[i][j+1] == NULL)
       return 1;
     else
-      if (Carte.Bas==plateau->tab[i][j+1]->Haut)
+      if (Carte.Bas == plateau->tab[i][j+1]->Haut ||
+	  Carte.Bas + plateau->tab[i][j+1]->Haut == 0)
 	return 1;
       else
 	return 0;
@@ -93,7 +96,8 @@ int contact_g(Plateau *plateau, int i, int j, Carte Carte)
     if (plateau->tab[i-1][j] == NULL)
       return 1;
     else
-      if (Carte.Gauche==plateau->tab[i-1][j]->Droite)
+      if (Carte.Gauche == plateau->tab[i-1][j]->Droite ||
+	  Carte.Gauche + plateau->tab[i-1][j]->Droite == 0)
 	return 1;
       else
 	return 0;
