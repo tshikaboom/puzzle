@@ -104,11 +104,11 @@ Etat d'avancement
 Normes utilisées
 ----------------
 
-Norme Posix (POSIX SOURCE 1), ANSI   
+> Norme Posix (POSIX SOURCE 1), ANSI   
 
 
 Bibliothèque Graphique
 ----------------------
 
-Pygame (bibliothèque basée sur SDL) - Licence : GNU GPL      
+> Pygame (bibliothèque basée sur SDL) - Licence : GNU GPL      
 
