@@ -41,4 +41,10 @@ int existe_fichier(char *fichier);
 
 void exporteur_magique(Plateau *plateau);
 
+/* strdup n'a pas l'air d'etre compile en mode POSIX
+   Donc on en implemente un..
+ */
+char *strdup_intern(char *string);
+
+
 #endif

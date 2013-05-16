@@ -91,7 +91,7 @@ void affichage(Plateau *plateau)
 	if (plateau->tab[i][j] == NULL) printf("|   |");
 	else printf("| %d |", plateau->tab[i][j]->Haut);
       printf("\n");
-    
+
       for (i = 0; i < plateau->largeur; i++)
 	if (plateau->tab[i][j] == NULL) printf("|   |");
 	else printf("|%d%d%d|",
@@ -99,7 +99,7 @@ void affichage(Plateau *plateau)
 		    plateau->tab[i][j]->identifiant,
 		    plateau->tab[i][j]->Droite);
       printf("\n");
-    
+
       for (i = 0; i < plateau->largeur; i++)
 	if (plateau->tab[i][j] == NULL) printf("|   |");
 	else printf("| %d |", plateau->tab[i][j]->Bas);
@@ -120,7 +120,7 @@ void affichage(Plateau *plateau)
 	if (plateau->tab[i][j] == NULL) printf("|      |");
 	else printf("|  %d   |", plateau->tab[i][j]->Haut);
       printf("\n");
-    
+
       for (i = 0; i < plateau->largeur; i++)
 	if (plateau->tab[i][j] == NULL) printf("|      |");
 	else {
@@ -136,7 +136,7 @@ void affichage(Plateau *plateau)
 		   plateau->tab[i][j]->Droite);
 	}
       printf("\n");
-    
+
       for (i = 0; i < plateau->largeur; i++)
 	if (plateau->tab[i][j] == NULL) printf("|      |");
 	else printf("|  %d   |", plateau->tab[i][j]->Bas);
@@ -145,7 +145,7 @@ void affichage(Plateau *plateau)
       for (i = 0; i < plateau->largeur; i++)
 	printf("+------+");
       printf("\n");
-    }    
+    }
   }
 }
 
@@ -164,7 +164,7 @@ Plateau *nouveau_plateau(int hauteur, int largeur)
   }
 
   /*  printf("Allocation d'un tableau %dx%d\n", largeur, hauteur);*/
-  
+
 
   plateau = (Plateau *) malloc(sizeof (Plateau));
   if (plateau == NULL) {
@@ -185,11 +185,11 @@ Plateau *nouveau_plateau(int hauteur, int largeur)
       return NULL;
     }
   }
-  
+
   for (i=0; i<largeur; i++)
     for (j=0; j<hauteur; j++)
       plateau->tab[i][j] = NULL;
-  
+
   plateau->largeur = largeur;
   plateau->hauteur = hauteur;
 
@@ -215,7 +215,7 @@ void swap (Plateau *plateau,Carte tabCarte[])
   int i;
   Carte tmp;
 
-  tmp = tabCarte[0]; 
+  tmp = tabCarte[0];
   for (i=0; i<(plateau->largeur*plateau->hauteur)-1;i++)
     tabCarte[i] = tabCarte[i+1];
 
@@ -225,7 +225,7 @@ void swap (Plateau *plateau,Carte tabCarte[])
 void clean_plateau (Plateau *plateau)
 {
   int i,j;
-  
+
   for (i=0; i<plateau->hauteur; i++)
     for(j=0; j<plateau->largeur; j++) {
       plateau->tab[j][i]->sur_plateau = 0;
@@ -267,7 +267,7 @@ void exporteur_magique(Plateau *plateau)
     sprintf(buff+3, "%d", i);
     i++;
    } while (existe_fichier(buff));
-  
+
   /* apres la boucle, on en sera a un entier i dont le fichier soli
      n'existe pas. Donc on ecrit la solution */
   export(buff, plateau);
@@ -280,3 +280,12 @@ void exporteur_magique(Plateau *plateau)
   fclose(fichier);
 }
 
+char *strdup_intern(char *string)
+{
+    int n = strlen(string) + 1;
+    char *dup = (char *) malloc(n*sizeof(char));
+    assert(dup);
+    strcpy(dup, string);
+
+    return dup;
+}
