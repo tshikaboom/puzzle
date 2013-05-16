@@ -11,18 +11,20 @@
 #include "parser.h"
 #include "chemin.h"
 /* --no-swap --no-rotation */
-void parse_args(int argc, char *argv[],
-		int *choix_parcours, int *swap,
-		int *rotate, char** fichier)
+int parse_args(int argc, char *argv[],
+	       int *choix_parcours, int *swap,
+	       int *rotate, char** fichier)
 {
   int i;
   for (i=1; i<argc; i++)
     if (!existe_fichier(argv[i])) {
       if (strcmp(argv[i], "--no-swap") == 0) *swap=0;
       if (strcmp(argv[i], "--no-rotate") == 0) *rotate=0;
+      if (strcmp(argv[i], "--help") == 0) return -1;
     }
     else {
       *fichier = strdup_intern(argv[i]);
+      if (i+1 >= argc) return -1;
       *choix_parcours = atoi(argv[i+1]);
       i++;
     }
@@ -37,10 +39,10 @@ int main(int argc, char *argv[])
   Plateau *plateau;
   Carte *tabCarte;
   Chemin *parcours;
-  char *fichier;
+  char *fichier=NULL;
 
-  parse_args(argc, argv, &choix_parcours, &opt_swap, &opt_rotate, &fichier);
-  if (argc > 3 || argc == 2) {
+
+  if (parse_args(argc, argv, &choix_parcours, &opt_swap, &opt_rotate, &fichier) == -1) {
     printf("Usage: %s [FICHIER MODE] [OPTION ..]\n", argv[0]);
     printf("FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre.\n");
     printf("MODE etant l'entier 1, 2 ou 3.\n");
@@ -48,20 +50,29 @@ int main(int argc, char *argv[])
     printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
     printf(" 3: resolution du puzzle en hybride (spirale+serpent)\n");
     printf("    Ceci sert surtout pour des plateaux rectangulaires.\n");
+    printf(" 4: resolution du puzzle en serpentTwo\n");
     printf("Les OPTIONS sont\n");
     printf(" --no-swap : seule la premiere carte sera placee initialement.\n");
     printf("             Il n'y aura pas de placement possible des autres cartes disponibles\n");
     printf(" --no-rotate : la carte initialement placee ne subira pas de rotation initiale.\n");
-    printf("Appel sans argument: resolution d'un plateau deja donne dans le programme.\n");
+    printf(" --help : afficher ce message.\n");
+    printf("Appel sans fichier: resolution d'un plateau deja donne dans le programme.\n");
     return EXIT_FAILURE;
   }
 
   /* programme appele avec un fichier */
-  else if (argc >= 3) {
+  if (fichier) {
     tabCarte = parseFile(argv[1], &hauteur, &largeur);
     plateau = nouveau_plateau(hauteur, largeur);
 
-    switch (atoi(argv[2]))  {
+    /* initialisation des bornes des boucles selon les arguments de main() */
+    if (opt_swap) opt_swap=hauteur*largeur;
+    else opt_swap=1;
+    if (opt_rotate) opt_rotate=4;
+    else opt_rotate=1;
+
+
+    switch (choix_parcours)  {
       case 1:
 	#ifdef DEBUG
 	printf("Generation d'une spirale %dx%d\n", hauteur, largeur);
@@ -98,9 +109,9 @@ int main(int argc, char *argv[])
          aussi tournee 4 fois pour la rotation initiale
        Donc on teste hauteur*largeur*4 situations initiales
     */
-    for (cpt=0; cpt<hauteur*largeur; cpt++) {
+    for (cpt=0; cpt<opt_swap; cpt++) {
       backup = tabCarte[0];
-      for (rotated_real=0; rotated_real<4; rotated_real++) {
+      for (rotated_real=0; rotated_real<opt_rotate; rotated_real++) {
         #ifdef DEBUG
 	printf("backtrack: carte initiale %d, rotation reelle %d\n",
 		 tabCarte[0].identifiant, rotated_real);
