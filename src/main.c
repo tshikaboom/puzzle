@@ -52,7 +52,7 @@ void print_help(char *nom_programme)
 
 int main(int argc, char *argv[])
 {
-  int choix_parcours, cpt, rotated_real, opt_swap=1, opt_rotate=1;
+  int choix_parcours, cpt, rotated_real, opt_swap=1, opt_rotate=1, i, j;
   int hauteur, largeur; /* servent a initialiser la hauteur et la largeur du plateau */
   Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Carte backup;
@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
   Carte *tabCarte=NULL;
   Chemin *parcours=NULL;
   char *fichier=NULL;
+  char buff[100];
 
   /* initialisation possible, mais pas sur
      - du choix de parcours
@@ -207,6 +208,19 @@ int main(int argc, char *argv[])
     }
     tabCarte[0] = backup;
     swap(plateau, tabCarte);
+  }
+
+  if (fichier) {
+    sprintf(buff, "cp %s ./%dx%d/puzzle", fichier, plateau->hauteur, plateau->largeur);
+    system(buff);
+  }
+  else {
+    for (j=0; j<plateau->hauteur; j++)
+      for (i=0; i<plateau->largeur; i++)
+	plateau->tab[i][j] = tabCarte+i+j;
+
+    sprintf(buff, "./%dx%d/puzzle", plateau->hauteur, plateau->largeur);
+    export(buff, plateau);
   }
   return EXIT_SUCCESS;
 }

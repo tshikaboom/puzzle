@@ -57,12 +57,12 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 	{
 	  tabCarte[carte].sur_plateau = 0;
 	}
-      /* exporteur_magique(plateau); */
+      exporteur_magique(plateau);
       /* used only for benchmarks
-      exit(EXIT_SUCCESS);
+	 exit(EXIT_SUCCESS);*/
 
       clean_plateau(plateau);
-      */
+
       return -1;
     }
 
@@ -87,9 +87,10 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 
       plateau->tab[position_case.x][position_case.y] = tabCarte/*+carte*/;
       (tabCarte+carte)->sur_plateau = 1;
-      nombre_de_carte--;/*
+      nombre_de_carte--;
+
       affichage(plateau);
-			*/
+
     }
 
   /*position a la case suivante*/

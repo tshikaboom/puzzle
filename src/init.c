@@ -5,6 +5,9 @@
 #include <string.h>
 #include <assert.h>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include "parser.h"
 #include "structs.h"
 #include "init.h"
@@ -256,28 +259,45 @@ void exporteur_magique(Plateau *plateau)
    aura resolu le plateau. */
 {
   int i=1;
-  char buff[10]  = "soluce"; /* sera sol[n] */
+  char buff[100]  = "sol0"; /* sera sol[n] */
+  char folder[100];
   FILE *fichier;
+  struct stat st;
 
+  sprintf(folder, "./%dx%d/", plateau->hauteur, plateau->largeur);
 
-
+  if (stat(folder, &st) == -1) {
+    mkdir(folder, 0700);
+    chmod(folder, 0700);
+  }
+  
+  /* on change de dossier
+     chdir(folder);*/
   /* on check si un fichier "soln" existe deja, n etant un entier.
      Donc la on fait en sorte un cast de int en char* (sprintf) */
-   do {
-    sprintf(buff+3, "%d", i);
+  sprintf(buff, "%s%s", folder, "sol0");
+  do {
+    sprintf(buff+9, "%d", i);
     i++;
-   } while (existe_fichier(buff));
+  } while (existe_fichier(buff));
 
+
+  
   /* apres la boucle, on en sera a un entier i dont le fichier soli
      n'existe pas. Donc on ecrit la solution */
   export(buff, plateau);
 
   /* on ecrit dans le fichier sol0 le nombre de solutions qu'on a
      pour l'instant. Le contenu d'avant est ecrase et ne nous sert pas */
-  fichier = fopen("sol0", "w");
+  strcat(folder, "sol0");
+
+  fichier = fopen(folder, "w");
   assert(fichier);
   fprintf(fichier, "%d\n", i-1);
   fclose(fichier);
+
+  
+  /* chdir(".."); */
 }
 
 char *strdup_intern(char *string)
