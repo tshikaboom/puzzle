@@ -91,7 +91,7 @@ Directives de l'exécutable bin/PUZZLE
 > --quiet: on obtient un backtrack pas tres bavard.    
 > --resolve-once: on obtient une seule solution.    
 > --help : afficher ce message.    
-> Appel sans fichier: resolution d'un plateau deja donne dans le programme.    
+> Appel sans fichier: résolution du puzzle de référence fourni par l'enseignant.
 
 Etat d'avancement
 -----------------
