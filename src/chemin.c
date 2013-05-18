@@ -72,15 +72,6 @@ Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x)
   return chemin;
 }
 
-Chemin* constCheminEnS(int n,int p)
-/*p=hauteur, n=largeur;
- * Petit alias pour se simplifier la construction dans le cas d'un chemin
- * non compose 
- */
-{
-  return CheminEnS(NULL,n,p,0,0);
-}
-
 Position get_pos(Chemin *chemin)
 {
   Position pos;
@@ -122,13 +113,6 @@ Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff)
   }
   chemin=ajouteChemin(chemin,x+xOff,y+yOff);
   return chemin;
-}
-
-Chemin* constCheminSpirale(int n,int p)
-/*p=hauteur, n=largeur;
- */
-{
-  return constCheminSpiraleDec(NULL,n,p,0,0);  
 }
 
 Chemin* serpentTwo(Chemin *chemin,int n,int p,int xOffset, int yOffset)
@@ -180,4 +164,28 @@ Chemin* constCompCheminSpirale(int n, int p)
     return chemin;
   }
   else return constCheminSpirale(s,s);
+}
+
+/*
+Fonctions Alias pour alleger les appels quand les offsets ne sont pas utiles
+*/
+Chemin* constCheminEnS(int n,int p)
+/*p=hauteur, n=largeur;
+ * Petit alias pour se simplifier la construction dans le cas d'un chemin
+ * non compose 
+ */
+{
+  return CheminEnS(NULL,n,p,0,0);
+}
+
+Chemin* constCheminSpirale(int n,int p)
+/*p=hauteur, n=largeur;
+ */
+{
+  return constCheminSpiraleDec(NULL,n,p,0,0);  
+}
+
+Chemin* serpentDeux(Chemin *chemin,int n,int p)
+{
+  return Chemin* serpentTwo(chemin,n,p,0,0);
 }

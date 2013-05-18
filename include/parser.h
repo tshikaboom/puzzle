@@ -5,15 +5,6 @@
 /*Checks if input char is EndOfLine*/
 int isEndOfLine (char cara);
 
-/*cara Char to be cast to integer*/
-int charToInteger(char cara);
-
-/*Input string lenght*/
-int strLength(char* str);
-
-/*str Input string to be parsed to integer*/
-int stringToInteger(char* str);
-
 /*char* Error Message*/
 void error(char* errorMessage);
 

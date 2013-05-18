@@ -34,6 +34,7 @@ void print_chemin(Chemin *chemin);
 Chemin* constCheminEnS(int n,int p);
 Chemin* constCheminSpirale(int n, int p);
 Chemin* constCompCheminSpirale(int n, int p);
+Chemin* serpentDeux(Chemin *chemin,int n,int p);
 
 Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y);
 Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x);

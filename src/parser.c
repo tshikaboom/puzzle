@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
@@ -17,7 +16,7 @@
 #define IMPORT_MASK " %d_%1d%1d%1d%1d "
 #define EXPORT_MASK "%d_%d%d%d%d\n"
 
-/*
+/* Les commentaires datent d'une epoque ou j'avais l'habitude de coder en anglais
  * Nettoyer les erreurs avec du perror()
  */
 
@@ -44,41 +43,6 @@ int isEndOfLine(char cara)
   }
   return false;
 }
-
-int charToInteger (char cara)
-{
-  /**
-   * @param cara Char to be cast to integer
-   * @return int result of cast
-   */
-  return cara-INT_OFFSET;
-}
-
-int strLength(char* str)
-{
-  /**
-   * @param char* str String to be analyzed
-   * @return Input string lenght
-   */
-  int i=0;
-  while (!isEndOfLine(str[i])) i++;
-  return i;
-}
-
-int stringToInteger(char* str)
-{
-  /**
-   * @param str Input string to be parsed to integer
-   * @return int Resulting integer
-   */
-  int res=0, i, lim;
-  lim=strLength(str);
-  for (i=0; !isEndOfLine(str[i]); i++)
-    res+=charToInteger(str[i])*pow(10,lim-i-1);
-  return res;
-}
-
-
 
 void error(char* errorMessage)
 {
