@@ -187,5 +187,5 @@ Chemin* constCheminSpirale(int n,int p)
 
 Chemin* serpentDeux(Chemin *chemin,int n,int p)
 {
-  return Chemin* serpentTwo(chemin,n,p,0,0);
+  return serpentTwo(chemin,n,p,0,0);
 }
