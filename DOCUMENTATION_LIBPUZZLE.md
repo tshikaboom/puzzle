@@ -16,7 +16,7 @@ __Structure d'une carte__
         int Droite;           -> valeur de la droite de la carte
         unsigned int rotated; -> indice de rotation
   
-> La rotation de la carte varie entre 0 et 4. Les valeurs 0 et 4 sont équivalents, 
+> La rotation de la carte varie entre 0 et 4. Les valeurs 0 et 4 sont équivalentes, 
 > la différence étant qu'on sait que la carte a déja subit une rotation complète
 > avec la valeur 4. Dès qu'une rotation aura été effectuée, la carte ne pourra		
 > plus avoir la valeur 0. (utile pour la fonction rotation)  
@@ -92,7 +92,7 @@ CHEMIN.H
     `Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff);`  
     `Chemin* serpentTwo(Chemin *chemin,int n,int p,int xOffset, int yOffset);`  
 
-> _Fonctions dites allias, n'utilisant pas d'offset
+> _Fonctions dites allias, n'utilisant pas d'offset_
 	`Chemin* constCheminEnS(int n,int p);`
 	`Chemin* constCheminSpirale(int n, int p);` 
 	`Chemin* serpentDeux(Chemin *chemin,int n,int p);`
