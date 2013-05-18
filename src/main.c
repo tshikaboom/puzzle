@@ -59,7 +59,7 @@ void print_help(char *nom_programme)
 int main(int argc, char *argv[])
 {
   int choix_parcours, cpt,
-    *rotated_real,
+    rotated_real,
     opt_swap=1, opt_rotate=1,
     i, j,
     silence=0, une_sol=0;
