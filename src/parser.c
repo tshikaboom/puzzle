@@ -13,8 +13,8 @@
 
 #define MAX_BUFF 256
 #define INT_OFFSET 48
-#define IMPORT_MASK " %d_%1d%1d%1d%1d "
-#define EXPORT_MASK "%d_%d%d%d%d\n"
+#define IMPORT_MASK " %ld_%1d%1d%1d%1d "
+#define EXPORT_MASK "%ld_%d%d%d%d\n"
 
 /* Les commentaires datent d'une epoque ou j'avais l'habitude de coder en anglais
  * Nettoyer les erreurs avec du perror()
@@ -59,14 +59,14 @@ int readCard(char* stringCard, Carte* current)
    * @param Carte* pointer to current card for the parser
    * @return boolean, 1 if parsed successfully, 0 if not.
    */
-  int id, top, bottom, left, right;
-  int res;
+  int top, bottom, left, right,res;
+  long int id;
   Carte* carte=current;
 
   res=sscanf(stringCard, IMPORT_MASK, &id, &top, &bottom, &left, &right);
   #ifdef DEBUG
   printf("Carte lue:\n");
-  printf("%d %d %d %d %d\n", id, top, bottom, left, right);
+  printf("%ld %d %d %d %d\n", id, top, bottom, left, right);
   printf("res=%d\n",res);
   #endif
   
@@ -98,7 +98,8 @@ Carte *parseFile(char* filename,int* hauteur,int* largeur)
    */
   FILE *fp;
   char ligne[MAX_BUFF+1];
-  int i=0, readedCard=0;
+  int i=0; 
+  long int readedCard=0;
   Carte *stack = NULL;
 
   fp = fopen(filename, "r");
@@ -122,7 +123,7 @@ Carte *parseFile(char* filename,int* hauteur,int* largeur)
     }
     fclose(fp);
     
-    if (readedCard!=(*hauteur)*(*largeur)) {
+    if (readedCard!=(long int)(*hauteur)*(*largeur)) {
       error("Number of readed card and dimensions does not match");
       free(stack);
     }

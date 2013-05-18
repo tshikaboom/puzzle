@@ -97,7 +97,7 @@ void affichage(Plateau *plateau)
 
       for (i = 0; i < plateau->largeur; i++)
 	if (plateau->tab[i][j] == NULL) printf("|   |");
-	else printf("|%d%d%d|",
+	else printf("|%d%ld%d|",
 		    plateau->tab[i][j]->Gauche,
 		    plateau->tab[i][j]->identifiant,
 		    plateau->tab[i][j]->Droite);
@@ -128,12 +128,12 @@ void affichage(Plateau *plateau)
 	if (plateau->tab[i][j] == NULL) printf("|      |");
 	else {
 	  if (plateau->tab[i][j]->identifiant < 10)
-	    printf("|%d %d  %d|",
+	    printf("|%d %ld  %d|",
 		   plateau->tab[i][j]->Gauche,
 		   plateau->tab[i][j]->identifiant,
 		   plateau->tab[i][j]->Droite);
 	  else
-	    printf("|%d %d %d|",
+	    printf("|%d %ld %d|",
 		   plateau->tab[i][j]->Gauche,
 		   plateau->tab[i][j]->identifiant,
 		   plateau->tab[i][j]->Droite);

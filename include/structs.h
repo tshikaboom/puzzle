@@ -6,7 +6,7 @@
 
 /*Structure d'une carte*/
 struct carte {
-  int identifiant;      /* L'identifiant de la carte */
+  long int identifiant;      /* L'identifiant de la carte */
   int Haut;             /* valeur se trouvant sur le haut de la carte */
   int Bas;              /* valeur du bas de la carte */
   int Gauche;           /* valeur de la gauche de la carte */
