@@ -270,19 +270,20 @@ void exporteur_magique(Plateau *plateau)
     mkdir(folder, 0700);
     chmod(folder, 0700);
   }
-  
+
   /* on change de dossier
      chdir(folder);*/
   /* on check si un fichier "soln" existe deja, n etant un entier.
      Donc la on fait en sorte un cast de int en char* (sprintf) */
-  sprintf(buff, "%s%s", folder, "sol0");
+  sprintf(buff, "%s/%s", folder, "sol0");
   do {
-    sprintf(buff+9, "%d", i);
+  printf("%s\n", buff);
+  sprintf(buff, "%s/sol%d", folder, i);
     i++;
   } while (existe_fichier(buff));
 
+  printf("apres %s\n", buff);
 
-  
   /* apres la boucle, on en sera a un entier i dont le fichier soli
      n'existe pas. Donc on ecrit la solution */
   export(buff, plateau);
@@ -296,7 +297,7 @@ void exporteur_magique(Plateau *plateau)
   fprintf(fichier, "%d\n", i-1);
   fclose(fichier);
 
-  
+
   /* chdir(".."); */
 }
 
