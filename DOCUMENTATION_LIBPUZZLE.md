@@ -84,8 +84,6 @@ CHEMIN.H
     `void print_chemin(Chemin *chemin);`
 
 > _Fonctions pemettant la création de chemins._  
-     
-     
     `Chemin* constCompCheminSpirale(int n, int p);`  
     `Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y);`  
     `Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x);`  
