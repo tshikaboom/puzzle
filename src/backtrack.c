@@ -20,7 +20,9 @@
   Auteur: Benjamin Bielle
 */
 
-int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_de_carte)
+int backtrack (Plateau *plateau ,Carte tabCarte[],
+	       Chemin *parcours,
+	       int nombre_de_carte, int quiet)
 {
   #ifdef DEBUG
   int i; /* compteur generique */
@@ -38,16 +40,18 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
   /******************************************************************/
   /*Affichage pour verifier que le plateau est vide la premiere fois*/
   /******************************************************************/
-  #ifdef DEBUG
+  if (quiet==0) {
   system("clear");
   affichage(plateau);
-  #endif
+  }
   /******************/
   /*Fin du backtrack*/
   /******************/
   if (nombre_de_carte == 0)
     {
+      if (quiet == 0) {
       system("clear");
+      }
       nombre_de_solution++; /*Incrementation du nombre de solutions*//*
       printf("\n#== Solution(s) Trouvée(s) : %d ==#\n",nombre_de_solution);
       affichage (plateau); *//*affichage de la solution*/
@@ -88,8 +92,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
       plateau->tab[position_case.x][position_case.y] = tabCarte/*+carte*/;
       (tabCarte+carte)->sur_plateau = 1;
       nombre_de_carte--;
-
-      affichage(plateau);
+      if (quiet == 0) affichage(plateau);
 
     }
 
@@ -118,7 +121,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[], Chemin *parcours, int nombre_
 	      nombre_de_carte--;
 
 	      /*Appel a backtrack*/
-	      back = backtrack(plateau,tabCarte, parcours->Suivant, nombre_de_carte);
+	      back = backtrack(plateau,tabCarte, parcours->Suivant, nombre_de_carte, quiet);
 
 	      if ( back )
 		{

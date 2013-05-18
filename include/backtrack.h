@@ -4,5 +4,7 @@
 #include "structs.h"
 
 /* Algorithme de backtracking */
-int backtrack (Plateau *plateau,Carte tabCarte[], Chemin *parcours, int nombre_de_carte);
+int backtrack (Plateau *plateau,Carte tabCarte[],
+	       Chemin *parcours,
+	       int nombre_de_carte, int quiet);
 #endif
