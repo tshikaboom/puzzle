@@ -65,10 +65,10 @@ BACKTRACK.H
 CHEMIN.H
 --------
 
-> _initialisation d'une liste chainee._  
+> _Initialisation d'une liste chainee._  
     `Chemin* nouveauChemin(int x, int y);`
 
-> _rajout d'un element dans la liste._  
+> _Ajout d'un element dans la liste._  
     `Chemin* ajouteChemin(Chemin *liste, int x, int y);`
 
 > _minimum entre deux nombres._  
@@ -77,20 +77,25 @@ CHEMIN.H
 > _valeur absoluee d'un nombre._  
     `int abs(int n);`
 
-> _accesseur des coordonnees de la premiere cellule de la liste._  
+> _Accesseur des coordonnees de la premiere cellule de la liste._  
     `Position get_pos(Chemin *chemin);`
 
-> _affichage minimaliste d'un chemin en (x, y)._  
+> _Affichage minimaliste d'un chemin en (x, y)._  
     `void print_chemin(Chemin *chemin);`
 
 > _Fonctions creant les chemins pour un plateau de taille arbitraire et retournent une liste avec les coordonnees necessaires._  
-    `Chemin* constCheminEnS(int n,int p);`  
-    `Chemin* constCheminSpirale(int n, int p);`  
+     
+     
     `Chemin* constCompCheminSpirale(int n, int p);`  
     `Chemin* ajouteLigneX(Chemin* chemin, int xDepart, int xArrivee, int y);`  
     `Chemin* ajouteLigneY(Chemin* chemin, int yDepart,int yArrivee,int x);`  
     `Chemin* constCheminSpiraleDec(Chemin* chemin,int n, int p, int xOff, int yOff);`  
     `Chemin* serpentTwo(Chemin *chemin,int n,int p,int xOffset, int yOffset);`  
+
+>_Fonctions dites allias, n'utilisant pas d'offset
+	`Chemin* constCheminEnS(int n,int p);`
+	`Chemin* constCheminSpirale(int n, int p);` 
+	`Chemin* serpentDeux(Chemin *chemin,int n,int p);`
 
 CONTACT.H
 ---------
@@ -152,24 +157,15 @@ PARSER.H
 > _Checks if input char is EndOfLine._  
     `int isEndOfLine (char cara);`
 
-> _cara Char to be cast to integer._  
-    `int charToInteger(char cara);`
-
-> _Input string lenght._  
-    `int strLength(char* str);`
-
-> _str Input string to be parsed to integer._  
-    `int stringToInteger(char* str);`
-
 > _char* Error Message._  
     `void error(char* errorMessage);`
 
 > _Read the card._  
     `int readCard(char* stringCard, Carte* current);`
 
-> _Carte** an array containing the cards that were parsed from the file._  
+> _Carte** reads a puzzle file and stores the data into the defined structure_  
     `Carte* parseFile(char* filename,int* hauteur,int* largeur);`
 
-> _Carte** array of cards containing the cards to be exported._  
+> _Carte** exports the current puzzle to a text file._  
     `void export(char* filename, Plateau *plateau);`
 
