@@ -51,6 +51,7 @@ void print_help(char *nom_programme)
     printf("             Il n'y aura pas de placement possible des autres cartes disponibles\n");
     printf(" --no-rotate : la carte initialement placee ne subira pas de rotation initiale.\n");
     printf(" --quiet: on obtient un backtrack pas tres bavard.\n");
+    printf(" --resolve-once: on obtient une seule solution.\n");
     printf(" --help : afficher ce message.\n");
     printf("Appel sans fichier: resolution d'un plateau integre au programme.\n\n");
 }

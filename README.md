@@ -88,6 +88,8 @@ Directives de l'exécutable bin/PUZZLE
 > Les OPTIONS sont    
 > --no-swap : seule la premiere carte sera placee initialement. Il n'y aura pas de placement possible des autres cartes disponibles   
 > --no-rotate : la carte initialement placee ne subira pas de rotation initiale.   
+> --quiet: on obtient un backtrack pas tres bavard.    
+> --resolve-once: on obtient une seule solution.    
 > --help : afficher ce message.    
 > Appel sans fichier: resolution d'un plateau deja donne dans le programme.    
 
