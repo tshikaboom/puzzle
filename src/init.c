@@ -277,12 +277,10 @@ void exporteur_magique(Plateau *plateau)
      Donc la on fait en sorte un cast de int en char* (sprintf) */
   sprintf(buff, "%s/%s", folder, "sol0");
   do {
-  printf("%s\n", buff);
   sprintf(buff, "%s/sol%d", folder, i);
     i++;
   } while (existe_fichier(buff));
 
-  printf("apres %s\n", buff);
 
   /* apres la boucle, on en sera a un entier i dont le fichier soli
      n'existe pas. Donc on ecrit la solution */
