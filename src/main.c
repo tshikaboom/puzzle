@@ -15,6 +15,7 @@
 int parse_args(int argc, char *argv[],
 	       int *choix_parcours, int *swap,
 	       int *rotate, int *quiet,
+	       int *une_sol,
 	       char** fichier)
 {
   int i;
@@ -24,6 +25,7 @@ int parse_args(int argc, char *argv[],
       if (strcmp(argv[i], "--no-rotate") == 0) *rotate=0;
       if (strcmp(argv[i], "--help") == 0) return -1;
       if (strcmp(argv[i], "--quiet") == 0) *quiet=1;
+      if (strcmp(argv[i], "--resolve-once") == 0) *une_sol=1;
     }
     else {
       *fichier = strdup_intern(argv[i]);
@@ -55,7 +57,11 @@ void print_help(char *nom_programme)
 
 int main(int argc, char *argv[])
 {
-  int choix_parcours, cpt, rotated_real, opt_swap=1, opt_rotate=1, i, j, silence=0;
+  int choix_parcours, cpt,
+    *rotated_real,
+    opt_swap=1, opt_rotate=1,
+    i, j,
+    silence=0, une_sol=0;
   int hauteur, largeur; /* servent a initialiser la hauteur et la largeur du plateau */
   Carte carte1,carte2, carte3, carte4, carte5, carte6, carte7, carte8, carte9;
   Carte backup;
@@ -75,6 +81,7 @@ int main(int argc, char *argv[])
 		 &opt_swap,
 		 &opt_rotate,
 		 &silence,
+		 &une_sol,
 		 &fichier) == -1) {
     print_help(argv[0]);
     exit(EXIT_SUCCESS);
@@ -209,7 +216,7 @@ int main(int argc, char *argv[])
       printf("backtrack: carte initiale %d, rotation reelle %d\n",
 	     tabCarte[0].identifiant, rotated_real);
       #endif
-      backtrack(plateau, tabCarte, parcours, hauteur*largeur, silence);
+      backtrack(plateau, tabCarte, parcours, hauteur*largeur, silence, une_sol);
       rotation(tabCarte, 1); /* nouvelle rotation initiale */
       tabCarte[0].rotated = 0; /* 0 car la carte "tournee" a maintenant une nouvelle
 				  "rotation initiale" */

@@ -22,7 +22,7 @@
 
 int backtrack (Plateau *plateau ,Carte tabCarte[],
 	       Chemin *parcours,
-	       int nombre_de_carte, int quiet)
+	       int nombre_de_carte, int quiet, int une_sol)
 {
   #ifdef DEBUG
   int i; /* compteur generique */
@@ -64,6 +64,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[],
       exporteur_magique(plateau);
       /* used only for benchmarks
 	 exit(EXIT_SUCCESS);*/
+      if (une_sol) exit(EXIT_SUCCESS);
 
       clean_plateau(plateau);
 
@@ -121,7 +122,8 @@ int backtrack (Plateau *plateau ,Carte tabCarte[],
 	      nombre_de_carte--;
 
 	      /*Appel a backtrack*/
-	      back = backtrack(plateau,tabCarte, parcours->Suivant, nombre_de_carte, quiet);
+	      back = backtrack(plateau,tabCarte, parcours->Suivant,
+			       nombre_de_carte, quiet, une_sol);
 
 	      if ( back )
 		{
