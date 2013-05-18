@@ -39,18 +39,18 @@ void print_help(char *nom_programme)
     printf("\nUsage: %s [FICHIER MODE] [OPTION ..]\n\n", nom_programme);
     printf("FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre.\n");
     printf("MODE etant l'entier 1, 2 ou 3.\n");
-    printf(" 1: resolution du puzzle en spirale a partir du centre\n");
-    printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche\n");
-    printf(" 3: resolution du puzzle en hybride (spirale+serpent)\n");
+    printf(" 1: resolution du puzzle en spirale a partir du centre.\n");
+    printf(" 2: resolution du puzzle en serpent a partir du coin superieur gauche.\n");
+    printf(" 3: resolution du puzzle en hybride (spirale+subdivision).\n");
     printf("    Ceci sert surtout pour des plateaux rectangulaires.\n");
-    printf(" 4: resolution du puzzle en serpentTwo\n\n");
+    printf(" 4: resolution du puzzle en subdivision de rectangle de largeur 2.\n\n");
     printf("Les OPTIONS sont\n");
     printf(" --no-swap : seule la premiere carte sera placee initialement.\n");
     printf("             Il n'y aura pas de placement possible des autres cartes disponibles\n");
     printf(" --no-rotate : la carte initialement placee ne subira pas de rotation initiale.\n");
     printf(" --quiet: on obtient un backtrack pas tres bavard.\n");
     printf(" --help : afficher ce message.\n");
-    printf("Appel sans fichier: resolution d'un plateau deja donne dans le programme.\n\n");
+    printf("Appel sans fichier: resolution d'un plateau integre au programme.\n\n");
 }
 
 int main(int argc, char *argv[])
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
     break;
   case 2:
     #ifdef DEBUG
-    printf("Generation d'un S %dx%d\n", hauteur, largeur);
+    printf("Generation d'un serpent %dx%d\n", hauteur, largeur);
     #endif
     parcours = constCheminEnS(largeur, hauteur);
     break;
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
     break;
   case 4:
     #ifdef DEBUG
-    printf("Generation d'un serpentTwo %dx%d\n", hauteur, largeur);
+    printf("Generation des subdivisions %dx%d\n", hauteur, largeur);
     #endif
     parcours = serpentTwo(NULL, largeur, hauteur, 0, 0);
     break;
