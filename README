@@ -23,8 +23,8 @@
 
    src/chemin.c et include/chemin.h
    	Fonction donnant le chemin de résolution à suivre
-	- Benjamin Bielle
 	- Vigano Sylvain
+	- Benjamin Bielle
 
    src/backtrack.c et include/backtrack.h
 	Fonction de résolution du puzzle
@@ -73,16 +73,21 @@
 	Lance le programme à partir du fichier Puzzle.puzzle en mode serpent2
 
 == Directives de l'exécutable bin/PUZZLE ==
-  
-  L'exécutable prend soit deux arguments, soit aucun. Si l'on l'appelle avec deux arguments, le premier doit être
-  le fichier du puzzle à résoudre (Puzzle.puzzle est fourni) et un chiffre entre 1 et 3 pour le mode de résolution.
-  - 1: parcours en spirale du plateau
-  - 2: parcours en S du plateau
-  - 3: parcours en hybride (spirale et S) du plateau. Ceci sert pour des plateaux rectangulaires. Le programme prend
-  le carré le plus grand possible du rectangle et génère une spirale dessus, puis génère un chemin en S sur le reste
-  du rectangle.
 
-  Si l'on appelle l'exécutable sans argument, un puzzle inclus dans le programme est résolu en spirale.
+ Usage: nom programme [FICHIER MODE] [OPTION ..]    
+ FICHIER etant un fichier avec les cartes et la taille du plateau a resoudre. MODE etant l'entier 1, 2 ou 3.    
+ 1: resolution du puzzle en spirale a partir du centre    
+ 2: resolution du puzzle en serpent a partir du coin superieur gauche    
+ 3: resolution du puzzle en hybride (spirale+serpent). Ceci sert surtout pour des plateaux rectangulaires.    
+ 4: resolution du puzzle en serpentTwo    
+ Les OPTIONS sont    
+ --no-swap : seule la premiere carte sera placee initialement. Il n'y aura pas de placement possible des autres cartes disponibles   
+ --no-rotate : la carte initialement placee ne subira pas de rotation initiale.   
+ --quiet: on obtient un backtrack pas tres bavard.    
+ --resolve-once: on obtient une seule solution.    
+ --help : afficher ce message.    
+ Appel sans fichier: resolution d'un plateau deja donne dans le programme.    
+
 
 == Etat d'avancement ==
 
@@ -96,7 +101,7 @@
 
    src/parser.c    - OK
 
-   src/main.c      - Fini quand les autres fonctions seront finies
+   src/main.c      - OK
 
 == Normes utilisées ==
 

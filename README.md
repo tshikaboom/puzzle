@@ -101,7 +101,7 @@ Etat d'avancement
 > src/chemin.c    - OK   
 > src/backtrack.c - OK   
 > src/parser.c    - OK   
-> src/main.c      - Fini quand les autres fonctions seront finies    
+> src/main.c      - OK
 
 Normes utilisées
 ----------------
