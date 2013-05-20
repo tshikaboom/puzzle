@@ -59,8 +59,9 @@ void print_help(char *nom_programme)
 int main(int argc, char *argv[])
 {
   int choix_parcours, cpt,
-    rotated_real,
-    opt_swap=1, opt_rotate=1,
+    rotated_real;
+    long int opt_swap=1; 
+	int opt_rotate=1,
     i, j,
     silence=0, une_sol=0;
   int hauteur, largeur; /* servent a initialiser la hauteur et la largeur du plateau */
@@ -217,7 +218,8 @@ int main(int argc, char *argv[])
       printf("backtrack: carte initiale %d, rotation reelle %d\n",
 	     tabCarte[0].identifiant, rotated_real);
       #endif
-      backtrack(plateau, tabCarte, parcours, hauteur*largeur, silence, une_sol);
+
+      backtrack(plateau, tabCarte, parcours, (long int) hauteur*largeur, silence, une_sol);
       rotation(tabCarte, 1); /* nouvelle rotation initiale */
       tabCarte[0].rotated = 0; /* 0 car la carte "tournee" a maintenant une nouvelle
 				  "rotation initiale" */

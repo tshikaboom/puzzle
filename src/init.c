@@ -195,7 +195,7 @@ Plateau *nouveau_plateau(int hauteur, int largeur)
 
   plateau->largeur = largeur;
   plateau->hauteur = hauteur;
-
+  printf("fin de la creation de plateau\n");
   return plateau;
 }
 
@@ -215,11 +215,11 @@ void free_plateau(Plateau *plateau)
 
 void swap (Plateau *plateau,Carte tabCarte[])
 {
-  int i;
+  long int i;
   Carte tmp;
 
   tmp = tabCarte[0];
-  for (i=0; i<(plateau->largeur*plateau->hauteur)-1;i++)
+  for (i=0; i<(long int)(plateau->largeur*plateau->hauteur)-1;i++)
     tabCarte[i] = tabCarte[i+1];
 
   tabCarte[plateau->largeur*plateau->hauteur-1] = tmp;
@@ -263,7 +263,7 @@ void exporteur_magique(Plateau *plateau)
   char folder[100];
   FILE *fichier;
   struct stat st;
-
+  
   sprintf(folder, "./%dx%d/", plateau->hauteur, plateau->largeur);
 
   if (stat(folder, &st) == -1) {

@@ -117,17 +117,13 @@ Carte *parseFile(char* filename,int* hauteur,int* largeur)
       readedCard+=readCard(ligne,stack+i)>0 ? 1:0;
       /*      stack[i].identifiant=i; */
       i++;
-      #ifdef DEBUG
-      printf("nb cartes lues: %d\n",readedCard);
-      #endif
     }
     fclose(fp);
-    
+	printf("fin de l'import\n");
     if (readedCard!=(long int)(*hauteur)*(*largeur)) {
       error("Number of readed card and dimensions does not match");
       free(stack);
     }
-    
     return stack;
   }  
   else error("Error: file could not be opened or found");

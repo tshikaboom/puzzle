@@ -1,5 +1,6 @@
 #define _POSIX_SOURCE 1
 
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,13 +23,13 @@
 
 int backtrack (Plateau *plateau ,Carte tabCarte[],
 	       Chemin *parcours,
-	       int nombre_de_carte, int quiet, int une_sol)
+	       long int nombre_de_carte, int quiet, int une_sol)
 {
   #ifdef DEBUG
-  int i; /* compteur generique */
+  long int i; /* compteur generique */
   #endif
   int nombre_de_solution;
-  int carte=0; /*numero de la carte -> identifiant de la carte*/
+  long int carte=0; /*numero de la carte -> identifiant de la carte*/
   Position position_case; /*position de la case courante*/
   int back;
 
@@ -57,7 +58,7 @@ int backtrack (Plateau *plateau ,Carte tabCarte[],
       affichage (plateau); *//*affichage de la solution*/
 
       /*Reinitialisation du tableau de carte*/
-      for (carte = 0; carte < (plateau->largeur*plateau->hauteur); carte++)
+      for (carte = 0; carte < (long int) (plateau->largeur*plateau->hauteur); carte++)
 	{
 	  tabCarte[carte].sur_plateau = 0;
 	}
@@ -104,9 +105,10 @@ int backtrack (Plateau *plateau ,Carte tabCarte[],
   /* BACKTRACK                                                          */
   /**********************************************************************/
 
-  for (carte = 0; carte < (plateau->largeur*plateau->hauteur) ; carte++)
+  for (carte = 0; carte < (long int)(plateau->largeur*plateau->hauteur) ; carte++)
     {
-      /*Si carte n'est pas deja posee*/
+	  /*Si carte n'est pas deja posee*/
+	  
       if (tabCarte[carte].sur_plateau == 0)
 	{
 	  /*Si carte est posable sur le plateau*/
@@ -122,8 +124,9 @@ int backtrack (Plateau *plateau ,Carte tabCarte[],
 	      nombre_de_carte--;
 
 	      /*Appel a backtrack*/
+		  printf("%ld\n",nombre_de_carte);
 	      back = backtrack(plateau,tabCarte, parcours->Suivant,
-			       nombre_de_carte, quiet, une_sol);
+			       (long int)nombre_de_carte, quiet, une_sol);
 
 	      if ( back )
 		{
@@ -143,6 +146,5 @@ int backtrack (Plateau *plateau ,Carte tabCarte[],
 	    }
 	}
     }
-
   return FALSE;
 }

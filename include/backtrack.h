@@ -6,5 +6,5 @@
 /* Algorithme de backtracking */
 int backtrack (Plateau *plateau,Carte tabCarte[],
 	       Chemin *parcours,
-	       int nombre_de_carte, int quiet, int une_sol);
+	       long int nombre_de_carte, int quiet, int une_sol);
 #endif
