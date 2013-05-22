@@ -20,18 +20,6 @@
  * Nettoyer les erreurs avec du perror()
  */
 
-int parse_minus(char cara)
-{
-  switch (cara) {
-  case '-':
-    return 1;
-    break;
-  default:
-    return 0;
-    break;
-  }
-}
-
 int isEndOfLine(char cara)
 {
   /**
