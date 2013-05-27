@@ -120,7 +120,7 @@ INIT.H
     `int suivant (Plateau *plateau, Position courante);`
 
 > _Gestion de la rotation: rotation(carte, 1) tourne la carte une fois dans le sens des aiguilles d'une montre._   
-    `void rotation (Carte *carte,unsigned int nombre);`
+    `void rotation (Carte *carte, unsigned int nombre);`
 
 > _Affichage d'un plateau de taille arbitraire._  
     `void affichage (Plateau *plateau);`
