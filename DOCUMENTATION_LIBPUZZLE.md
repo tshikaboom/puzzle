@@ -159,7 +159,7 @@ PARSER.H
     `int readCard(char* stringCard, Carte* current);`
 
 > _Carte** reads a puzzle file and stores the data into the defined structure_  
-    `Carte* parseFile(char* filename,int* hauteur,int* largeur);`
+    `Carte* parseFile(char* filename, int* hauteur, int* largeur);`
 
 > _Carte** exports the current puzzle to a text file._  
     `void export(char* filename, Plateau *plateau);`
